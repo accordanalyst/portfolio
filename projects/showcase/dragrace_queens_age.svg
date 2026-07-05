@@ -1,0 +1,101 @@
+<svg viewBox="0 0 629.640625 531" xmlns="http://www.w3.org/2000/svg">
+<defs><style>
+  :root {
+    --bg: #0B0710;
+    --panel: #160F1F;
+    --panel2: #1E1429;
+    --line: #322342;
+    --pink: #FF2D87;
+    --pink-soft: #3D1029;
+    --gold: #FFC857;
+    --violet: #9D4EDD;
+    --text: #F1E9F7;
+    --dim: #9C8AAE;
+    --sans: 'Inter', sans-serif;
+    --display: 'Anton', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans);
+    background-image: radial-gradient(circle at 20% 0%, rgba(255,45,135,0.10), transparent 45%),
+                       radial-gradient(circle at 85% 10%, rgba(157,78,221,0.10), transparent 40%);
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px 70px; }
+
+  header.top { padding: 44px 0 26px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+  h1.title {
+    font-family: var(--display); font-weight: 400; font-size: 44px; letter-spacing: .01em; margin: 0 0 10px;
+    background: linear-gradient(95deg, var(--pink), var(--violet) 60%, var(--gold));
+    -webkit-background-clip: text; background-clip: text; color: transparent; text-transform: uppercase;
+  }
+  .sub { font-size: 14.5px; color: var(--dim); max-width: 640px; margin: 0 0 6px; }
+  .disclaimer { font-size: 11.5px; color: var(--dim); opacity: .75; max-width: 640px; }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 28px 0 8px; }
+  @media (max-width: 800px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+  .kpi-card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; }
+  .kpi-label { font-family: var(--mono); font-size: 10.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); margin: 0 0 8px; }
+  .kpi-value { font-family: var(--mono); font-size: 24px; font-weight: 600; margin: 0; color: var(--text); }
+  .kpi-value.accent { color: var(--gold); }
+
+  .season-row { display: flex; flex-wrap: wrap; gap: 7px; margin: 26px 0 0; }
+  .pill {
+    font-family: var(--mono); font-size: 11.5px; letter-spacing: .03em;
+    background: var(--panel); border: 1px solid var(--line); color: var(--dim);
+    padding: 7px 13px; border-radius: 14px; cursor: pointer; transition: all .15s ease;
+  }
+  .pill:hover { border-color: var(--pink); color: var(--text); }
+  .pill.active { background: linear-gradient(135deg, var(--pink), var(--violet)); color: #fff; border-color: transparent; }
+
+  .panel-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 18px; margin-top: 28px; }
+  @media (max-width: 880px) { .panel-grid { grid-template-columns: 1fr; } }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px 22px; }
+  .panel-title { font-family: var(--display); font-size: 16px; letter-spacing: .02em; text-transform: uppercase; color: var(--text); margin: 0 0 4px; }
+  .panel-note { font-size: 12px; color: var(--dim); margin: 0 0 14px; }
+
+  .full-row { margin-top: 18px; }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: #2A1B38; border: 1px solid var(--pink);
+    border-radius: 6px; padding: 8px 11px; font-family: var(--mono); font-size: 11.5px; color: var(--text);
+    box-shadow: 0 6px 18px rgba(0,0,0,.4); opacity: 0; transition: opacity .1s ease; z-index: 10;
+  }
+
+  table.roster { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.roster th {
+    text-align: left; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .04em;
+    color: var(--dim); padding: 0 8px 8px 0; border-bottom: 1px solid var(--line);
+  }
+  table.roster td { padding: 7px 8px 7px 0; border-bottom: 1px solid var(--line); color: var(--text); }
+  table.roster tr:last-child td { border-bottom: none; }
+  table.roster .rank-1 { color: var(--gold); font-weight: 700; }
+  table.roster .crown { margin-right: 4px; }
+
+  .legend-row { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10.5px; color: var(--dim); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 2px; }
+
+  footer.foot {
+    border-top: 1px solid var(--line); margin-top: 34px; padding-top: 18px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--dim); line-height: 1.7;
+  }
+  footer.foot a { color: var(--gold); text-decoration: none; }
+
+  .axis path, .axis line { stroke: var(--line); }
+  .axis text { fill: var(--dim); font-family: var(--mono); font-size: 10px; }
+  .gridline { stroke: var(--line); stroke-dasharray: 2,3; opacity: .5; }
+</style></defs>
+<rect width="629.640625" height="531" rx="10" fill="#160F1F"/>
+<text x="24" y="34" font-family="'Anton', sans-serif" font-size="16" font-weight="700" letter-spacing="0.3" fill="#F1E9F7" style="text-transform:uppercase">Queens &amp; Average Age by Season</text>
+<text x="24" y="56" font-family="Inter, sans-serif" font-size="11.5" fill="#9C8AAE">Bars = number of queens that season. Line = average age. Click a season pill above to</text>
+<text x="24" y="71" font-family="Inter, sans-serif" font-size="11.5" fill="#9C8AAE">highlight it.</text>
+<circle cx="28" cy="98" r="4" fill="rgb(255, 45, 135)"/>
+<text x="38" y="102" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#9C8AAE">Queens (count)</text>
+<circle cx="144.8" cy="98" r="4" fill="rgb(255, 200, 87)"/>
+<text x="154.8" y="102" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#9C8AAE">Avg. age</text>
+<g transform="translate(24, 128)"><g transform="translate(38,14)"><g><line class="gridline" x1="0" x2="502" y1="236" y2="236"></line><line class="gridline" x1="0" x2="502" y1="167.59420289855075" y2="167.59420289855075"></line><line class="gridline" x1="0" x2="502" y1="99.18840579710144" y2="99.18840579710144"></line><line class="gridline" x1="0" x2="502" y1="30.78260869565218" y2="30.78260869565218"></line></g><rect class="bar" x="10.531468531468533" width="24.573426573426573" y="112.86956521739131" height="123.13043478260869" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="45.63636363636364" width="24.573426573426573" y="71.82608695652175" height="164.17391304347825" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="80.74125874125875" width="24.573426573426573" y="58.14492753623188" height="177.85507246376812" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="115.84615384615385" width="24.573426573426573" y="58.14492753623188" height="177.85507246376812" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="150.95104895104896" width="24.573426573426573" y="44.46376811594202" height="191.536231884058" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="186.05594405594405" width="24.573426573426573" y="44.46376811594202" height="191.536231884058" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="221.16083916083917" width="24.573426573426573" y="44.46376811594202" height="191.536231884058" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="256.2657342657343" width="24.573426573426573" y="71.82608695652175" height="164.17391304347825" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="291.3706293706294" width="24.573426573426573" y="44.46376811594202" height="191.536231884058" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="326.4755244755245" width="24.573426573426573" y="44.46376811594202" height="191.536231884058" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="361.5804195804196" width="24.573426573426573" y="30.78260869565218" height="205.2173913043478" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="396.6853146853147" width="24.573426573426573" y="58.14492753623188" height="177.85507246376812" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="431.7902097902098" width="24.573426573426573" y="58.14492753623188" height="177.85507246376812" fill="#FF2D87" opacity="1" rx="3"></rect><rect class="bar" x="466.8951048951049" width="24.573426573426573" y="44.46376811594202" height="191.536231884058" fill="#FF2D87" opacity="1" rx="3"></rect><path d="M22.818,54.884L57.923,148.186L93.028,131.721L128.133,104.279L163.238,137.209L198.343,101.535L233.448,76.837L268.552,87.814L303.657,71.349L338.762,128.977L373.867,101.535L408.972,126.233L444.077,93.302L479.182,181.116" fill="none" stroke="#FFC857" stroke-width="2"></path><circle class="dot" cx="22.81818181818182" cy="54.88372093023255" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="57.92307692307693" cy="148.18604651162786" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="93.02797202797203" cy="131.72093023255815" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="128.13286713286715" cy="104.27906976744187" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="163.23776223776224" cy="137.20930232558138" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="198.34265734265733" cy="101.5348837209302" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="233.44755244755245" cy="76.83720930232559" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="268.5524475524476" cy="87.81395348837206" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="303.65734265734267" cy="71.34883720930235" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="338.76223776223776" cy="128.9767441860465" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="373.86713286713285" cy="101.5348837209302" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="408.972027972028" cy="126.2325581395349" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="444.0769230769231" cy="93.30232558139531" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><circle class="dot" cx="479.1818181818182" cy="181.11627906976744" r="3" fill="#0B0710" stroke="#FFC857" stroke-width="2"></circle><g class="axis" transform="translate(0,236)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,0.5H502.5"></path><g class="tick" opacity="1" transform="translate(22.81818181818182,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S01</text></g><g class="tick" opacity="1" transform="translate(57.92307692307693,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S02</text></g><g class="tick" opacity="1" transform="translate(93.02797202797203,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S03</text></g><g class="tick" opacity="1" transform="translate(128.13286713286715,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S04</text></g><g class="tick" opacity="1" transform="translate(163.23776223776224,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S05</text></g><g class="tick" opacity="1" transform="translate(198.34265734265733,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S06</text></g><g class="tick" opacity="1" transform="translate(233.44755244755245,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S07</text></g><g class="tick" opacity="1" transform="translate(268.5524475524476,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S08</text></g><g class="tick" opacity="1" transform="translate(303.65734265734267,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S09</text></g><g class="tick" opacity="1" transform="translate(338.76223776223776,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S10</text></g><g class="tick" opacity="1" transform="translate(373.86713286713285,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S11</text></g><g class="tick" opacity="1" transform="translate(408.972027972028,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S12</text></g><g class="tick" opacity="1" transform="translate(444.0769230769231,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S13</text></g><g class="tick" opacity="1" transform="translate(479.1818181818182,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">S14</text></g></g><g class="axis" fill="none" font-size="10" font-family="sans-serif" text-anchor="end"><path class="domain" stroke="currentColor" d="M0.5,236.5V0.5"></path><g class="tick" opacity="1" transform="translate(0,236.5)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">0</text></g><g class="tick" opacity="1" transform="translate(0,168.09420289855075)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">5</text></g><g class="tick" opacity="1" transform="translate(0,99.68840579710144)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">10</text></g><g class="tick" opacity="1" transform="translate(0,31.28260869565218)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">15</text></g></g></g></g>
+</svg>

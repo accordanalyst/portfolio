@@ -1,0 +1,107 @@
+<svg viewBox="0 0 1128 550.953125" xmlns="http://www.w3.org/2000/svg">
+<defs><style>
+  :root {
+    --bg: #0E1620;
+    --panel: #16202C;
+    --panel2: #1C2836;
+    --line: #2A3A4D;
+    --copper: #C98A4A;
+    --copper-soft: #3A2C1C;
+    --teal: #4FB8C4;
+    --teal-soft: #1A3035;
+    --amber: #E2B33D;
+    --text: #E8EDF2;
+    --dim: #8A99AA;
+    --sans: 'Inter', sans-serif;
+    --display: 'Sora', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.55; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 26px 80px; }
+
+  header.top { padding: 46px 0 22px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--copper); margin: 0 0 14px; }
+  h1.title { font-family: var(--display); font-weight: 700; font-size: 32px; letter-spacing: -.01em; margin: 0 0 10px; color: var(--text); }
+  .sub { font-size: 14.5px; color: var(--dim); max-width: 660px; margin: 0 0 14px; }
+  .source-line { font-size: 11.5px; color: var(--dim); opacity: .8; max-width: 700px; line-height: 1.7; }
+  .source-line b { color: var(--teal); }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 26px 0 6px; }
+  @media (max-width: 900px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+  .kpi-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+  .kpi-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); margin: 0 0 7px; }
+  .kpi-value { font-family: var(--mono); font-size: 20px; font-weight: 600; margin: 0; }
+  .kpi-value.copper { color: var(--copper); }
+  .kpi-value.teal { color: var(--teal); }
+  .kpi-sub { font-family: var(--mono); font-size: 10px; color: var(--dim); margin: 4px 0 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; margin-top: 22px; }
+  .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 4px; }
+  .panel-title { font-family: var(--display); font-weight: 600; font-size: 16px; color: var(--text); margin: 0 0 4px; }
+  .panel-note { font-size: 12.5px; color: var(--dim); margin: 0 0 16px; max-width: 640px; }
+  .legend-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--dim); }
+  .legend-swatch { width: 16px; height: 3px; border-radius: 2px; }
+
+  .brush-hint { font-family: var(--mono); font-size: 10.5px; color: var(--dim); opacity: .75; margin-top: 8px; }
+  .reset-btn {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase;
+    background: var(--panel2); border: 1px solid var(--line); color: var(--dim);
+    padding: 5px 11px; border-radius: 5px; cursor: pointer;
+  }
+  .reset-btn:hover { color: var(--teal); border-color: var(--teal); }
+
+  .two-col { display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px; margin-top: 22px; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .panel { margin-top: 0; }
+
+  .region-row {
+    display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); cursor: pointer;
+  }
+  .region-row:last-child { border-bottom: none; }
+  .region-row:hover { background: var(--panel2); }
+  .region-row.selected { background: var(--copper-soft); }
+  .region-name { font-size: 12.5px; width: 150px; flex-shrink: 0; }
+  .region-track { flex: 1; height: 8px; background: var(--panel2); border-radius: 4px; overflow: hidden; }
+  .region-fill { height: 100%; border-radius: 4px; background: var(--copper); }
+  .region-price { font-family: var(--mono); font-size: 12.5px; width: 60px; text-align: right; }
+  .region-date { font-family: var(--mono); font-size: 9.5px; color: var(--dim); width: 78px; text-align: right; }
+
+  .detail-callout {
+    background: var(--teal-soft); border: 1px solid var(--teal); border-radius: 8px; padding: 14px 16px; margin-top: 14px;
+    font-size: 12.5px; color: var(--text); display: none;
+  }
+  .detail-callout.show { display: block; }
+  .detail-callout .dc-title { font-family: var(--mono); font-size: 11px; color: var(--teal); text-transform: uppercase; margin: 0 0 6px; }
+
+  .annotation-label {
+    font-family: var(--mono); font-size: 10.5px; fill: var(--amber);
+  }
+  .axis path, .axis line { stroke: var(--line); }
+  .axis text { fill: var(--dim); font-family: var(--mono); font-size: 10px; }
+  .gridline { stroke: var(--line); stroke-dasharray: 2,3; opacity: .5; }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: #20303F; border: 1px solid var(--copper);
+    border-radius: 6px; padding: 8px 11px; font-family: var(--mono); font-size: 11.5px; color: var(--text);
+    box-shadow: 0 6px 18px rgba(0,0,0,.45); opacity: 0; transition: opacity .1s ease; z-index: 10;
+  }
+
+  footer.foot {
+    border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--dim); line-height: 1.8;
+  }
+</style></defs>
+<rect width="1128" height="550.953125" rx="10" fill="#16202C"/>
+<text x="24" y="34" font-family="'Sora', sans-serif" font-size="16" font-weight="700" letter-spacing="0.3" fill="#E8EDF2" style="text-transform:uppercase">National vs. Midwest Trend — Focus &amp; Zoom</text>
+<text x="24" y="56" font-family="Inter, sans-serif" font-size="11.5" fill="#8A99AA">Drag across the lower context chart to zoom the main chart into any date range. The annotated marker flags the real Strait of Hormuz supply disruption (Feb 28, 2026) and</text>
+<text x="24" y="71" font-family="Inter, sans-serif" font-size="11.5" fill="#8A99AA">its price impact.</text>
+<circle cx="28" cy="114" r="4" fill="#888"/>
+<text x="38" y="118" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#8A99AA">National Average</text>
+<circle cx="157.2" cy="114" r="4" fill="#888"/>
+<text x="167.2" y="118" font-family="'IBM Plex Mono', monospace" font-size="11" fill="#8A99AA">PADD 2 — Midwest</text>
+<g transform="translate(24, 144)"><g transform="translate(46,16)"><g><line class="gridline" x1="0" x2="1008" y1="212.5" y2="212.5"></line><line class="gridline" x1="0" x2="1008" y1="170.00000000000003" y2="170.00000000000003"></line><line class="gridline" x1="0" x2="1008" y1="127.50000000000003" y2="127.50000000000003"></line><line class="gridline" x1="0" x2="1008" y1="85.00000000000001" y2="85.00000000000001"></line><line class="gridline" x1="0" x2="1008" y1="42.50000000000001" y2="42.50000000000001"></line><line class="gridline" x1="0" x2="1008" y1="0" y2="0"></line></g><path class="line-national" fill="none" stroke="#C98A4A" stroke-width="2.2" d="M0,207.315C4.48,206.663,8.96,206.012,13.44,203.83C17.92,201.648,22.4,194.225,26.88,194.225C31.36,194.225,35.84,198.985,40.32,198.985C44.8,198.985,49.28,198.957,53.76,198.9C58.24,198.843,62.72,198.716,67.2,198.475C71.68,198.234,76.16,197.908,80.64,197.455C85.12,197.002,89.6,195.755,94.08,195.755C98.56,195.755,103.04,199.396,107.52,201.025C112,202.654,116.48,204.312,120.96,205.53C125.44,206.748,129.92,208.335,134.4,208.335C138.88,208.335,143.36,207.414,147.84,206.805C152.32,206.196,156.8,205.7,161.28,204.68C165.76,203.66,170.24,200.685,174.72,200.685C179.2,200.685,183.68,204.298,188.16,205.785C192.64,207.273,197.12,208.689,201.6,209.61C206.08,210.531,210.56,210.786,215.04,211.31C219.52,211.834,224,212.217,228.48,212.755C232.96,213.293,237.44,214.54,241.92,214.54C246.4,214.54,250.88,209.44,255.36,209.44C259.84,209.44,264.32,212.401,268.8,213.605C273.28,214.809,277.76,216.665,282.24,216.665C286.72,216.665,291.2,216.098,295.68,214.965C300.16,213.832,304.64,210.772,309.12,206.465C313.6,202.158,318.08,189.125,322.56,189.125C327.04,189.125,331.52,193.205,336,193.205C340.48,193.205,344.96,192.624,349.44,192.185C353.92,191.746,358.4,191.604,362.88,190.57C367.36,189.536,371.84,185.98,376.32,185.98C380.8,185.98,385.28,186.405,389.76,186.575C394.24,186.745,398.72,186.717,403.2,187C407.68,187.283,412.16,189.678,416.64,190.91C421.12,192.143,425.6,194.112,430.08,194.395C434.56,194.678,439.04,194.82,443.52,194.82C448,194.82,452.48,193.432,456.96,192.61C461.44,191.788,465.92,189.89,470.4,189.89C474.88,189.89,479.36,192.185,483.84,192.185C488.32,192.185,492.8,191.548,497.28,191.335C501.76,191.123,506.24,190.91,510.72,190.91C515.2,190.91,519.68,193.304,524.16,194.565C528.64,195.826,533.12,197.186,537.6,198.475C542.08,199.764,546.56,202.3,551.04,202.3C555.52,202.3,560,195.854,564.48,193.97C568.96,192.086,573.44,192.681,577.92,190.995C582.4,189.309,586.88,185.484,591.36,183.855C595.84,182.226,600.32,181.22,604.8,181.22C609.28,181.22,613.76,182.807,618.24,184.365C622.72,185.923,627.2,188.218,631.68,190.57C636.16,192.922,640.64,196.336,645.12,198.475C649.6,200.614,654.08,201.691,658.56,203.405C663.04,205.119,667.52,207.244,672,208.76C676.48,210.276,680.96,211.551,685.44,212.5C689.92,213.449,694.4,213.874,698.88,214.455C703.36,215.036,707.84,215.985,712.32,215.985C716.8,215.985,721.28,212.288,725.76,209.95C730.24,207.613,734.72,204.099,739.2,201.96C743.68,199.821,748.16,197.512,752.64,197.115C757.12,196.718,761.6,196.917,766.08,196.52C770.56,196.123,775.04,195.868,779.52,194.565C784,193.262,788.48,188.87,792.96,186.235C797.44,183.6,801.92,183.742,806.4,178.755C810.88,173.768,815.36,108.998,819.84,96.985C824.32,84.972,828.8,86.275,833.28,78.965C837.76,71.655,842.24,54.598,846.72,53.125C851.2,51.652,855.68,52.388,860.16,50.915C864.64,49.442,869.12,30.345,873.6,30.345C878.08,30.345,882.56,31.337,887.04,33.32C891.52,35.303,896,47.798,900.48,50.745C904.96,53.692,909.44,55.165,913.92,55.165C918.4,55.165,922.88,30.6,927.36,30.6C931.84,30.6,936.32,30.628,940.8,30.685C945.28,30.742,949.76,32.697,954.24,34.34C958.72,35.983,963.2,37.06,967.68,40.545C972.16,44.03,976.64,50.816,981.12,55.25C985.6,59.684,990.08,63.027,994.56,67.15C999.04,71.272,1003.52,75.629,1008,79.985"></path><path class="line-midwest" fill="none" stroke="#4FB8C4" stroke-width="1.8" stroke-dasharray="0" d="M0,207.315C4.48,206.663,8.96,206.012,13.44,203.83C17.92,201.648,22.4,194.225,26.88,194.225C31.36,194.225,35.84,198.985,40.32,198.985C44.8,198.985,49.28,198.957,53.76,198.9C58.24,198.843,62.72,198.716,67.2,198.475C71.68,198.234,76.16,197.908,80.64,197.455C85.12,197.002,89.6,195.755,94.08,195.755C98.56,195.755,103.04,199.396,107.52,201.025C112,202.654,116.48,204.312,120.96,205.53C125.44,206.748,129.92,208.335,134.4,208.335C138.88,208.335,143.36,207.414,147.84,206.805C152.32,206.196,156.8,205.7,161.28,204.68C165.76,203.66,170.24,200.685,174.72,200.685C179.2,200.685,183.68,204.298,188.16,205.785C192.64,207.273,197.12,208.689,201.6,209.61C206.08,210.531,210.56,210.786,215.04,211.31C219.52,211.834,224,212.217,228.48,212.755C232.96,213.293,237.44,214.54,241.92,214.54C246.4,214.54,250.88,209.44,255.36,209.44C259.84,209.44,264.32,212.401,268.8,213.605C273.28,214.809,277.76,216.665,282.24,216.665C286.72,216.665,291.2,216.098,295.68,214.965C300.16,213.832,304.64,210.772,309.12,206.465C313.6,202.158,318.08,189.125,322.56,189.125C327.04,189.125,331.52,194.225,336,194.225C340.48,194.225,344.96,192.695,349.44,192.695C353.92,192.695,358.4,192.695,362.88,192.695C367.36,192.695,371.84,187.425,376.32,187.425C380.8,187.425,385.28,187.468,389.76,187.51C394.24,187.553,398.72,187.567,403.2,187.68C407.68,187.793,412.16,190.23,416.64,191.505C421.12,192.78,425.6,195.103,430.08,195.33C434.56,195.557,439.04,195.67,443.52,195.67C448,195.67,452.48,194.423,456.96,193.63C461.44,192.837,465.92,190.91,470.4,190.91C474.88,190.91,479.36,194.65,483.84,194.65C488.32,194.65,492.8,192.865,497.28,192.865C501.76,192.865,506.24,192.865,510.72,192.865C515.2,192.865,519.68,196.279,524.16,198.05C528.64,199.821,533.12,201.988,537.6,203.49C542.08,204.992,546.56,207.06,551.04,207.06C555.52,207.06,560,197.186,564.48,194.225C568.96,191.264,573.44,191.788,577.92,189.295C582.4,186.802,586.88,180.512,591.36,179.265C595.84,178.018,600.32,177.395,604.8,177.395C609.28,177.395,613.76,180.512,618.24,182.75C622.72,184.988,627.2,187.779,631.68,190.825C636.16,193.871,640.64,198.362,645.12,201.025C649.6,203.688,654.08,204.652,658.56,206.805C663.04,208.958,667.52,211.919,672,213.945C676.48,215.971,680.96,217.6,685.44,218.96C689.92,220.32,694.4,221.269,698.88,222.105C703.36,222.941,707.84,223.975,712.32,223.975C716.8,223.975,721.28,220.207,725.76,217.175C730.24,214.143,734.72,208.335,739.2,205.785C743.68,203.235,748.16,202.498,752.64,201.875C757.12,201.252,761.6,201.493,766.08,200.94C770.56,200.388,775.04,200.147,779.52,198.56C784,196.973,788.48,190.343,792.96,187.17C797.44,183.997,801.92,184.62,806.4,179.52C810.88,174.42,815.36,111.492,819.84,101.915C824.32,92.338,828.8,92.636,833.28,87.55C837.76,82.464,842.24,71.4,846.72,71.4C851.2,71.4,855.68,76.075,860.16,76.075C864.64,76.075,869.12,63.084,873.6,59.16C878.08,55.236,882.56,52.53,887.04,52.53C891.52,52.53,896,69.048,900.48,70.975C904.96,72.902,909.44,73.865,913.92,73.865C918.4,73.865,922.88,26.067,927.36,21.93C931.84,17.793,936.32,15.725,940.8,15.725C945.28,15.725,949.76,18.615,954.24,21.335C958.72,24.055,963.2,26.988,967.68,32.045C972.16,37.102,976.64,45.432,981.12,51.68C985.6,57.927,990.08,64.132,994.56,69.53C999.04,74.927,1003.52,79.496,1008,84.065"></path><line x1="802.5600000000001" x2="802.5600000000001" y1="0" y2="238" stroke="#E2B33D" stroke-width="1" stroke-dasharray="3,3"></line><text class="annotation-label" x="808.5600000000001" y="14">Strait of Hormuz disruption, Feb 28</text><line y1="0" y2="238" stroke="#8A99AA" stroke-width="1" style="opacity: 0;"></line><rect width="1008" height="238" fill="transparent"></rect><g class="axis" transform="translate(0,238)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,0.5H1008.5"></path><g class="tick" opacity="1" transform="translate(163.70000000000002,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">April</text></g><g class="tick" opacity="1" transform="translate(338.41999999999996,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">July</text></g><g class="tick" opacity="1" transform="translate(515.0600000000001,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">October</text></g><g class="tick" opacity="1" transform="translate(691.7,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">2026</text></g><g class="tick" opacity="1" transform="translate(864.5,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">April</text></g></g><g class="axis" fill="none" font-size="10" font-family="sans-serif" text-anchor="end"><path class="domain" stroke="currentColor" d="M0.5,238.5V0.5"></path><g class="tick" opacity="1" transform="translate(0,213)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">$3.50</text></g><g class="tick" opacity="1" transform="translate(0,170.50000000000003)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">$4.00</text></g><g class="tick" opacity="1" transform="translate(0,128.00000000000003)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">$4.50</text></g><g class="tick" opacity="1" transform="translate(0,85.50000000000001)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">$5.00</text></g><g class="tick" opacity="1" transform="translate(0,43.00000000000001)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">$5.50</text></g><g class="tick" opacity="1" transform="translate(0,0.5)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">$6.00</text></g></g></g></g>
+<g transform="translate(24, 432)"><g transform="translate(46,4)"><path fill="none" stroke="#C98A4A" stroke-width="1.4" d="M0,44.78C4.48,44.627,8.96,44.473,13.44,43.96C17.92,43.447,22.4,41.7,26.88,41.7C31.36,41.7,35.84,42.82,40.32,42.82C44.8,42.82,49.28,42.813,53.76,42.8C58.24,42.787,62.72,42.757,67.2,42.7C71.68,42.643,76.16,42.567,80.64,42.46C85.12,42.353,89.6,42.06,94.08,42.06C98.56,42.06,103.04,42.917,107.52,43.3C112,43.683,116.48,44.073,120.96,44.36C125.44,44.647,129.92,45.02,134.4,45.02C138.88,45.02,143.36,44.803,147.84,44.66C152.32,44.517,156.8,44.4,161.28,44.16C165.76,43.92,170.24,43.22,174.72,43.22C179.2,43.22,183.68,44.07,188.16,44.42C192.64,44.77,197.12,45.103,201.6,45.32C206.08,45.537,210.56,45.597,215.04,45.72C219.52,45.843,224,45.933,228.48,46.06C232.96,46.187,237.44,46.48,241.92,46.48C246.4,46.48,250.88,45.28,255.36,45.28C259.84,45.28,264.32,45.977,268.8,46.26C273.28,46.543,277.76,46.98,282.24,46.98C286.72,46.98,291.2,46.847,295.68,46.58C300.16,46.313,304.64,45.593,309.12,44.58C313.6,43.567,318.08,40.5,322.56,40.5C327.04,40.5,331.52,41.46,336,41.46C340.48,41.46,344.96,41.323,349.44,41.22C353.92,41.117,358.4,41.083,362.88,40.84C367.36,40.597,371.84,39.76,376.32,39.76C380.8,39.76,385.28,39.86,389.76,39.9C394.24,39.94,398.72,39.933,403.2,40C407.68,40.067,412.16,40.63,416.64,40.92C421.12,41.21,425.6,41.673,430.08,41.74C434.56,41.807,439.04,41.84,443.52,41.84C448,41.84,452.48,41.513,456.96,41.32C461.44,41.127,465.92,40.68,470.4,40.68C474.88,40.68,479.36,41.22,483.84,41.22C488.32,41.22,492.8,41.07,497.28,41.02C501.76,40.97,506.24,40.92,510.72,40.92C515.2,40.92,519.68,41.483,524.16,41.78C528.64,42.077,533.12,42.397,537.6,42.7C542.08,43.003,546.56,43.6,551.04,43.6C555.52,43.6,560,42.083,564.48,41.64C568.96,41.197,573.44,41.337,577.92,40.94C582.4,40.543,586.88,39.643,591.36,39.26C595.84,38.877,600.32,38.64,604.8,38.64C609.28,38.64,613.76,39.013,618.24,39.38C622.72,39.747,627.2,40.287,631.68,40.84C636.16,41.393,640.64,42.197,645.12,42.7C649.6,43.203,654.08,43.457,658.56,43.86C663.04,44.263,667.52,44.763,672,45.12C676.48,45.477,680.96,45.777,685.44,46C689.92,46.223,694.4,46.323,698.88,46.46C703.36,46.597,707.84,46.82,712.32,46.82C716.8,46.82,721.28,45.95,725.76,45.4C730.24,44.85,734.72,44.023,739.2,43.52C743.68,43.017,748.16,42.473,752.64,42.38C757.12,42.287,761.6,42.333,766.08,42.24C770.56,42.147,775.04,42.087,779.52,41.78C784,41.473,788.48,40.44,792.96,39.82C797.44,39.2,801.92,39.233,806.4,38.06C810.88,36.887,815.36,21.647,819.84,18.82C824.32,15.993,828.8,16.3,833.28,14.58C837.76,12.86,842.24,8.847,846.72,8.5C851.2,8.153,855.68,8.327,860.16,7.98C864.64,7.633,869.12,3.14,873.6,3.14C878.08,3.14,882.56,3.373,887.04,3.84C891.52,4.307,896,7.247,900.48,7.94C904.96,8.633,909.44,8.98,913.92,8.98C918.4,8.98,922.88,3.2,927.36,3.2C931.84,3.2,936.32,3.207,940.8,3.22C945.28,3.233,949.76,3.693,954.24,4.08C958.72,4.467,963.2,4.72,967.68,5.54C972.16,6.36,976.64,7.957,981.12,9C985.6,10.043,990.08,10.83,994.56,11.8C999.04,12.77,1003.52,13.795,1008,14.82"></path><g class="brush" fill="none" pointer-events="all"><rect class="overlay" pointer-events="all" cursor="crosshair" x="0" y="0" width="1008" height="48"></rect><rect class="selection" cursor="move" fill="#777" fill-opacity="0.3" stroke="#fff" shape-rendering="crispEdges" style="display: none;"></rect><rect class="handle handle--w" cursor="ew-resize" style="display: none;"></rect><rect class="handle handle--e" cursor="ew-resize" style="display: none;"></rect></g><g class="axis" transform="translate(0,48)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,0.5H1008.5"></path><g class="tick" opacity="1" transform="translate(163.70000000000002,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">April</text></g><g class="tick" opacity="1" transform="translate(338.41999999999996,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">July</text></g><g class="tick" opacity="1" transform="translate(515.0600000000001,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">October</text></g><g class="tick" opacity="1" transform="translate(691.7,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">2026</text></g><g class="tick" opacity="1" transform="translate(864.5,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">April</text></g></g></g></g>
+</svg>

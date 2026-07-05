@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Main Stage — Drag Race Stats Dashboard (Showcase)</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0B0710; --panel: #160F1F; --panel2: #1E1429; --line: #322342;
+    --pink: #FF2D87; --pink-soft: #3D1029; --gold: #FFC857; --violet: #9D4EDD;
+    --text: #F1E9F7; --dim: #9C8AAE;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background: radial-gradient(ellipse at top, #1E1429, #0B0710 65%); color: var(--text); font-family:'Inter', sans-serif; }
+  a { color: var(--gold); }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; border-bottom:1px solid var(--line); }
+  .nav-back { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--dim); text-decoration:none; }
+  .nav-back:hover { color: var(--pink); }
+  .nav-brand { font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--dim); letter-spacing:.05em; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  header.hero { padding: 4rem 2rem 2.5rem; text-align:center; }
+  .badge-forsale {
+    display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; background: linear-gradient(135deg, var(--pink), var(--violet));
+    color:#0B0710; padding:6px 16px; border-radius:999px; margin-bottom:1.4rem;
+  }
+  h1.hero-title {
+    font-family:'Anton', sans-serif; font-weight:400; font-size: clamp(2.4rem, 6vw, 4rem);
+    text-transform:uppercase; letter-spacing:.02em; margin:0 0 1rem;
+    background: linear-gradient(135deg, var(--pink), var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  p.hero-sub { font-size:15.5px; color: var(--dim); max-width:600px; margin: 0 auto 2rem; }
+
+  .stat-row { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-bottom: 1rem; }
+  .stat-pill { background: var(--panel); border:1px solid var(--line); border-radius:12px; padding:0.9rem 1.3rem; min-width:120px; }
+  .stat-num { font-family:'Anton', sans-serif; font-size:1.6rem; color: var(--pink); }
+  .stat-label { font-family:'IBM Plex Mono', monospace; font-size:9.5px; color: var(--dim); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+  .carousel { position:relative; margin: 2.5rem auto; max-width: 900px; border-radius:16px; overflow:hidden;
+    border: 2px solid var(--line); box-shadow: 0 0 60px rgba(255,45,135,0.15), 0 20px 50px rgba(0,0,0,0.5); }
+  .carousel-frame { position:relative; aspect-ratio: 16/11; background: #160F1F; }
+  .carousel-frame img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition: opacity 1s ease; padding: 20px; box-sizing: border-box; }
+  .carousel-frame img.active { opacity:1; }
+  .carousel-caption {
+    position:absolute; bottom:0; left:0; right:0; padding: 14px 20px;
+    background: linear-gradient(to top, rgba(11,7,16,0.92), transparent);
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--gold); opacity:0; transition: opacity 0.5s ease;
+  }
+  .carousel-caption.active { opacity:1; }
+  .carousel-dots { display:flex; justify-content:center; gap:8px; margin-top:1rem; }
+  .dot { width:8px; height:8px; border-radius:50%; background: var(--line); cursor:pointer; transition: background 0.2s; }
+  .dot.active { background: var(--pink); }
+
+  section { padding: 2.5rem 0; border-top:1px solid var(--line); }
+  .section-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: var(--violet); margin-bottom:0.6rem; }
+  h2.section-title { font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:1.6rem; margin:0 0 1rem; letter-spacing:.01em; }
+  section p { font-size:14.5px; color: var(--dim); max-width:680px; }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:1rem; }
+  .tag { font-family:'IBM Plex Mono', monospace; font-size:10.5px; font-weight:600; background: var(--pink-soft); color: var(--pink); border:1px solid rgba(255,45,135,0.35); padding:4px 10px; border-radius:999px; }
+
+  .cta-box { background: var(--panel); border:1px solid var(--line); border-radius:14px; padding:1.6rem; margin-top:1.5rem; text-align:center; }
+  .cta-box p { margin: 0 0 1rem; color: var(--text); }
+  .cta-btn { display:inline-block; font-family:'IBM Plex Mono', monospace; font-weight:700; font-size:13px; letter-spacing:.04em;
+    background: linear-gradient(135deg, var(--pink), var(--violet)); color:#fff; padding:10px 22px; border-radius:999px; text-decoration:none; }
+
+  footer.foot { padding: 2.5rem 2rem 3rem; text-align:center; }
+  .foot a { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--dim); text-decoration:none; }
+  .foot a:hover { color: var(--pink); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-back">&larr; Back to Portfolio</a>
+  <span class="nav-brand">THE MAIN STAGE &middot; accordanalyst.com</span>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge-forsale">&#10024; Available for Licensing</span>
+    <h1 class="hero-title">The Main Stage</h1>
+    <p class="hero-sub">A stats dashboard covering 14 seasons of competition data — rankings, win rates, lip-sync records, and season-over-season trends, wrapped in a glam-stage visual identity. This is a live product I'm still selling, so what's below is a preview walkthrough rather than the working tool itself.</p>
+
+    <div class="stat-row">
+      <div class="stat-pill"><div class="stat-num">14</div><div class="stat-label">Seasons Tracked</div></div>
+      <div class="stat-pill"><div class="stat-num">180+</div><div class="stat-label">Contestants</div></div>
+      <div class="stat-pill"><div class="stat-num">100%</div><div class="stat-label">Fan-Sourced Accuracy</div></div>
+    </div>
+
+    <div class="carousel">
+      <div class="carousel-frame" id="frame">
+        <img src="showcase/dragrace_queens_age.png" class="active" data-idx="0">
+        <img src="showcase/dragrace_hall_of_fame.png" data-idx="1">
+        <img src="showcase/dragrace_lipsync.png" data-idx="2">
+        <div class="carousel-caption active" data-idx="0">Queens &amp; average age by season</div>
+        <div class="carousel-caption" data-idx="1">Hall of Fame — every season's winner</div>
+        <div class="carousel-caption" data-idx="2">Most lip-synced artists across 14 seasons</div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section>
+    <p class="section-eyebrow">Why It's Here</p>
+    <h2 class="section-title">Versatility, Not Just Volume</h2>
+    <p>Every other project on this site lives in a restrained, editorial visual language built for audit and revenue-ops work. This one doesn't — bold color, a glam display font, and a completely different emotional register, built for an entertainment-fandom audience instead of a finance one. Same design instincts, deliberately pointed somewhere else.</p>
+    <div class="tags">
+      <span class="tag">HTML/CSS/JS</span>
+      <span class="tag">Data Visualization</span>
+      <span class="tag">Brand-Specific Design</span>
+      <span class="tag">Fan Data Product</span>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">More Than One Dataset</p>
+    <h2 class="section-title">Built to Be Reskinned</h2>
+    <p>The drag race framing is the demo, not the ceiling. Underneath, this is a genuine reusable D3.js template — four linked chart types (a dual-axis bar+line combo, a mode-switching stacked bar, a ranked horizontal bar, and a data-bound table) all driven by one shared filter and one swappable data object. Change what the categories mean, and the exact same code becomes a different dashboard entirely.</p>
+    <p>As proof: <a href="finance-showcase.html">here's the same template reskinned as a quarterly revenue intelligence dashboard</a> — new data, new color identity, zero changes to the chart-drawing logic itself.</p>
+    <div class="tags">
+      <span class="tag">Reusable Template</span>
+      <span class="tag">Data-Driven Reskin</span>
+      <span class="tag">Linked Interactivity</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta-box">
+      <p>This dashboard is available for licensing or custom builds in a similar style.</p>
+      <a href="mailto:contact@accordanalyst.com" class="cta-btn">Get in Touch →</a>
+    </div>
+  </section>
+</div>
+
+<footer class="foot">
+  <a href="../index.html">&larr; Back to Portfolio</a> &middot; <a href="../projects.html">View all projects</a>
+</footer>
+
+<script>
+const imgs = document.querySelectorAll('.carousel-frame img');
+const caps = document.querySelectorAll('.carousel-caption');
+const dotsWrap = document.getElementById('dots');
+let current = 0;
+
+imgs.forEach((img, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(dot);
+});
+
+function goTo(i) {
+  imgs.forEach(img => img.classList.toggle('active', +img.dataset.idx === i));
+  caps.forEach(c => c.classList.toggle('active', +c.dataset.idx === i));
+  document.querySelectorAll('.dot').forEach((d, di) => d.classList.toggle('active', di === i));
+  current = i;
+}
+
+setInterval(() => { goTo((current + 1) % imgs.length); }, 3200);
+</script>
+
+</body>
+</html>

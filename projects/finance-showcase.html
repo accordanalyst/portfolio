@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quarterly Revenue Intelligence — Financial Dashboard (Template Demo)</title>
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #100B16; --panel: #1B1224; --panel2: #241A30; --line: #3A2A4A;
+    --blue: #3B5FE0; --periwinkle: #6B7FE0; --purple: #4A2F6B; --crimson: #9E2A3D;
+    --text: #F0ECF7; --dim: #9B8FB0;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background: radial-gradient(ellipse at top, #241A30, #100B16 65%); color: var(--text); font-family:'Inter', sans-serif; }
+  a { color: var(--periwinkle); }
+
+  nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; border-bottom:1px solid var(--line); }
+  .nav-back { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--dim); text-decoration:none; }
+  .nav-back:hover { color: var(--periwinkle); }
+  .nav-brand { font-family:'IBM Plex Mono', monospace; font-size:11.5px; color: var(--dim); letter-spacing:.05em; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  header.hero { padding: 3.6rem 2rem 2.2rem; text-align:center; }
+  .badge-demo {
+    display:inline-flex; align-items:center; gap:6px; font-family:'IBM Plex Mono', monospace; font-size:11px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase; background: linear-gradient(135deg, var(--blue), var(--purple));
+    color:#fff; padding:6px 16px; border-radius:999px; margin-bottom:1.4rem;
+  }
+  h1.hero-title { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size: clamp(2.1rem, 5vw, 3rem); margin:0 0 1rem; color: var(--text); }
+  p.hero-sub { font-size:15px; color: var(--dim); max-width:640px; margin: 0 auto 2rem; }
+
+  .stat-row { display:flex; justify-content:center; flex-wrap:wrap; gap:1rem; margin-bottom: 1rem; }
+  .stat-pill { background: var(--panel); border:1px solid var(--line); border-radius:10px; padding:0.9rem 1.3rem; min-width:120px; }
+  .stat-num { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.4rem; color: var(--blue); }
+  .stat-label { font-family:'IBM Plex Mono', monospace; font-size:9.5px; color: var(--dim); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+  .carousel { position:relative; margin: 2.2rem auto; max-width: 900px; border-radius:14px; overflow:hidden;
+    border: 1px solid var(--line); box-shadow: 0 0 60px rgba(59,95,224,0.15), 0 20px 50px rgba(0,0,0,0.5); }
+  .carousel-frame { position:relative; aspect-ratio: 16/10; background: #1B1224; }
+  .carousel-frame img { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; opacity:0; transition: opacity 1s ease; padding: 18px; box-sizing: border-box; }
+  .carousel-frame img.active { opacity:1; }
+  .carousel-caption {
+    position:absolute; bottom:0; left:0; right:0; padding: 12px 20px;
+    background: linear-gradient(to top, rgba(16,11,22,0.92), transparent);
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--periwinkle); opacity:0; transition: opacity 0.5s ease;
+  }
+  .carousel-caption.active { opacity:1; }
+  .carousel-dots { display:flex; justify-content:center; gap:8px; margin-top:1rem; }
+  .dot { width:8px; height:8px; border-radius:50%; background: var(--line); cursor:pointer; transition: background 0.2s; }
+  .dot.active { background: var(--blue); }
+
+  section { padding: 2.2rem 0; border-top:1px solid var(--line); }
+  .section-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color: var(--periwinkle); margin-bottom:0.6rem; }
+  h2.section-title { font-family:'Space Grotesk', sans-serif; font-weight:700; font-size:1.4rem; margin:0 0 1rem; }
+  section p { font-size:14.5px; color: var(--dim); max-width:680px; }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:1rem; }
+  .tag { font-family:'IBM Plex Mono', monospace; font-size:10.5px; font-weight:600; background: rgba(59,95,224,0.15); color: var(--periwinkle); border:1px solid rgba(59,95,224,0.3); padding:4px 10px; border-radius:999px; }
+
+  .map-table { width:100%; border-collapse:collapse; margin-top:1rem; font-size:13px; }
+  .map-table th { text-align:left; font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--dim); padding:8px 10px; border-bottom:1px solid var(--line); }
+  .map-table td { padding:8px 10px; border-bottom:1px solid var(--line); color: var(--text); }
+  .map-table td.orig { color: var(--dim); }
+
+  footer.foot { padding: 2.2rem 2rem 2.8rem; text-align:center; }
+  .foot a { font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--dim); text-decoration:none; }
+  .foot a:hover { color: var(--periwinkle); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-back">&larr; Back to Portfolio</a>
+  <span class="nav-brand">VELVET EXCHANGE &middot; accordanalyst.com</span>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="badge-demo">&#9889; Template Reskin Demo</span>
+    <h1 class="hero-title">Quarterly Revenue Intelligence</h1>
+    <p class="hero-sub">The exact same D3.js dashboard template as <a href="dragrace-showcase.html">The Main Stage</a> — same four chart types, same shared-filter interactivity, same code — with an entirely different dataset and a new color identity dropped in. Nothing about the chart-drawing logic changed; only the data object and the palette did.</p>
+
+    <div class="stat-row">
+      <div class="stat-pill"><div class="stat-num">8</div><div class="stat-label">Quarters Tracked</div></div>
+      <div class="stat-pill"><div class="stat-num">395</div><div class="stat-label">Deals Closed</div></div>
+      <div class="stat-pill"><div class="stat-num">27</div><div class="stat-label">Unique Accounts</div></div>
+    </div>
+
+    <div class="carousel">
+      <div class="carousel-frame" id="frame">
+        <img src="showcase/finance_deal_volume.png" class="active" data-idx="0">
+        <img src="showcase/finance_revenue_mix.png" data-idx="1">
+        <img src="showcase/finance_top_products.png" data-idx="2">
+        <div class="carousel-caption active" data-idx="0">Deal volume &amp; average deal size by quarter</div>
+        <div class="carousel-caption" data-idx="1">Revenue category mix — New Business, Expansion, Renewal, At-Risk, Churned</div>
+        <div class="carousel-caption" data-idx="2">Top revenue-driving products, ranked</div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section>
+    <p class="section-eyebrow">Why This Exists</p>
+    <h2 class="section-title">Proof, Not Just a Claim</h2>
+    <p>It's one thing to say a template is "reskinnable." This is the proof: same chart-drawing functions, same interactivity pattern (click a period, four views update together), same underlying data shape — just swap what the categories mean. The color system is new too: this variant, "Velvet Exchange," combines royal blue, periwinkle, deep purple, and crimson from the same reference palette the rest of this site draws from, arranged specifically for a financial reporting context rather than an entertainment one.</p>
+    <div class="tags">
+      <span class="tag">D3.js</span>
+      <span class="tag">Reusable Template</span>
+      <span class="tag">Revenue Operations</span>
+      <span class="tag">Linked Interactivity</span>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">The Mapping</p>
+    <h2 class="section-title">What Actually Changed</h2>
+    <table class="map-table">
+      <tr><th>Original (Drag Race)</th><th>This Demo (Finance)</th></tr>
+      <tr><td class="orig">Season (S01–S14)</td><td>Fiscal quarter (Q1 2024–Q4 2025)</td></tr>
+      <tr><td class="orig">Queens cast that season</td><td>Deals closed that quarter</td></tr>
+      <tr><td class="orig">Average contestant age</td><td>Average deal size ($K)</td></tr>
+      <tr><td class="orig">WIN / HIGH / SAFE / LOW / BTM</td><td>New Business / Expansion / Renewal / At-Risk / Churned</td></tr>
+      <tr><td class="orig">Season's winning queen</td><td>Top account by revenue</td></tr>
+      <tr><td class="orig">Most lip-synced artists</td><td>Top revenue-driving products</td></tr>
+    </table>
+  </section>
+</div>
+
+<footer class="foot">
+  <a href="../index.html">&larr; Back to Portfolio</a> &middot; <a href="dragrace-showcase.html">See the original entertainment version</a> &middot; <a href="../projects.html">View all projects</a>
+</footer>
+
+<script>
+const imgs = document.querySelectorAll('.carousel-frame img');
+const caps = document.querySelectorAll('.carousel-caption');
+const dotsWrap = document.getElementById('dots');
+let current = 0;
+
+imgs.forEach((img, i) => {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(dot);
+});
+
+function goTo(i) {
+  imgs.forEach(img => img.classList.toggle('active', +img.dataset.idx === i));
+  caps.forEach(c => c.classList.toggle('active', +c.dataset.idx === i));
+  document.querySelectorAll('.dot').forEach((d, di) => d.classList.toggle('active', di === i));
+  current = i;
+}
+
+setInterval(() => { goTo((current + 1) % imgs.length); }, 3400);
+</script>
+
+</body>
+</html>

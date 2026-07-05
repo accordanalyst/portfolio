@@ -1,0 +1,102 @@
+<svg viewBox="0 0 666 359.171875" xmlns="http://www.w3.org/2000/svg">
+<defs><style>
+  :root {
+    --bg: #0E1620;
+    --panel: #16202C;
+    --panel2: #1C2836;
+    --line: #2A3A4D;
+    --copper: #C98A4A;
+    --copper-soft: #3A2C1C;
+    --teal: #4FB8C4;
+    --teal-soft: #1A3035;
+    --amber: #E2B33D;
+    --text: #E8EDF2;
+    --dim: #8A99AA;
+    --sans: 'Inter', sans-serif;
+    --display: 'Sora', sans-serif;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.55; }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 26px 80px; }
+
+  header.top { padding: 46px 0 22px; border-bottom: 1px solid var(--line); }
+  .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--copper); margin: 0 0 14px; }
+  h1.title { font-family: var(--display); font-weight: 700; font-size: 32px; letter-spacing: -.01em; margin: 0 0 10px; color: var(--text); }
+  .sub { font-size: 14.5px; color: var(--dim); max-width: 660px; margin: 0 0 14px; }
+  .source-line { font-size: 11.5px; color: var(--dim); opacity: .8; max-width: 700px; line-height: 1.7; }
+  .source-line b { color: var(--teal); }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 26px 0 6px; }
+  @media (max-width: 900px) { .kpi-row { grid-template-columns: 1fr 1fr; } }
+  .kpi-card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+  .kpi-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; color: var(--dim); margin: 0 0 7px; }
+  .kpi-value { font-family: var(--mono); font-size: 20px; font-weight: 600; margin: 0; }
+  .kpi-value.copper { color: var(--copper); }
+  .kpi-value.teal { color: var(--teal); }
+  .kpi-sub { font-family: var(--mono); font-size: 10px; color: var(--dim); margin: 4px 0 0; }
+
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 22px 24px; margin-top: 22px; }
+  .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 4px; }
+  .panel-title { font-family: var(--display); font-weight: 600; font-size: 16px; color: var(--text); margin: 0 0 4px; }
+  .panel-note { font-size: 12.5px; color: var(--dim); margin: 0 0 16px; max-width: 640px; }
+  .legend-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 11px; color: var(--dim); }
+  .legend-swatch { width: 16px; height: 3px; border-radius: 2px; }
+
+  .brush-hint { font-family: var(--mono); font-size: 10.5px; color: var(--dim); opacity: .75; margin-top: 8px; }
+  .reset-btn {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .03em; text-transform: uppercase;
+    background: var(--panel2); border: 1px solid var(--line); color: var(--dim);
+    padding: 5px 11px; border-radius: 5px; cursor: pointer;
+  }
+  .reset-btn:hover { color: var(--teal); border-color: var(--teal); }
+
+  .two-col { display: grid; grid-template-columns: 1.5fr 1fr; gap: 18px; margin-top: 22px; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .panel { margin-top: 0; }
+
+  .region-row {
+    display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--line); cursor: pointer;
+  }
+  .region-row:last-child { border-bottom: none; }
+  .region-row:hover { background: var(--panel2); }
+  .region-row.selected { background: var(--copper-soft); }
+  .region-name { font-size: 12.5px; width: 150px; flex-shrink: 0; }
+  .region-track { flex: 1; height: 8px; background: var(--panel2); border-radius: 4px; overflow: hidden; }
+  .region-fill { height: 100%; border-radius: 4px; background: var(--copper); }
+  .region-price { font-family: var(--mono); font-size: 12.5px; width: 60px; text-align: right; }
+  .region-date { font-family: var(--mono); font-size: 9.5px; color: var(--dim); width: 78px; text-align: right; }
+
+  .detail-callout {
+    background: var(--teal-soft); border: 1px solid var(--teal); border-radius: 8px; padding: 14px 16px; margin-top: 14px;
+    font-size: 12.5px; color: var(--text); display: none;
+  }
+  .detail-callout.show { display: block; }
+  .detail-callout .dc-title { font-family: var(--mono); font-size: 11px; color: var(--teal); text-transform: uppercase; margin: 0 0 6px; }
+
+  .annotation-label {
+    font-family: var(--mono); font-size: 10.5px; fill: var(--amber);
+  }
+  .axis path, .axis line { stroke: var(--line); }
+  .axis text { fill: var(--dim); font-family: var(--mono); font-size: 10px; }
+  .gridline { stroke: var(--line); stroke-dasharray: 2,3; opacity: .5; }
+
+  .tooltip {
+    position: absolute; pointer-events: none; background: #20303F; border: 1px solid var(--copper);
+    border-radius: 6px; padding: 8px 11px; font-family: var(--mono); font-size: 11.5px; color: var(--text);
+    box-shadow: 0 6px 18px rgba(0,0,0,.45); opacity: 0; transition: opacity .1s ease; z-index: 10;
+  }
+
+  footer.foot {
+    border-top: 1px solid var(--line); margin-top: 30px; padding-top: 18px;
+    font-family: var(--mono); font-size: 10.5px; color: var(--dim); line-height: 1.8;
+  }
+</style></defs>
+<rect width="666" height="359.171875" rx="10" fill="#16202C"/>
+<text x="24" y="34" font-family="'Sora', sans-serif" font-size="16" font-weight="700" letter-spacing="0.3" fill="#E8EDF2" style="text-transform:uppercase">Volatility — Week-over-Week % Change</text>
+<text x="24" y="56" font-family="Inter, sans-serif" font-size="11.5" fill="#8A99AA">National average diesel price, week-over-week percent change. The Hormuz disruption window is the</text>
+<text x="24" y="71" font-family="Inter, sans-serif" font-size="11.5" fill="#8A99AA">only period in this dataset where weekly moves exceeded ±5%.</text>
+<g transform="translate(24, 102)"><g transform="translate(40,10)"><line x1="0" x2="560" y1="73" y2="73" stroke="#8A99AA" stroke-width="1"></line><rect x="5.466666666666667" width="4" y="70.03931477383" height="2.96068522617" fill="#C98A4A"></rect><rect x="12.933333333333334" width="4" y="64.93294368836942" height="8.06705631163058" fill="#C98A4A"></rect><rect x="20.400000000000002" width="4" y="73" height="3.876230214108375" fill="#4FB8C4"></rect><rect x="27.866666666666667" width="4" y="72.92972223458099" height="0.07027776541900721" fill="#C98A4A"></rect><rect x="35.333333333333336" width="4" y="72.64870718078132" height="0.3512928192186848" fill="#C98A4A"></rect><rect x="42.800000000000004" width="4" y="72.15804744228731" height="0.8419525577126876" fill="#C98A4A"></rect><rect x="50.266666666666666" width="4" y="71.6013252996025" height="1.3986747003975069" fill="#C98A4A"></rect><rect x="57.733333333333334" width="4" y="73" height="4.312435300898343" fill="#4FB8C4"></rect><rect x="65.2" width="4" y="73" height="3.749313951694191" fill="#4FB8C4"></rect><rect x="72.66666666666667" width="4" y="73" height="2.3690199165401253" fill="#4FB8C4"></rect><rect x="80.13333333333334" width="4" y="71.69579200168342" height="1.3042079983165848" fill="#C98A4A"></rect><rect x="87.60000000000001" width="4" y="71.19774079290663" height="1.8022592070933712" fill="#C98A4A"></rect><rect x="95.06666666666666" width="4" y="69.63533459008913" height="3.36466540991087" fill="#C98A4A"></rect><rect x="102.53333333333333" width="4" y="73" height="4.2398407859535325" fill="#4FB8C4"></rect><rect x="110" width="4" y="73" height="3.233189568333003" fill="#4FB8C4"></rect><rect x="117.46666666666667" width="4" y="73" height="1.4552707621283645" fill="#4FB8C4"></rect><rect x="124.93333333333332" width="4" y="73" height="1.2440204446093759" fill="#4FB8C4"></rect><rect x="132.4" width="4" y="73" height="1.5442016634342934" fill="#4FB8C4"></rect><rect x="139.86666666666667" width="4" y="68.56134044301353" height="4.438659556986465" fill="#C98A4A"></rect><rect x="147.33333333333334" width="4" y="73" height="3.563396730694592" fill="#4FB8C4"></rect><rect x="154.8" width="4" y="73" height="2.654794485819039" fill="#4FB8C4"></rect><rect x="162.26666666666668" width="4" y="71.50972852119338" height="1.4902714788066191" fill="#C98A4A"></rect><rect x="169.73333333333332" width="4" y="65.59157753765246" height="7.408422462347545" fill="#C98A4A"></rect><rect x="177.20000000000002" width="4" y="58.31003805424563" height="14.68996194575437" fill="#E2B33D"></rect><rect x="184.66666666666666" width="4" y="73" height="3.2696753631968107" fill="#4FB8C4"></rect><rect x="192.13333333333333" width="4" y="72.17205362918783" height="0.827946370812171" fill="#C98A4A"></rect><rect x="199.6" width="4" y="71.69329218248367" height="1.306707817516326" fill="#C98A4A"></rect><rect x="207.06666666666666" width="4" y="69.30497537038944" height="3.6950246296105576" fill="#C98A4A"></rect><rect x="214.53333333333333" width="4" y="73" height="0.4721994768301414" fill="#4FB8C4"></rect><rect x="222" width="4" y="73" height="0.33790583924847795" fill="#4FB8C4"></rect><rect x="229.46666666666667" width="4" y="73" height="3.1128241601925737" fill="#4FB8C4"></rect><rect x="236.93333333333334" width="4" y="73" height="2.8084709883834194" fill="#4FB8C4"></rect><rect x="244.4" width="4" y="73" height="0.3462784051549619" fill="#4FB8C4"></rect><rect x="251.86666666666665" width="4" y="71.19692423533708" height="1.8030757646629212" fill="#C98A4A"></rect><rect x="259.3333333333333" width="4" y="70.79628200391574" height="2.203717996084265" fill="#C98A4A"></rect><rect x="266.8" width="4" y="73" height="1.8435877002225993" fill="#4FB8C4"></rect><rect x="274.26666666666665" width="4" y="72.31225904341244" height="0.687740956587561" fill="#C98A4A"></rect><rect x="281.73333333333335" width="4" y="72.65704675424368" height="0.3429532457563198" fill="#C98A4A"></rect><rect x="289.2" width="4" y="73" height="2.9454695731826206" fill="#4FB8C4"></rect><rect x="296.6666666666667" width="4" y="73" height="3.1874782561928754" fill="#4FB8C4"></rect><rect x="304.1333333333333" width="4" y="73" height="3.1573220914225573" fill="#4FB8C4"></rect><rect x="311.6" width="4" y="66.03857964655468" height="6.96142035344532" fill="#C98A4A"></rect><rect x="319.06666666666666" width="4" y="70.57931091221545" height="2.4206890877845524" fill="#C98A4A"></rect><rect x="326.53333333333336" width="4" y="67.24452628081029" height="5.755473719189709" fill="#C98A4A"></rect><rect x="334" width="4" y="70.92245591511323" height="2.0775440848867675" fill="#C98A4A"></rect><rect x="341.46666666666664" width="4" y="73" height="2.4597762967215573" fill="#4FB8C4"></rect><rect x="348.93333333333334" width="4" y="73" height="4.899943379736371" fill="#4FB8C4"></rect><rect x="356.40000000000003" width="4" y="73" height="6.363653528773739" fill="#4FB8C4"></rect><rect x="363.8666666666667" width="4" y="73" height="4.0694373622779665" fill="#4FB8C4"></rect><rect x="371.3333333333333" width="4" y="73" height="4.491327876653514" fill="#4FB8C4"></rect><rect x="378.8" width="4" y="73" height="3.192561828836247" fill="#4FB8C4"></rect><rect x="386.26666666666665" width="4" y="73" height="1.6898188298188472" fill="#4FB8C4"></rect><rect x="393.73333333333335" width="4" y="73" height="1.331214893881338" fill="#4FB8C4"></rect><rect x="401.2" width="4" y="67.721772072728" height="5.278227927271999" fill="#C98A4A"></rect><rect x="408.66666666666663" width="4" y="66.15247696747879" height="6.8475230325212095" fill="#C98A4A"></rect><rect x="416.1333333333333" width="4" y="68.95547969396227" height="4.044520306037725" fill="#C98A4A"></rect><rect x="423.6" width="4" y="72.5109958148121" height="0.4890041851878948" fill="#C98A4A"></rect><rect x="431.06666666666666" width="4" y="71.39632160944527" height="1.6036783905547338" fill="#C98A4A"></rect><rect x="438.5333333333333" width="4" y="66.20928545419774" height="6.79071454580226" fill="#C98A4A"></rect><rect x="446" width="4" y="67.05910258787314" height="5.9408974121268585" fill="#C98A4A"></rect><rect x="453.4666666666667" width="4" y="9.521739130434776" height="63.478260869565226" fill="#E2B33D"></rect><rect x="460.93333333333334" width="4" y="61.780608179124606" height="11.219391820875394" fill="#C98A4A"></rect><rect x="468.4" width="4" y="57.5844037714263" height="15.415596228573698" fill="#E2B33D"></rect><rect x="475.8666666666667" width="4" y="71.75612931434975" height="1.2438706856502506" fill="#C98A4A"></rect><rect x="483.33333333333337" width="4" y="61.478167900819095" height="11.521832099180905" fill="#C98A4A"></rect><rect x="490.8" width="4" y="73" height="1.5949179564740206" fill="#4FB8C4"></rect><rect x="498.26666666666665" width="4" y="73" height="9.399964417253386" fill="#4FB8C4"></rect><rect x="505.7333333333333" width="4" y="73" height="2.474849133951551" fill="#4FB8C4"></rect><rect x="513.2" width="4" y="59.11188687720504" height="13.888113122794962" fill="#E2B33D"></rect><rect x="520.6666666666666" width="4" y="73" height="0.04559332334538624" fill="#4FB8C4"></rect><rect x="528.1333333333333" width="4" y="73" height="1.9608605741670004" fill="#4FB8C4"></rect><rect x="535.6" width="4" y="73" height="3.354482324476436" fill="#4FB8C4"></rect><rect x="543.0666666666667" width="4" y="73" height="8.054737905952976" fill="#4FB8C4"></rect><rect x="550.5333333333333" width="4" y="73" height="6.729063198790925" fill="#4FB8C4"></rect><rect x="558" width="4" y="73" height="7.452801899017359" fill="#4FB8C4"></rect><g class="axis" transform="translate(0,146)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle"><path class="domain" stroke="currentColor" d="M0.5,0.5H560.5"></path><g class="tick" opacity="1" transform="translate(91.16666666666667,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">April</text></g><g class="tick" opacity="1" transform="translate(188.23333333333332,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">July</text></g><g class="tick" opacity="1" transform="translate(286.3666666666667,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">October</text></g><g class="tick" opacity="1" transform="translate(384.5,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">2026</text></g><g class="tick" opacity="1" transform="translate(480.5,0)"><line stroke="currentColor" y2="0"></line><text fill="currentColor" y="3" dy="0.71em">April</text></g></g><g class="axis" fill="none" font-size="10" font-family="sans-serif" text-anchor="end"><path class="domain" stroke="currentColor" d="M0.5,146.5V0.5"></path><g class="tick" opacity="1" transform="translate(0,124.92926873361655)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">-20%</text></g><g class="tick" opacity="1" transform="translate(0,73.5)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">0%</text></g><g class="tick" opacity="1" transform="translate(0,22.070731266383447)"><line stroke="currentColor" x2="0"></line><text fill="currentColor" x="-3" dy="0.32em">20%</text></g></g></g></g>
+</svg>
