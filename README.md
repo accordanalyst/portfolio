@@ -5,7 +5,7 @@
 # 📊 accordanalyst.com
 ### Portfolio · Resume · Case Studies · Data Visualization · Licensed Products
 
-*The personal site of Alexis "Zaira" Kelly — Business Intelligence Analyst*
+*The portfolio website of Alexis "Zaira" Kelly — Business Intelligence Analyst*
 
 ![Status](https://img.shields.io/badge/status-live-6E1F2C?style=for-the-badge&labelColor=0B0B0F)
 ![Live Site](https://img.shields.io/badge/site-accordanalyst.com-3B5FE0?style=for-the-badge&labelColor=0B0B0F)
