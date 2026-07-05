@@ -1,597 +1,281 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Freight Audit &amp; Revenue Analytics Case Studies | Alexis Kelly</title>
-<meta name="description" content="Case studies in freight billing audits, revenue anomaly detection, and SaaS revenue reconciliation, built on simulated data using real-world analytical methods.">
-<meta name="keywords" content="freight audit case study, revenue anomaly detection, SaaS revenue reconciliation, billing audit portfolio, data analyst case studies">
-<link rel="canonical" href="https://accordanalyst.com/projects.html">
-<meta name="robots" content="noai, noimageai">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="accordanalyst.com">
-<meta property="og:title" content="Projects — Freight Audit & Revenue Analytics Case Studies | Alexis Kelly">
-<meta property="og:description" content="Case studies in freight billing audits, revenue anomaly detection, and SaaS revenue reconciliation, built on simulated data using real-world analytical methods.">
-<meta property="og:url" content="https://accordanalyst.com/projects.html">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Projects — Freight Audit & Revenue Analytics Case Studies | Alexis Kelly">
-<meta name="twitter:description" content="Case studies in freight billing audits, revenue anomaly detection, and SaaS revenue reconciliation, built on simulated data using real-world analytical methods.">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | accordanalyst.com</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  /* ══════════════════════════════════════════
-     LIGHT MODE (fall palette)
-  ══════════════════════════════════════════ */
   :root {
-    --bg:         #F7F3EE;
-    --surface:    #FFFFFF;
-    --nav-bg:     #14100E;
-    --hero-bg:    #14100E;
-    --hero-glow:  rgba(122,31,46,0.12);
-    --heading:    #14100E;
-    --body:       #2A211D;
-    --muted:      #7A6A62;
-    --rule:       #E4DCD3;
-    --accent:     #7A1F2E;
-    --accent-dim: rgba(122,31,46,0.15);
-    --accent-bdr: rgba(122,31,46,0.35);
-    --accent2:    #3D1015;
-    --hero-text:  #F7F3EE;
-    --hero-muted: rgba(247,243,238,0.6);
-    --hero-dim:   rgba(247,243,238,0.45);
-    --pill-bg:    rgba(122,31,46,0.15);
-    --pill-bdr:   rgba(122,31,46,0.35);
-    --pill-text:  rgba(247,243,238,0.85);
-    --bar-bg:     rgba(247,243,238,0.05);
-    --bar-bdr:    rgba(122,31,46,0.25);
-    --bar-div:    rgba(122,31,46,0.2);
-    --bar-hover:  rgba(122,31,46,0.1);
-    --num-color:  #7A1F2E;
-    --eyebrow:    #7A1F2E;
-    --section-rule-from: #7A1F2E;
-    --card-left:  #7A1F2E;
-    --card-bdr:   rgba(122,31,46,0.25);
-    --skill-tag:  rgba(122,31,46,0.1);
-    --skill-text: #14100E;
-    --edu-left:   #3D1015;
-    --contact-bg: #14100E;
-    --contact-txt:#F7F3EE;
-    --contact-sub:rgba(247,243,238,0.6);
-    --clink-bg:   rgba(122,31,46,0.2);
-    --clink-bdr:  rgba(122,31,46,0.4);
-    --clink-txt:  #F7F3EE;
-    --toggle-bg:  rgba(255,255,255,0.12);
-    --toggle-icon:'☀️';
-    --shadow:     rgba(0,0,0,0.08);
-    --surface2:   #F1EAE3;
-    --hero-dim:   rgba(247,243,238,0.45);
-    --code-bg:    #14100E;
-    --code-text:  #F2E9E2;
-    --code-comment:#8A776E;
-    --code-keyword:#D9707F;
-    --code-fn:    #D9A94F;
-    --code-string:#8FBF8A;
-    --code-num:   #7FB0D9;
+    --bg:#F5F6FA; --surface:#FFFFFF; --nav-bg:#080C17; --heading:#0A0F1E; --body:#232B47;
+    --muted:#5B6690; --rule:#DCE1F4; --accent:#3B5FE0; --accent2:#6B7FE0; --hero-text:#E8ECF7;
   }
-  /* ══════════════════════════════════════════
-     DARK MODE (blue palette)
-  ══════════════════════════════════════════ */
   [data-theme="dark"] {
-    --bg:         #0D0908;
-    --surface:    #17110F;
-    --nav-bg:     #0A0706;
-    --hero-bg:    #0A0706;
-    --hero-glow:  rgba(122,31,46,0.18);
-    --heading:    #F2E9E2;
-    --body:       #DCCFC6;
-    --muted:      #9C877D;
-    --rule:       #2B211C;
-    --accent:     #B33A4C;
-    --accent-dim: rgba(122,31,46,0.2);
-    --accent-bdr: rgba(179,58,76,0.4);
-    --accent2:    #7A1F2E;
-    --hero-text:  #F7F3EE;
-    --hero-muted: rgba(247,243,238,0.6);
-    --hero-dim:   rgba(247,243,238,0.4);
-    --pill-bg:    rgba(122,31,46,0.2);
-    --pill-bdr:   rgba(179,58,76,0.35);
-    --pill-text:  rgba(247,243,238,0.85);
-    --bar-bg:     rgba(247,243,238,0.04);
-    --bar-bdr:    rgba(179,58,76,0.2);
-    --bar-div:    rgba(179,58,76,0.18);
-    --bar-hover:  rgba(122,31,46,0.15);
-    --num-color:  #D65066;
-    --eyebrow:    #B33A4C;
-    --section-rule-from: #7A1F2E;
-    --card-left:  #7A1F2E;
-    --card-bdr:   rgba(122,31,46,0.3);
-    --skill-tag:  rgba(122,31,46,0.2);
-    --skill-text: #F2E9E2;
-    --edu-left:   #7A1F2E;
-    --contact-bg: #0A0706;
-    --contact-txt:#F7F3EE;
-    --contact-sub:rgba(247,243,238,0.55);
-    --clink-bg:   rgba(122,31,46,0.25);
-    --clink-bdr:  rgba(179,58,76,0.4);
-    --clink-txt:  #F7F3EE;
-    --toggle-bg:  rgba(179,58,76,0.15);
-    --toggle-icon:'🌙';
-    --shadow:     rgba(0,0,0,0.35);
-    --surface2:   #1D1613;
-    --hero-dim:   rgba(247,243,238,0.4);
-    --code-bg:    #0A0706;
-    --code-text:  #F2E9E2;
-    --code-comment:#8A776E;
-    --code-keyword:#E0687A;
-    --code-fn:    #E0BC6E;
-    --code-string:#9ED498;
-    --code-num:   #8FC3E8;
+    --bg:#0A0F1E; --surface:#121A2E; --nav-bg:#080C17; --heading:#E8ECF7; --body:#C9D2E8;
+    --muted:#7E8CB0; --rule:#232F4D; --accent:#5B82F5; --accent2:#6B7FE0; --hero-text:#E8ECF7;
   }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--body); font-family:'IBM Plex Sans',sans-serif; line-height:1.6; }
+  h1,h2,h3 { font-family:'Space Grotesk',sans-serif; color:var(--heading); margin:0; }
+  a { color:var(--accent); text-decoration:none; }
+  .mono { font-family:'IBM Plex Mono',monospace; }
 
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--body);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6;transition:background .35s,color .35s}
+  nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem;
+    background:var(--nav-bg); border-bottom:1px solid var(--rule); position:sticky; top:0; z-index:20; }
+  .nav-back { font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:rgba(232,236,247,0.7); text-decoration:none; }
+  .nav-back:hover { color:var(--accent); }
+  .nav-brand { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:rgba(247,243,238,0.5); }
+  .theme-toggle { background:none; border:1px solid rgba(247,243,238,0.3); border-radius:2px; color:#F7F3EE;
+    font-family:'IBM Plex Mono',monospace; font-size:11px; padding:5px 10px; cursor:pointer; }
 
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:52px;box-shadow:0 2px 16px var(--shadow);transition:background .35s}
-  .nav-back{font-size:13px;color:var(--hero-muted);text-decoration:none;letter-spacing:.05em;transition:color .2s;display:flex;align-items:center;gap:6px}
-  .nav-back:hover{color:var(--accent)}
-  .nav-right{display:flex;align-items:center;gap:1rem}
-  .theme-toggle{background:var(--toggle-bg);border:1px solid var(--accent-bdr);border-radius:20px;cursor:pointer;padding:4px 10px;font-size:14px;display:flex;align-items:center;gap:6px;color:var(--hero-muted);transition:background .2s,border-color .2s}
-  .toggle-label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--hero-muted)}
-  .toggle-track{width:32px;height:18px;background:var(--accent-dim);border:1px solid var(--accent-bdr);border-radius:9px;position:relative;transition:background .25s;flex-shrink:0}
-  [data-theme="dark"] .toggle-track{background:var(--accent)}
-  .toggle-thumb{position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--hero-text);transition:transform .25s}
-  [data-theme="dark"] .toggle-thumb{transform:translateX(14px)}
+  .wrap { max-width:1100px; margin:0 auto; padding:2.5rem 2rem 4rem; }
+  header.page-hero { margin-bottom:1.6rem; }
+  .eyebrow { font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent); margin-bottom:.6rem; }
+  h1.page-title { font-size:2rem; margin-bottom:.5rem; }
+  p.page-sub { font-size:14px; color:var(--muted); max-width:640px; }
 
-  .page-hero{background:var(--hero-bg);padding:6rem 2rem 3rem;text-align:center;position:relative;overflow:hidden;transition:background .35s}
-  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,var(--hero-glow) 0%,transparent 65%);pointer-events:none}
-  .page-eyebrow{font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;opacity:.85}
-  .page-title{font-size:clamp(2rem,5vw,3rem);font-weight:800;color:var(--hero-text);letter-spacing:-.02em;margin-bottom:.8rem;transition:color .35s}
-  .page-subtitle{font-size:15px;color:var(--hero-muted);max-width:600px;margin:0 auto}
-
-  main{max-width:980px;margin:0 auto;padding:3.5rem 2rem 4rem}
-
-  /* ── DETAILED PROJECT CARDS (original wide format) ── */
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    transition: background 0.35s, border-color 0.35s, transform 0.2s, box-shadow 0.2s;
+  .card-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:14px; }
+  .card {
+    background:var(--surface); border:1px solid var(--rule); border-radius:4px; overflow:hidden;
+    display:flex; flex-direction:column; transition:transform .15s, box-shadow .15s;
   }
-  .project-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px var(--shadow); }
-  .project-header { background: var(--nav-bg); padding: 1.4rem 1.5rem 1rem; transition: background 0.35s; }
-  .project-mode-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
-  .project-mode-pill { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 9px; border-radius: 20px; }
-  .pill-excel  { background: rgba(196,98,29,0.25); color: #FDF3E7; }
-  .pill-python { background: rgba(46,160,94,0.25);  color: #A8F0C6; }
-  .pill-sql    { background: rgba(74,144,217,0.25); color: #B8D4F8; }
-  .project-title { font-size: 1.15rem; font-weight: 800; color: var(--hero-text); line-height: 1.2; margin-bottom: 4px; transition: color 0.35s; }
-  .project-subtitle { font-size: 12px; color: rgba(253,243,231,0.6); letter-spacing: 0.04em; }
-  [data-theme="dark"] .project-subtitle { color: var(--hero-muted); }
-  .project-body { padding: 1.25rem 1.5rem; }
-  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 1rem; transition: color 0.35s; }
-  .project-metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 1rem; }
-  .project-metric { background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: 8px 10px; text-align: center; transition: background 0.35s, border-color 0.35s; }
-  .project-metric-num { font-size: 1.2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 2px; transition: color 0.35s; }
-  .project-metric-lbl { font-size: 10px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.3; transition: color 0.35s; }
-  .project-steps { margin-bottom: 1rem; }
-  .project-step { display: flex; gap: 10px; margin-bottom: 7px; align-items: flex-start; }
-  .step-dot { width: 20px; height: 20px; border-radius: 50%; background: var(--accent-dim); border: 1.5px solid var(--accent-bdr); color: var(--accent); font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; transition: background 0.35s; }
-  .step-text { font-size: 12.5px; color: var(--muted); line-height: 1.5; transition: color 0.35s; }
-  .step-text strong { color: var(--heading); }
-  .project-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.1rem; }
-  .project-tag { font-size: 11px; padding: 3px 9px; border-radius: 3px; background: var(--skill-tag); color: var(--skill-text); font-weight: 500; transition: background 0.35s, color 0.35s; }
-  .project-footer { padding: 1rem 1.5rem; border-top: 1px solid var(--rule); display: flex; gap: 10px; flex-wrap: wrap; transition: border-color 0.35s; }
-  .project-btn { padding: 9px 18px; border-radius: 5px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; text-decoration: none; transition: opacity 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 6px; }
-  .project-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-  .project-btn-primary { background: var(--accent); color: var(--hero-text); }
-  .project-btn-secondary { background: transparent; color: var(--accent); border: 1.5px solid var(--accent-bdr); }
-  .project-wip { font-size: 11px; color: var(--muted); font-style: italic; display: flex; align-items: center; gap: 5px; margin-top: 2px; transition: color 0.35s; }
+  .card:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.12); }
+  .card-top { padding:.9rem 1rem .7rem; border-bottom:1px solid var(--rule); }
+  .card-cat-dot { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; }
+  .card-title { font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:14.5px; color:var(--heading); line-height:1.3; margin:.35rem 0 .2rem; }
+  .card-subtitle { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); }
+  .card-body { padding:.8rem 1rem; flex:1; display:flex; flex-direction:column; }
+  .card-desc { font-size:12px; color:var(--muted); margin:0 0 .7rem; flex:1; }
+  .card-tags { display:flex; flex-wrap:wrap; gap:4px; margin-bottom:.8rem; }
+  .card-tag { font-size:9.5px; font-weight:600; background:rgba(59,95,224,0.1); color:var(--accent);
+    padding:2px 7px; border-radius:999px; }
+  .card-btn { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:700; text-decoration:none;
+    color:var(--accent); }
+  .card-btn:hover { text-decoration:underline; }
 
-  footer{text-align:center;padding:2rem;font-size:11px;color:var(--muted);letter-spacing:.08em;transition:color .35s}
-  footer a{color:var(--accent);text-decoration:none}
+  footer.foot { text-align:center; padding:2rem; font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); }
 
-  .fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-  .fade-in.visible{opacity:1;transform:translateY(0)}
-
-  @media (max-width: 700px) {
-    .nav-right .toggle-label { display: none; }
+  .controls { display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-bottom:1rem; }
+  .search-box {
+    flex:1; min-width:220px; font-family:'IBM Plex Mono',monospace; font-size:13px;
+    background:var(--surface); border:1px solid var(--rule); border-radius:6px; padding:9px 14px; color:var(--body);
   }
-  @media (prefers-reduced-motion: reduce) {
-    *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
-  }
-
-  /* -- LEDGER NOIR: nav -- */
-  nav { border-bottom: 3px double var(--accent); box-shadow: none; }
-  .nav-brand::before { content: '\00A7 '; color: var(--accent); margin-right: 2px; }
-  .nav-back {
-    padding: 5px 10px; border: 1px solid transparent; border-radius: 2px;
-    transition: border-color 0.2s, background 0.2s, color 0.2s;
-  }
-  .nav-back:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); color: var(--accent) !important; }
-  .dl-btn, .theme-toggle { border-radius: 2px !important; }
-
-  /* -- LEDGER NOIR: typography -- */
-  body { font-family: 'Inter', sans-serif; }
-  h1, h2, h3, .proj-title, .step-label, .chart-panel-title, .dash-chart-label,
-  .query-title, .acct-tab { font-family: 'Zilla Slab', serif; }
-  .proj-eyebrow, .step-sublabel, .kpi-label, .query-meta, .query-num { font-family: 'IBM Plex Mono', monospace; }
+  .search-box:focus { outline:2px solid var(--accent); }
+  .pill { font-family:'IBM Plex Mono',monospace; font-size:11.5px; font-weight:600; background:var(--surface);
+    border:1px solid var(--rule); color:var(--muted); padding:7px 14px; border-radius:999px; cursor:pointer; transition:all .15s; }
+  .pill.active { background:var(--accent); color:var(--hero-text); border-color:var(--accent); }
+  .result-count { font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--muted); margin-bottom:1rem; }
+  .card.js-hidden { display:none; }
+  .empty-state { text-align:center; padding:3rem 1rem; color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:13px; display:none; }
+  .empty-state.show { display:block; }
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="nav-back">← Back to Portfolio</a>
-  <div class="nav-right">
-    <a href="services.html" class="nav-back">Services</a>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-      <span id="toggleEmoji">☀️</span>
-      <span class="toggle-label" id="toggleLabel">Light</span>
-      <div class="toggle-track"><div class="toggle-thumb"></div></div>
-    </button>
-  </div>
+  <a href="../index.html" class="nav-back">&larr; Back to Portfolio</a>
+  <span class="nav-brand">MIDNIGHT CURTAIN &middot; accordanalyst.com</span>
+  <button class="theme-toggle" id="themeToggle">Toggle Theme</button>
 </nav>
+<div class="wrap">
+  <header class="page-hero">
+    <p class="eyebrow">Portfolio · All Projects</p>
+    <h1 class="page-title">Projects</h1>
+    <p class="page-sub">Search by name or tool, combine with a category — the URL updates as you filter, so any view here is a shareable link.</p>
+  </header>
 
-<section class="page-hero">
-  <p class="page-eyebrow">Portfolio</p>
-  <h1 class="page-title">Featured Projects</h1>
-  <p class="page-subtitle">Detailed case studies in Advanced Excel, SQL, and Python — built to demonstrate real audit, billing, and revenue operations methodology without exposing any client data.</p>
-</section>
-
-<main>
-
-  <!-- CARD 1 — Excel -->
-  <div class="project-card fade-in">
-    <div class="project-header">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill pill-excel">Advanced Excel</span>
-        <span class="project-mode-pill pill-python">Case Study</span>
-      </div>
-      <div class="project-title">International Freight Invoice Audit Automation</div>
-      <div class="project-subtitle">Ocean (LCL · FCL 20' · FCL 40') &amp; Air · 7 Accounts · Per-Account Tolerance Rules · Demurrage · Spot Quotes</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">A multi-sheet Excel automation tool that replicates the core logic of international freight bill auditing — without exposing any real client data. Built to demonstrate the exact workflow used in production: rate verification, demurrage calculation, per-account tolerance classification, short-pay detection, and management dashboard reporting across Ocean and Air freight modes.</p>
-      <div class="project-metrics">
-        <div class="project-metric"><div class="project-metric-num">60</div><div class="project-metric-lbl">Simulated Invoices</div></div>
-        <div class="project-metric"><div class="project-metric-num">7</div><div class="project-metric-lbl">Sheets Built</div></div>
-        <div class="project-metric"><div class="project-metric-num">7</div><div class="project-metric-lbl">Account Tolerance Rules</div></div>
-      </div>
-      <div class="project-steps">
-        <div class="project-step"><div class="step-dot">1</div><div class="step-text"><strong>The Problem</strong> — Manual rate verification across Ocean + Air lanes, no standardized demurrage tracking, no tolerance logic per account, inconsistent exception reporting across analysts</div></div>
-        <div class="project-step"><div class="step-dot">2</div><div class="step-text"><strong>Data Architecture</strong> — Invoice Log (60 invoices), Contracted Rate Table + Spot Quote Register (by carrier/lane/container type), Account Tolerance Rules table (flat dollar vs percentage-based)</div></div>
-        <div class="project-step"><div class="step-dot">3</div><div class="step-text"><strong>Automation Logic</strong> — XLOOKUP composite key rate matching, IFS-based per-account tolerance classification ($0.01 strict to $100 flexible), dynamic demurrage calculation against free-day allowances, short-pay and balance due detection with reason codes</div></div>
-        <div class="project-step"><div class="step-dot">4</div><div class="step-text"><strong>Outputs</strong> — Exception Report (filtered overcharges, underbills, rate-not-on-file, short pay), Executive Dashboard (KPI cards, carrier breakdown, mode/container type exception rates, per-account summary)</div></div>
-        <div class="project-step"><div class="step-dot">5</div><div class="step-text"><strong>Real-World Parallel</strong> — Mirrors the live audit workflow at Cass Information Systems across 20+ Fortune 500 international accounts, recovering $450K+ in carrier overcharges annually</div></div>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">XLOOKUP</span>
-        <span class="project-tag">IFS / Nested IF</span>
-        <span class="project-tag">IFERROR</span>
-        <span class="project-tag">SUMIFS / COUNTIFS</span>
-        <span class="project-tag">Conditional Formatting</span>
-        <span class="project-tag">Composite Key Logic</span>
-        <span class="project-tag">Demurrage Calculation</span>
-        <span class="project-tag">Tolerance Classification</span>
-        <span class="project-tag">Ocean Freight</span>
-        <span class="project-tag">Air Freight</span>
-        <span class="project-tag">LCL / FCL 20' / FCL 40'</span>
-        <span class="project-tag">Spot Quotes</span>
-        <span class="project-tag">Short-Pay Detection</span>
-        <span class="project-tag">Balance Due Tracking</span>
-        <span class="project-tag">Executive Dashboard</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/intl-freight-audit.html" class="project-btn project-btn-primary">View Full Case Study →</a>
-    </div>
+  <div class="controls">
+    <input type="text" class="search-box" id="search" placeholder="Search projects or tools (e.g. &quot;D3&quot;, &quot;SQL&quot;, &quot;Sankey&quot;)&hellip;">
+    <button class="pill active" data-cat="all">All</button>
+    <button class="pill" data-cat="case-study">Featured Case Studies</button><button class="pill" data-cat="dataviz">Midnight Curtain — Data Visualization</button><button class="pill" data-cat="licensed">Licensed Products</button>
   </div>
+  <div class="result-count" id="resultCount"></div>
 
-  <!-- CARD 2 — SQL -->
-  <div class="project-card fade-in">
-    <div class="project-header">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill pill-sql">SQL</span>
-        <span class="project-mode-pill pill-python" style="background:rgba(74,144,217,.25);color:#B8D4F8;">Revenue Ops</span>
-      </div>
-      <div class="project-title">Revenue Reconciliation Query Set</div>
-      <div class="project-subtitle">Aging Receivables · Short-Pay Detection · Duplicate Charges · Contract vs Billed Variance · Executive Leakage Dashboard</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">Five production-ready SQL queries that surface the financial pain points every company above Series B is actively trying to solve — revenue leakage, unpaid invoices, duplicate charges, short payments, and billing gaps against signed contracts. Industry-agnostic schema. Written clean, commented, and framed as business questions first.</p>
-      <div class="project-metrics">
-        <div class="project-metric"><div class="project-metric-num">5</div><div class="project-metric-lbl">Queries</div></div>
-        <div class="project-metric"><div class="project-metric-num">4</div><div class="project-metric-lbl">Leakage Vectors</div></div>
-        <div class="project-metric"><div class="project-metric-num">$100K+</div><div class="project-metric-lbl">Target Role Range</div></div>
-      </div>
-      <div class="project-steps">
-        <div class="project-step"><div class="step-dot">1</div><div class="step-text"><strong>Aging Receivables</strong> — Buckets all open invoices by days past due (1–30, 31–60, 61–90, 90+) and flags ESCALATE / PRIORITY / STANDARD per account</div></div>
-        <div class="project-step"><div class="step-dot">2</div><div class="step-text"><strong>Short-Pay Detection</strong> — Compares payments + credit memos to invoiced amounts, surfaces exact balance due and percentage paid per invoice</div></div>
-        <div class="project-step"><div class="step-dot">3</div><div class="step-text"><strong>Duplicate Charge Detection</strong> — Uses window functions to fingerprint invoices by account + product + billing period, flags any account billed twice</div></div>
-        <div class="project-step"><div class="step-dot">4</div><div class="step-text"><strong>Contract vs Billed Reconciliation</strong> — Compares actual YTD billing to contracted ARR, flags over-billing, under-billing, and renewal risk simultaneously</div></div>
-        <div class="project-step"><div class="step-dot">5</div><div class="step-text"><strong>Executive Leakage Dashboard</strong> — UNION ALL aggregates all four leakage vectors into one prioritised summary with % of total risk — the output you present to a VP</div></div>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">CTEs</span><span class="project-tag">Window Functions</span>
-        <span class="project-tag">CASE WHEN</span><span class="project-tag">COALESCE / NULLIF</span>
-        <span class="project-tag">UNION ALL</span><span class="project-tag">DATE_TRUNC</span>
-        <span class="project-tag">STRING_AGG</span><span class="project-tag">Aging Receivables</span>
-        <span class="project-tag">Short-Pay Reconciliation</span><span class="project-tag">ARR Variance</span>
-        <span class="project-tag">Duplicate Detection</span><span class="project-tag">Revenue Leakage</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/revenue-reconciliation.html" class="project-btn project-btn-primary">View Full Case Study →</a>
-    </div>
+  <div class="card-grid" id="grid">
+<a href="projects/intl-freight-audit.html" class="card" data-cat="case-study" data-search="international freight invoice audit automation advanced excel xlookup tolerance rules">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#7A1F2E"></span><span class="card-subtitle">Ocean & Air · 7 Accounts · Tolerance Rules</span>
+    <div class="card-title">International Freight Invoice Audit Automation</div>
   </div>
-
-  <!-- CARD 3 — Python -->
-  <div class="project-card fade-in">
-    <div class="project-header">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill pill-python">Python</span>
-        <span class="project-mode-pill pill-sql" style="background:rgba(74,144,217,.25);color:#B8D4F8;">Analysis &amp; Forecasting</span>
-      </div>
-      <div class="project-title">Revenue Anomaly Detector</div>
-      <div class="project-subtitle">Rolling Z-Score Detection · Erosion Trend Analysis · Severity Scoring · Executive Triage</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">A statistical anomaly detection script that flags accounts whose revenue deviates from their own historical pattern — catching sudden drops, billing-error spikes, and slow erosion before they show up in a quarterly report. Unlike the Excel and SQL projects, which audit revenue that's already been billed, this one looks forward: it's the signal that tells a Revenue Ops team which account needs a conversation this week.</p>
-      <div class="project-metrics">
-        <div class="project-metric"><div class="project-metric-num">720</div><div class="project-metric-lbl">Revenue Records</div></div>
-        <div class="project-metric"><div class="project-metric-num">48</div><div class="project-metric-lbl">Anomalies Flagged</div></div>
-        <div class="project-metric"><div class="project-metric-num">6.7%</div><div class="project-metric-lbl">Clean Exception Rate</div></div>
-      </div>
-      <div class="project-steps">
-        <div class="project-step"><div class="step-dot">1</div><div class="step-text"><strong>The Problem</strong> — Flat company-wide thresholds produce false positives on volatile accounts and miss slow decline on stable ones; manual review across 30+ accounts doesn't scale</div></div>
-        <div class="project-step"><div class="step-dot">2</div><div class="step-text"><strong>Simulated Dataset</strong> — 30 fictitious SaaS accounts × 24 months, with five seeded anomaly scenarios: churn-style drop, billing-error spike, slow erosion, sustained expansion, and drop-with-partial-recovery</div></div>
-        <div class="project-step"><div class="step-dot">3</div><div class="step-text"><strong>Detection Logic</strong> — Rolling 6-month baseline per account, z-score floored against std blowup, secondary erosion check for gradual decline, severity score unifying both onto one rankable scale</div></div>
-        <div class="project-step"><div class="step-dot">4</div><div class="step-text"><strong>Outputs</strong> — Ranked anomaly report (CSV) with SPIKE/DROP/EROSION classification, HIGH/MEDIUM/LOW priority tiers, and a four-panel gradient chart of the top flagged accounts</div></div>
-        <div class="project-step"><div class="step-dot">5</div><div class="step-text"><strong>Result</strong> — 4 of 5 seeded scenarios surfaced at the very top of the ranked report; Sterling Capital's new higher baseline self-corrected once the rolling window caught up, with no manual threshold reset needed</div></div>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">Pandas</span>
-        <span class="project-tag">NumPy</span>
-        <span class="project-tag">Matplotlib</span>
-        <span class="project-tag">Rolling Window Statistics</span>
-        <span class="project-tag">Z-Score Anomaly Detection</span>
-        <span class="project-tag">groupby + apply</span>
-        <span class="project-tag">Vectorized Conditional Logic</span>
-        <span class="project-tag">Severity Scoring</span>
-        <span class="project-tag">Executive Triage</span>
-        <span class="project-tag">Churn Signal Detection</span>
-        <span class="project-tag">Billing Error Detection</span>
-        <span class="project-tag">Trend Erosion Analysis</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/revenue-anomaly-detector.html" class="project-btn project-btn-primary">View Full Case Study →</a>
-    </div>
+  <div class="card-body">
+    <p class="card-desc">Multi-sheet Excel automation replicating real freight bill audit logic — rate verification, demurrage, tolerance classification.</p>
+    <div class="card-tags"><span class="card-tag">Advanced Excel</span><span class="card-tag">XLOOKUP</span><span class="card-tag">Tolerance Rules</span></div>
+    <span class="card-btn">View Case Study →</span>
   </div>
-
-  <!-- CARD 4 — Excel + JS Dashboard -->
-  <div class="project-card fade-in">
-    <div class="project-header">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill pill-excel">Advanced Excel</span>
-        <span class="project-mode-pill pill-python" style="background:rgba(240,192,112,.2);border:1px solid rgba(240,192,112,.4);color:#F0C070;">Interactive Dashboard</span>
-      </div>
-      <div class="project-title">Pre-Audit vs Post-Audit Recovery Dashboard</div>
-      <div class="project-subtitle">222,900 Invoices · 6 Error Types · Live D3.js Visualization · Month-by-Month Drill-Down</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">An interactive dashboard simulating 12 months of freight invoice audit activity — the "necessary evil" of post-audit recovery in freight billing, quantified. Modeled in Excel with 245 live cross-sheet formulas and visualized on the case study page using D3.js: clickable month buttons, animated stacked area charts, per-month error type breakdowns, and a live cost-efficiency comparison showing that Post-Audit recovery costs 6.5x more per dollar than Pre-Audit prevention.</p>
-      <div class="project-metrics">
-        <div class="project-metric"><div class="project-metric-num">222,900</div><div class="project-metric-lbl">Simulated Invoices</div></div>
-        <div class="project-metric"><div class="project-metric-num">$6.6M</div><div class="project-metric-lbl">Annual Error Pool</div></div>
-        <div class="project-metric"><div class="project-metric-num">6.5x</div><div class="project-metric-lbl">Post vs Pre Cost Multiple</div></div>
-      </div>
-      <div class="project-steps">
-        <div class="project-step"><div class="step-dot">1</div><div class="step-text"><strong>The Problem</strong> — Pre-Audit prevents errors before payment (cheap). Post-Audit recovers what was missed after payment (expensive). The dashboard quantifies exactly how much worse the "necessary evil" channel costs per dollar recovered.</div></div>
-        <div class="project-step"><div class="step-dot">2</div><div class="step-text"><strong>Data Model</strong> — 30 fictitious SaaS-style freight accounts, 10,800–28,100 invoices/month with a realistic seasonal curve, 6 distinct error types each with their own Pre-Audit catch rate and monthly mix.</div></div>
-        <div class="project-step"><div class="step-dot">3</div><div class="step-text"><strong>Excel Workbook</strong> — 245 live formulas across a hidden Data sheet, a hidden Calc sheet (every KPI as a formula), and a visual Dashboard sheet with a dropdown month selector driving all displayed values via INDEX/MATCH.</div></div>
-        <div class="project-step"><div class="step-dot">4</div><div class="step-text"><strong>Interactive Web Dashboard</strong> — The same data model rebuilt in JavaScript on the case study page: clickable month buttons, stacked area chart, catch rate trend line, error type breakdown, investigative flag for October, and full-year FY summary.</div></div>
-        <div class="project-step"><div class="step-dot">5</div><div class="step-text"><strong>The October Insight</strong> — Pre-Audit catch rate drops to 59% in October (vs. 69–71% the rest of the year) while the error pool spikes to $955K — a simulated carrier rate table update that the audit system hadn't synchronized, flooding the expensive 28% contingency recovery channel.</div></div>
-      </div>
-      <div class="project-tags">
-        <span class="project-tag">Advanced Excel</span>
-        <span class="project-tag">INDEX / MATCH</span>
-        <span class="project-tag">Data Validation Dropdowns</span>
-        <span class="project-tag">D3.js</span>
-        <span class="project-tag">SVG Charts</span>
-        <span class="project-tag">Animated Transitions</span>
-        <span class="project-tag">Pre-Audit Avoided Cost</span>
-        <span class="project-tag">Post-Audit Contingency Recovery</span>
-        <span class="project-tag">Catch Rate Analysis</span>
-        <span class="project-tag">True Leakage Quantification</span>
-        <span class="project-tag">Cost Multiple</span>
-        <span class="project-tag">Seasonal Volume Modeling</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/freight-audit-dashboard.html" class="project-btn project-btn-primary">View Interactive Dashboard →</a>
-    </div>
+</a>
+<a href="projects/revenue-reconciliation.html" class="card" data-cat="case-study" data-search="revenue reconciliation query set sql ctes window functions">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#7A1F2E"></span><span class="card-subtitle">5 SQL Queries · Aging · Duplicates · Variance</span>
+    <div class="card-title">Revenue Reconciliation Query Set</div>
   </div>
-
-  <p class="fade-in" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#6B7FE0; margin:3rem 0 0.6rem;">Midnight Curtain &middot; Data Visualization</p>
-  <div class="section-rule fade-in" style="background:linear-gradient(90deg,#3B5FE0,transparent); height:2px; margin-bottom:1.6rem;"></div>
-
-  <!-- CARD 5 — Sankey -->
-  <div class="project-card fade-in" style="border-color:#232F4D;">
-    <div class="project-header" style="background:#080C17;">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill" style="background:rgba(59,95,224,.25);color:#AEBBF5;">D3.js</span>
-        <span class="project-mode-pill" style="background:rgba(107,127,224,.25);color:#D6DCFA;">Flow Visualization</span>
-      </div>
-      <div class="project-title">Revenue Leak Flow — Sankey Diagram</div>
-      <div class="project-subtitle">$2.4M Simulated Volume &middot; 6 Flow States &middot; d3-sankey</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">An interactive Sankey diagram tracing invoice dollars from issuance through payment, dispute, recovery, and write-off — making every intermediate path visible at once instead of just the start and end states.</p>
-      <div class="project-tags">
-        <span class="project-tag">D3.js</span>
-        <span class="project-tag">d3-sankey</span>
-        <span class="project-tag">Flow Visualization</span>
-        <span class="project-tag">Revenue Ops</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/revenue-leak-sankey.html" class="project-btn" style="background:#3B5FE0;color:#050810;">View Case Study →</a>
-    </div>
+  <div class="card-body">
+    <p class="card-desc">Five production-ready SQL queries surfacing revenue leakage, duplicate charges, short payments, and contract billing gaps.</p>
+    <div class="card-tags"><span class="card-tag">SQL</span><span class="card-tag">CTEs</span><span class="card-tag">Window Functions</span></div>
+    <span class="card-btn">View Case Study →</span>
   </div>
-
-  <!-- CARD 6 — Heatmap + Network Graph -->
-  <div class="project-card fade-in" style="border-color:#232F4D;">
-    <div class="project-header" style="background:#080C17;">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill" style="background:rgba(59,95,224,.25);color:#AEBBF5;">D3.js</span>
-        <span class="project-mode-pill" style="background:rgba(107,127,224,.25);color:#D6DCFA;">Dual Encoding</span>
-      </div>
-      <div class="project-title">Carrier Exposure — Heatmap + Network Graph</div>
-      <div class="project-subtitle">$474,000 Simulated Exposure &middot; 5 &times; 5 Matrix &middot; Toggleable Views</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">The same carrier-by-error-type exposure dataset shown two ways: a full heatmap matrix, and a force-directed network graph where shared exposure pulls related carriers and error types into visible clusters. A toggle switches between them live.</p>
-      <div class="project-tags">
-        <span class="project-tag">D3.js</span>
-        <span class="project-tag">d3.forceSimulation</span>
-        <span class="project-tag">Heatmap</span>
-        <span class="project-tag">Network Graph</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/carrier-exposure-network.html" class="project-btn" style="background:#3B5FE0;color:#050810;">View Case Study →</a>
-    </div>
+</a>
+<a href="projects/revenue-anomaly-detector.html" class="card" data-cat="case-study" data-search="revenue anomaly detector python pandas z-score">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#7A1F2E"></span><span class="card-subtitle">Z-Score Detection · Rolling Baseline · Python</span>
+    <div class="card-title">Revenue Anomaly Detector</div>
   </div>
-
-  <!-- CARD 7 — Animated Data Join -->
-  <div class="project-card fade-in" style="border-color:#232F4D;">
-    <div class="project-header" style="background:#080C17;">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill" style="background:rgba(59,95,224,.25);color:#AEBBF5;">D3.js</span>
-        <span class="project-mode-pill" style="background:rgba(107,127,224,.25);color:#D6DCFA;">Live Demo</span>
-      </div>
-      <div class="project-title">Live Invoice Triage — Animated Data Join</div>
-      <div class="project-subtitle">40 Simulated Records &middot; Enter/Update/Exit &middot; Zero Manual DOM Ops</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">A live, clickable demonstration of D3's core data-join pattern — simulated invoice records stream in and animate into classification buckets in real time, showing the enter/update/exit paradigm directly instead of hiding it behind a chart config.</p>
-      <div class="project-tags">
-        <span class="project-tag">D3.js</span>
-        <span class="project-tag">Data Binding</span>
-        <span class="project-tag">Enter/Update/Exit</span>
-        <span class="project-tag">Animation</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/live-invoice-triage.html" class="project-btn" style="background:#3B5FE0;color:#050810;">View Live Demo →</a>
-    </div>
+  <div class="card-body">
+    <p class="card-desc">Statistical anomaly detection flagging accounts that deviate from their own revenue history — catches drops before the quarterly report.</p>
+    <div class="card-tags"><span class="card-tag">Python</span><span class="card-tag">Pandas</span><span class="card-tag">Z-Score</span></div>
+    <span class="card-btn">View Case Study →</span>
   </div>
-
-  <p class="fade-in" style="font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#C4621D; margin:3rem 0 0.6rem;">Licensed Products &middot; Preview Only</p>
-  <div class="section-rule fade-in" style="background:linear-gradient(90deg,#FF2D87,#4FB8C4,transparent); height:2px; margin-bottom:1.6rem;"></div>
-
-  <!-- CARD 8 — Drag Race Dashboard -->
-  <div class="project-card fade-in" style="border-color:#322342;">
-    <div class="project-header" style="background:#160F1F;">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill" style="background:rgba(255,45,135,.22);color:#FFB6D9;">For Sale</span>
-        <span class="project-mode-pill" style="background:rgba(157,78,221,.25);color:#DABDF5;">Entertainment Data</span>
-      </div>
-      <div class="project-title">The Main Stage — Drag Race Stats Dashboard</div>
-      <div class="project-subtitle">14 Seasons Tracked &middot; 180+ Contestants &middot; Fan-Sourced Data</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">A glam-styled stats dashboard covering 14 seasons of competition data. Shown here as a preview walkthrough rather than the live tool, since it's an active product available for licensing.</p>
-      <div class="project-tags">
-        <span class="project-tag">HTML/CSS/JS</span>
-        <span class="project-tag">Data Visualization</span>
-        <span class="project-tag">Brand-Specific Design</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/dragrace-showcase.html" class="project-btn" style="background:linear-gradient(135deg,#FF2D87,#9D4EDD);color:#fff;">View Showcase →</a>
-    </div>
+</a>
+<a href="projects/freight-audit-dashboard.html" class="card" data-cat="case-study" data-search="pre-audit vs post-audit recovery dashboard excel d3.js cost analysis">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#7A1F2E"></span><span class="card-subtitle">222,900 Invoices · Live D3.js · Excel Model</span>
+    <div class="card-title">Pre-Audit vs Post-Audit Recovery Dashboard</div>
   </div>
-
-  <!-- CARD 8b — Finance Reskin Demo -->
-  <div class="project-card fade-in" style="border-color:#3A2A4A;">
-    <div class="project-header" style="background:#1B1224;">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill" style="background:rgba(59,95,224,.22);color:#AEBBF5;">Template Demo</span>
-        <span class="project-mode-pill" style="background:rgba(107,127,224,.25);color:#D6DCFA;">Revenue Operations</span>
-      </div>
-      <div class="project-title">Quarterly Revenue Intelligence — Finance Reskin</div>
-      <div class="project-subtitle">Same Template as The Main Stage &middot; New Data &middot; New Palette</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">Proof that the drag race dashboard is a genuine reusable template, not a one-off: identical chart-drawing code, entirely different dataset and color identity ("Velvet Exchange") — a quarterly deal/account/revenue dashboard instead of a competition stats page.</p>
-      <div class="project-tags">
-        <span class="project-tag">D3.js</span>
-        <span class="project-tag">Reusable Template</span>
-        <span class="project-tag">Revenue Operations</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/finance-showcase.html" class="project-btn" style="background:linear-gradient(135deg,#3B5FE0,#4A2F6B);color:#fff;">View Showcase →</a>
-    </div>
+  <div class="card-body">
+    <p class="card-desc">Interactive dashboard simulating 12 months of audit activity — 245 live cross-sheet formulas, D3-visualized, proving post-audit costs 6.5x more.</p>
+    <div class="card-tags"><span class="card-tag">Excel</span><span class="card-tag">D3.js</span><span class="card-tag">Cost Analysis</span></div>
+    <span class="card-btn">View Dashboard →</span>
   </div>
-
-  <!-- CARD 9 — Fuel Intelligence Dashboard -->
-  <div class="project-card fade-in" style="border-color:#2A3A4D;">
-    <div class="project-header" style="background:#16202C;">
-      <div class="project-mode-pills">
-        <span class="project-mode-pill" style="background:rgba(201,138,74,.22);color:#E8C79A;">Licensable</span>
-        <span class="project-mode-pill" style="background:rgba(79,184,196,.22);color:#A9DEE4;">Freight &amp; Transportation</span>
-      </div>
-      <div class="project-title">U.S. Diesel Price Intelligence Dashboard</div>
-      <div class="project-subtitle">50 States &middot; Weekly Refresh &middot; DOE-Sourced Benchmarks</div>
-    </div>
-    <div class="project-body">
-      <p class="project-desc">A client-facing dashboard for articulating current fuel surcharge exposure to carriers, clients, or finance leadership. Shown as a preview walkthrough — this is an active product available for licensing to freight and fleet operations teams.</p>
-      <div class="project-tags">
-        <span class="project-tag">HTML/CSS/JS</span>
-        <span class="project-tag">Fuel Surcharge Analysis</span>
-        <span class="project-tag">Client-Facing Reporting</span>
-      </div>
-    </div>
-    <div class="project-footer">
-      <a href="projects/fuel-showcase.html" class="project-btn" style="background:#C98A4A;color:#160F08;">View Showcase →</a>
-    </div>
+</a>
+<a href="projects/revenue-leak-sankey.html" class="card" data-cat="dataviz" data-search="revenue leak flow — sankey diagram d3.js d3-sankey flow viz">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#3B5FE0"></span><span class="card-subtitle">$2.4M Simulated Volume · d3-sankey</span>
+    <div class="card-title">Revenue Leak Flow — Sankey Diagram</div>
   </div>
+  <div class="card-body">
+    <p class="card-desc">Interactive Sankey diagram tracing invoice dollars from issuance through payment, dispute, recovery, and write-off.</p>
+    <div class="card-tags"><span class="card-tag">D3.js</span><span class="card-tag">d3-sankey</span><span class="card-tag">Flow Viz</span></div>
+    <span class="card-btn">View Case Study →</span>
+  </div>
+</a>
+<a href="projects/carrier-exposure-network.html" class="card" data-cat="dataviz" data-search="carrier exposure — heatmap + network graph d3.js forcesimulation heatmap">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#3B5FE0"></span><span class="card-subtitle">$474K Exposure · Toggleable Dual View</span>
+    <div class="card-title">Carrier Exposure — Heatmap + Network Graph</div>
+  </div>
+  <div class="card-body">
+    <p class="card-desc">The same carrier-by-error-type exposure shown two ways — a full heatmap matrix and a force-directed network graph.</p>
+    <div class="card-tags"><span class="card-tag">D3.js</span><span class="card-tag">forceSimulation</span><span class="card-tag">Heatmap</span></div>
+    <span class="card-btn">View Case Study →</span>
+  </div>
+</a>
+<a href="projects/live-invoice-triage.html" class="card" data-cat="dataviz" data-search="live invoice triage — animated data join d3.js data binding animation">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#3B5FE0"></span><span class="card-subtitle">40 Records · Enter/Update/Exit Pattern</span>
+    <div class="card-title">Live Invoice Triage — Animated Data Join</div>
+  </div>
+  <div class="card-body">
+    <p class="card-desc">A live, clickable demo of D3's core data-join pattern — invoice records stream in and classify themselves in real time.</p>
+    <div class="card-tags"><span class="card-tag">D3.js</span><span class="card-tag">Data Binding</span><span class="card-tag">Animation</span></div>
+    <span class="card-btn">View Live Demo →</span>
+  </div>
+</a>
+<a href="projects/dragrace-showcase.html" class="card" data-cat="licensed" data-search="the main stage — drag race stats dashboard html/css/js data viz brand design">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#C4621D"></span><span class="card-subtitle">14 Seasons · For Sale · Entertainment Data</span>
+    <div class="card-title">The Main Stage — Drag Race Stats Dashboard</div>
+  </div>
+  <div class="card-body">
+    <p class="card-desc">A glam-styled stats dashboard covering 14 seasons of competition data. Preview walkthrough — active product available for licensing.</p>
+    <div class="card-tags"><span class="card-tag">HTML/CSS/JS</span><span class="card-tag">Data Viz</span><span class="card-tag">Brand Design</span></div>
+    <span class="card-btn">View Showcase →</span>
+  </div>
+</a>
+<a href="projects/finance-showcase.html" class="card" data-cat="licensed" data-search="quarterly revenue intelligence — finance reskin d3.js reusable template revops">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#C4621D"></span><span class="card-subtitle">Same Template, New Data & Palette</span>
+    <div class="card-title">Quarterly Revenue Intelligence — Finance Reskin</div>
+  </div>
+  <div class="card-body">
+    <p class="card-desc">Proof the drag race dashboard is a genuine reusable template — identical code, entirely different dataset and color identity.</p>
+    <div class="card-tags"><span class="card-tag">D3.js</span><span class="card-tag">Reusable Template</span><span class="card-tag">RevOps</span></div>
+    <span class="card-btn">View Showcase →</span>
+  </div>
+</a>
+<a href="projects/fuel-showcase.html" class="card" data-cat="licensed" data-search="u.s. diesel price intelligence dashboard html/css/js fuel analysis client reporting">
+  <div class="card-top">
+    <span class="card-cat-dot" style="background:#C4621D"></span><span class="card-subtitle">50 States · Licensable · Freight & Transport</span>
+    <div class="card-title">U.S. Diesel Price Intelligence Dashboard</div>
+  </div>
+  <div class="card-body">
+    <p class="card-desc">A client-facing dashboard articulating current fuel surcharge exposure. Preview walkthrough — licensable to freight/fleet teams.</p>
+    <div class="card-tags"><span class="card-tag">HTML/CSS/JS</span><span class="card-tag">Fuel Analysis</span><span class="card-tag">Client Reporting</span></div>
+    <span class="card-btn">View Showcase →</span>
+  </div>
+</a>
+  </div>
+  <div class="empty-state" id="emptyState">No projects match that search. Try a different term or category.</div>
+</div>
 
-</main>
-
-<footer>
-  <p>© 2026 Alexis "Zaira" Kelly · <a href="index.html">accordanalyst.com</a> · Portfolio</p>
-</footer>
+<footer class="foot">&copy; 2026 Alexis "Zaira" Kelly &middot; <a href="../index.html">accordanalyst.com</a> &middot; Portfolio</footer>
 
 <script>
-  const html = document.documentElement;
-  const btn = document.getElementById('themeToggle');
-  const emoji = document.getElementById('toggleEmoji');
-  const label = document.getElementById('toggleLabel');
-  const saved = localStorage.getItem('theme');
-  if (saved) { html.setAttribute('data-theme', saved); updateUI(saved); }
-  btn.addEventListener('click', () => {
-    const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    updateUI(next);
-  });
-  function updateUI(t) {
-    emoji.textContent = t === 'dark' ? '🌙' : '☀️';
-    label.textContent = t === 'dark' ? 'Dark' : 'Light';
-  }
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+const html = document.documentElement;
+document.getElementById('themeToggle').addEventListener('click', () => {
+  html.setAttribute('data-theme', html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+
+// ---- small state-driven architecture: one state object, one render function ----
+const state = { cat: 'all', q: '' };
+const cards = Array.from(document.querySelectorAll('.card'));
+const pills = document.querySelectorAll('.pill');
+const searchInput = document.getElementById('search');
+const resultCount = document.getElementById('resultCount');
+const emptyState = document.getElementById('emptyState');
+
+function readStateFromHash() {
+  const params = new URLSearchParams(location.hash.replace('#', ''));
+  state.cat = params.get('cat') || 'all';
+  state.q = params.get('q') || '';
+}
+
+function writeStateToHash() {
+  const params = new URLSearchParams();
+  if (state.cat !== 'all') params.set('cat', state.cat);
+  if (state.q) params.set('q', state.q);
+  const hash = params.toString();
+  // URL state syncing is a nice-to-have, not core functionality — some sandboxed/embedded
+  // preview environments block history.replaceState with a SecurityError. Never let that
+  // stop the actual search/filter logic below from running.
+  try {
+    history.replaceState(null, '', hash ? '#' + hash : location.pathname);
+  } catch (err) {
+    // silently ignore — filtering still works, only the shareable-URL feature is unavailable here
+  }
+}
+
+function render() {
+  let visible = 0;
+  cards.forEach(card => {
+    const matchesCat = state.cat === 'all' || card.dataset.cat === state.cat;
+    const matchesSearch = !state.q || card.dataset.search.includes(state.q.toLowerCase());
+    const show = matchesCat && matchesSearch;
+    card.classList.toggle('js-hidden', !show);
+    if (show) visible++;
+  });
+  resultCount.textContent = `Showing ${visible} of ${cards.length} projects`;
+  emptyState.classList.toggle('show', visible === 0);
+  pills.forEach(p => p.classList.toggle('active', p.dataset.cat === state.cat));
+  searchInput.value = state.q;
+}
+
+pills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    state.cat = pill.dataset.cat;
+    writeStateToHash();
+    render();
+  });
+});
+
+searchInput.addEventListener('input', (e) => {
+  state.q = e.target.value;
+  writeStateToHash();
+  render();
+});
+
+window.addEventListener('hashchange', () => { readStateFromHash(); render(); });
+
+readStateFromHash();
+render();
 </script>
-<script src="ai-blocker.js" defer></script>
 </body>
 </html>

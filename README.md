@@ -1,9 +1,11 @@
 <div align="center">
 
-<img src="accordanalyst-banner.svg"><br>
-### Portfolio · Resume · Case Studies
+<img src="accordanalyst-banner.svg" alt="AccordAnalyst" width="100%">
 
-*The portfolio site of Alexis Kelly — Business Operations Analyst*
+# 📊 accordanalyst.com
+### Portfolio · Resume · Case Studies · Data Visualization · Licensed Products
+
+*The personal site of Alexis "Zaira" Kelly — Business Intelligence Analyst*
 
 ![Status](https://img.shields.io/badge/status-live-6E1F2C?style=for-the-badge&labelColor=0B0B0F)
 ![Live Site](https://img.shields.io/badge/site-accordanalyst.com-3B5FE0?style=for-the-badge&labelColor=0B0B0F)
@@ -16,37 +18,55 @@
 
 ## 🗂️ What's in this repo
 
-This repository powers **[accordanalyst.com](https://www.accordanalyst.com/)** — a portfolio site, a standalone resume page, and four live interactive case studies. No frameworks, no build step — just hand-built HTML/CSS/JS, deployed straight through GitHub Pages.
+This repository powers **[accordanalyst.com](https://www.accordanalyst.com/)** — a portfolio site, a standalone resume page, a project catalog spanning three visual identities, and several standalone D3.js products. No frameworks, no build step — hand-built HTML/CSS/JS, deployed straight through GitHub Pages.
 
 ```
 portfolio/
-├── index.html                  ← Home / Portfolio
-├── resume.html                 ← Full résumé (Experience, Skills, Education, Volunteer)
-├── projects.html               ← Full project catalog (all case studies, one page)
-├── privacy-policy.html         ← Legal (store.accordanalyst.com)
-├── terms-of-service.html       ← Legal (store.accordanalyst.com)
-├── CNAME                       ← Custom domain config
+├── index.html                     ← Home / Portfolio (Ledger Noir — canonical)
+├── resume.html                    ← Full résumé (Skills, Experience, Education, Volunteer)
+├── projects.html                  ← Full project catalog — long-scroll version
+├── projects-v1-tabs.html          ← Catalog redesign: tab-filtered, compact grid
+├── projects-v2-accordion.html     ← Catalog redesign: collapsible sections
+├── projects-v3-search.html        ← Catalog redesign: live search + URL state
+├── accordanalyst-banner.svg       ← Animated boot-sequence README banner
+├── privacy-policy.html            ← Legal (store.accordanalyst.com)
+├── terms-of-service.html          ← Legal (store.accordanalyst.com)
+├── CNAME
 ├── robots.txt
-├── ai-blocker.js                ← Site defense script (see Foxglove 🦊)
+├── ai-blocker.js                   ← Site defense script (see Foxglove 🦊)
 ├── update-blocklist.py
 │
 └── projects/
-    ├── intl-freight-audit.html
-    ├── revenue-reconciliation.html
-    ├── revenue-anomaly-detector.html
-    ├── freight-audit-dashboard.html
-    └── thumb/                   ⚠️ note: singular "thumb", not "thumbs"
-        ├── intl-freight-audit.svg
-        ├── revenue-reconciliation.svg
-        ├── revenue-anomaly-detector.svg
-        └── freight-audit-dashboard.svg
+    ├── intl-freight-audit.html            ← Case study: Excel audit automation
+    ├── revenue-reconciliation.html        ← Case study: SQL query set
+    ├── revenue-anomaly-detector.html      ← Case study: Python anomaly detection
+    ├── freight-audit-dashboard.html       ← Case study: Excel + D3 dashboard
+    ├── revenue-leak-sankey.html           ← Midnight Curtain: Sankey diagram
+    ├── carrier-exposure-network.html      ← Midnight Curtain: heatmap + force graph
+    ├── live-invoice-triage.html           ← Midnight Curtain: animated data join
+    ├── dragrace-showcase.html             ← Licensed product preview (glam identity)
+    ├── finance-showcase.html              ← Reskin demo of the drag race template
+    ├── fuel-showcase.html                 ← Licensed product preview (professional identity)
+    ├── thumb/                              ⚠️ note: singular "thumb", not "thumbs"
+    │   └── (SVG thumbnails for the four free case studies)
+    └── showcase/                           ← images/SVGs for the three licensed-product carousels
+        ├── dragrace_queens_age.svg
+        ├── dragrace_outcome.svg
+        ├── dragrace_lipsync.svg
+        ├── dragrace_hall_of_fame.png        (no chart to extract — HTML table)
+        ├── fuel_trend.svg
+        ├── fuel_volatility.svg
+        ├── fuel_regional.png                (no chart to extract — HTML list)
+        ├── finance_deal_volume.png
+        ├── finance_revenue_mix.png
+        └── finance_top_products.png
 ```
 
 ---
 
 ## 🍷 Design system — Ledger Noir
 
-The entire site runs on a single visual identity: **Ledger Noir** — near-black and ivory, with a single garnet/wine accent standing in for every highlight, link, and rule on the page. Slab-serif headings (Zilla Slab), clean body text (Inter), monospace for dates and labels (IBM Plex Mono). The mood is editorial and restrained — a ledger with taste, not a dashboard.
+The core site runs on a single visual identity: **Ledger Noir** — near-black and ivory, with a single garnet/wine accent standing in for every highlight, link, and rule on the page. Slab-serif headings (Zilla Slab), clean body text (Inter), monospace for dates and labels (IBM Plex Mono).
 
 | Token | Role | Light mode | Dark mode |
 |---|---|---|---|
@@ -55,7 +75,12 @@ The entire site runs on a single visual identity: **Ledger Noir** — near-black
 | `--accent` | Links, highlights, rules | `#7A1F2E` garnet | `#B33A4C` |
 | `--accent2` | Secondary depth accent | `#3D1015` deep wine | `#7A1F2E` |
 
-Full light/dark toggle is built in — the palette above simply re-maps depending on the reader's preference.
+`index.html` and `resume.html` are the canonical, promoted versions of this theme — no `-v1` suffix, no other theme variants live in production.
+
+### Two additional identities live only inside `/projects/`
+
+- **Midnight Curtain** (navy/royal blue/periwinkle) — used exclusively for the three pure-D3 visualization pieces. A deliberately different, cooler palette from Ledger Noir, chosen to visually separate "portfolio content" from "technique demonstration."
+- **Velvet Exchange** (blue + periwinkle + purple + crimson) — used only on the finance reskin demo, to prove the drag race template can carry an entirely different color identity without any code changes.
 
 ---
 
@@ -67,44 +92,71 @@ Full light/dark toggle is built in — the palette above simply re-maps dependin
 
 </div>
 
-The site's entire color direction traces back to a single reference: a still from **David Lynch's *Blue Velvet* (1986)** — deep blues and violet-blacks set against a wall of stage-curtain red — sourced from the Instagram account **[@colorpalette.cinema](https://www.instagram.com/colorpalette.cinema/)**. Ledger Noir is that palette distilled down to its two most editorial notes — the shadow and the wine — for something that reads as a printed ledger rather than a movie still, but the lineage starts there. Full credit to **Color Palette Cinema** for the original extraction.
+The site's entire color direction traces back to a still from **David Lynch's *Blue Velvet* (1986)** — sourced from the Instagram account **[@colorpalette.cinema](https://www.instagram.com/colorpalette.cinema/)**. Ledger Noir distills that palette to its shadow-and-wine notes; Midnight Curtain and Velvet Exchange pull from the blue/purple/crimson side of the same still instead. Full credit to Color Palette Cinema for the original extraction.
+
+---
+
+## 🧭 Three ways to browse the project catalog
+
+`projects.html` grew to 10 entries across three categories and turned into a genuine long-scroll page — so there are now three alternate, compact layouts, each demonstrating a different front-end organization pattern rather than just a different look:
+
+| File | Pattern | What it demonstrates |
+|---|---|---|
+| `projects-v1-tabs.html` | Click-to-filter tabs | Simple event-driven DOM filtering — click a category, non-matching cards hide instantly |
+| `projects-v2-accordion.html` | Collapsible sections | Native `<details>`/`<summary>` — semantic HTML, accessible by default, enhanced with a few lines of JS for single-open behavior |
+| `projects-v3-search.html` | Live search + URL state | The most involved of the three — a small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
+
+All three read from the same underlying project list — only the interaction model changes.
+
+---
+
+## 🎬 Licensed Products
+
+Three of the catalog entries are **preview walkthroughs, not live tools** — active products still available for licensing:
+
+- **The Main Stage** — a glam-styled Drag Race stats dashboard (14 seasons, entertainment data)
+- **U.S. Diesel Price Intelligence Dashboard** — a professional fuel-surcharge tool for freight/transportation teams
+- **Quarterly Revenue Intelligence** — a finance-sector reskin of The Main Stage's own template, proving the underlying dashboard code is genuinely reusable, not a one-off
+
+Each shows an auto-advancing screenshot carousel (some frames are extracted live SVG chart markup, not raster images, for genuine infinite-resolution crispness) instead of the working dashboard, since giving away a fully functional copy would undercut the actual product.
 
 ---
 
 ## 🧵 Recent changes
 
-- 🆕 Added a **"Currently Building"** section — teaser cards for three in-development, industry-adjacent tools (kept intentionally low-detail given overlap with current employer), plus a full open listing for **Foxglove**, a passion project seeking a technical collaborator.
-- 🧭 Rebuilt the resume as its **own page**, separate from the portfolio — Home now stays focused on About + Portfolio + Building, while Résumé gets Experience, Skills, Education, and Volunteer.
-- ⏳ Replaced the plain Experience list with a real **alternating icon-node timeline**.
-- 🛠️ Added a **Technical Skills** section (Languages & Querying · Spreadsheets & BI · Data & Platforms) — moved to the top of the résumé, color-coded per category.
-- 🖼️ Swapped raw spreadsheet screenshots for **custom-designed SVG infographics** on each Featured Project card — same real numbers, cleaner presentation, crisp at any size.
-- 🐛 Fixed a recurring **dark-mode contrast bug**: card headers were pulling their background from a token meant for text color, which flipped light in dark mode and made titles unreadable. Fixed across the homepage, the project catalog, and all four case studies.
-- 📐 Fixed a **thumbnail cropping bug** — image containers now lock to the graphic's real aspect ratio instead of a fixed height, so nothing gets cut off on narrow cards.
-- ✍️ Updated hero copy, marquee text, and title to **"Business Operations Analyst"**; broadened the "Let's connect" role list beyond fintech/freight to Data Analyst–oriented titles.
-- 🧹 Removed the redundant "accordanalyst.com" line from the hero on every page.
-- 📄 Surfaced **`projects.html`** — a full case-study catalog that existed but had no working link into it.
-- 📄 Added a print-ready, Ledger Noir–styled **resume PDF** matching the site's own design language.
+- 🎨 Added **Midnight Curtain**, a blue-forward visual identity used exclusively for three new pure-D3.js visualization pieces: a **Sankey diagram** (revenue leak flow), a **heatmap + force-directed network graph** (carrier exposure, replacing an earlier treemap), and a **live animated data-join demo** (D3 enter/update/exit made visible).
+- 🍷 Promoted **Ledger Noir to canonical** — `index.html` and `resume.html` are now the real, permanent files (no more `-v1` suffix or parallel theme variants in production).
+- 🎬 Added three **Licensed Product** showcases (Drag Race, Fuel Intelligence, and a Finance reskin demo of the Drag Race template) — screenshot/SVG carousels only, protecting the actual sellable products.
+- 🧭 Rebuilt `projects.html` into **three alternate compact layouts** (tab filter, accordion, live search + URL state) to solve unbounded scroll growth as the catalog passed 10 entries.
+- 🎞️ Added an animated SVG banner (boot-sequence style: fade-in → type-in → progress bar → "system ready") for the top of this README.
+- 🐛 Fixed a recurring **dark-mode contrast bug** (card headers pulling background from a text-color token that flips light in dark mode) across the homepage, project catalog, and all case studies.
+- 🐛 Fixed a **thumbnail aspect-ratio bug** causing side-cropping on Featured Project cards.
+- 🐛 Fixed a **heatmap clipping bug** (rotated axis labels swinging outside the SVG viewBox) and substantially reworked its visual design — three-stop color scale, adaptive text contrast per cell, a spotlight on the highest-value cell.
+- ✍️ Updated hero copy, marquee text, and title to **"Business Intelligence Analyst"**.
 
 ---
 
 ## ⚠️ Known gotchas (read before you redeploy)
 
-- **Folder name is `thumb`, singular.** If you ever recreate this structure from scratch, match that exactly — `thumbs` (plural) will silently 404 every card image (ngl, this was both the funniest and most infuriating part of this process).
-- **GitHub Pages → Settings → Actions → General → Workflow permissions** must be set to **"Read and write permissions."** If it's read-only, the `build` job can succeed while `deploy` fails, and the live site will look unchanged even after a successful-looking push.
-- **DNS is on Porkbun**. I honestly bought it on there because: it's cute, it's cheap and when you press the butt on the pig it goes "oink oink".
+- **Folder name is `thumb`, singular**, and the licensed-product screenshots live in `projects/showcase/` — mismatch either and images will 404 silently.
+- **GitHub Pages → Settings → Actions → General → Workflow permissions** must be **"Read and write permissions."** Read-only here makes `build` succeed while `deploy` fails silently — the live site looks unchanged even after a clean-looking push.
+- **DNS is on Porkbun**, not Cloudflare. A wildcard (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
+- **D3 loads from a CDN** (`cdnjs.cloudflare.com`) on every D3-based page. Fine for real visitors; if you ever test these files in a sandboxed/offline environment, D3 won't load and every chart will silently render empty.
+- Three showcase pages (`dragrace-`, `fuel-`, `finance-showcase.html`) mix **SVG and PNG** images depending on whether a real chart existed to extract vector markup from — HTML tables/lists (like "Hall of Fame" or "Regional Snapshot") only ever have PNG versions.
+- This repo does **not** include the store (`store.accordanalyst.com`) — `privacy-policy.html` and `terms-of-service.html` live here for reference only.
 
 ---
 
 ## 🧰 Tech stack
 
-`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (Revenue Anomaly Detector, Recovery Dashboard) · `React` (Compliance Lens, LedgerLens — in progress, not in this repo) · Google Fonts
+`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (Revenue Anomaly Detector, Recovery Dashboard, Sankey, Carrier Exposure, Live Invoice Triage) · `d3-sankey` · `d3.forceSimulation` · Google Fonts
 
 ---
 
 ## 📬 Contact
 
 **Alexis "Zaira" Kelly**
-[alexis@accordanalyst.com](mailto:alexis@accordanalyst.com) · [LinkedIn](https://linkedin.com/in/accordanalyst) · [accordanalyst.com](https://www.accordanalyst.com/)
+[contact@accordanalyst.com](mailto:contact@accordanalyst.com) · [LinkedIn](https://linkedin.com/in/accordanalyst) · [accordanalyst.com](https://www.accordanalyst.com/)
 
 <div align="center">
 
