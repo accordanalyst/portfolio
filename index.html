@@ -607,8 +607,8 @@
     padding: 2px 6px; border-radius: 3px;
     background: rgba(255,255,255,0.1); color: var(--hero-text); opacity: 0.8;
   }
-  .tile-image { width: 100%; overflow: hidden; background: var(--surface); border-bottom: 1px solid var(--rule); }
-  .tile-image img { width: 100%; height: 130px; object-fit: cover; object-position: top; display: block; transition: transform 0.3s ease; }
+  .tile-image { width: 100%; aspect-ratio: 900 / 340; overflow: hidden; background: var(--surface); border-bottom: 1px solid var(--rule); }
+  .tile-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; transition: transform 0.3s ease; }
   .project-tile:hover .tile-image img { transform: scale(1.04); }
 
   .tile-body { padding: 0.7rem 1rem 0.85rem; flex: 1; display: flex; flex-direction: column; }
@@ -723,7 +723,8 @@
   @media (max-width: 760px) { .nav-links a:not(.nav-download) { display: none; } }
 
   .hero-name, .section-title, .tile-title, .contact-strip h2, .exp-title2 { letter-spacing: -0.01em; }
-  .exp-card, .project-tile, .achievement-card, .competency-item, .vol-item, .edu-item { border-radius: 4px !important; }
+  .exp-card, .project-tile, .achievement-card, .competency-item, .vol-item, .edu-item, .skill-group { border-radius: 4px !important; }
+  .skill-icon { border-radius: 3px !important; }
 </style>
 </head>
 <body>
