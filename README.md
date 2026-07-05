@@ -2,6 +2,7 @@
 
 <img src="accordanalyst-banner.svg" alt="AccordAnalyst" width="100%">
 <br>
+
 ### Portfolio · Resume · Case Studies · Data Visualization · Licensed Products
 
 *The portfolio website of Alexis "Zaira" Kelly — Business Intelligence Analyst*
