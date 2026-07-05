@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revenue Leak Flow — Sankey Diagram — Case Study | accordanalyst.com</title>
+<meta name="description" content="Interactive D3 Sankey diagram tracing invoice dollars from issuance through payment, dispute, recovery, and write-off.">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+<style>
+  :root {
+    --bg:#0A0F1E; --surface:#121A2E; --surface2:#182238; --nav-bg:#080C17; --hero-bg:#080C17;
+    --heading:#E8ECF7; --body:#C9D2E8; --muted:#7E8CB0; --rule:#232F4D;
+    --accent:#3B5FE0; --accent2:#6B7FE0; --accent-dim:rgba(59,95,224,0.18); --accent-bdr:rgba(59,95,224,0.4);
+    --hero-text:#E8ECF7; --hero-muted:rgba(232,236,247,0.6);
+    --code-bg:#080C17; --code-text:#E8ECF7; --code-comment:#5A6584;
+    --code-keyword:#6B7FE0; --code-fn:#5B9BD9; --code-string:#7FD8A0; --code-num:#E0687A;
+    --shadow: rgba(0,0,0,0.45);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--body); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; }
+  h1,h2,h3 { font-family:'Space Grotesk', sans-serif; color:var(--heading); margin:0; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  a { color: var(--accent2); }
+
+  nav {
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding: 1rem 2rem; background: var(--nav-bg); border-bottom: 1px solid var(--rule);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .nav-back { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--hero-muted); text-decoration:none; letter-spacing:.03em; display:flex; align-items:center; gap:6px; transition: color .2s; }
+  .nav-back:hover { color: var(--accent2); }
+  .nav-brand { font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--muted); letter-spacing:.05em; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  header.hero {
+    background: radial-gradient(ellipse at top right, rgba(107,127,224,0.14), transparent 60%), var(--hero-bg);
+    padding: 4rem 2rem 3rem; border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color: var(--accent2); margin-bottom: 0.9rem; }
+  h1.hero-title { font-size: clamp(2rem, 4vw, 2.6rem); font-weight:700; margin-bottom: 0.8rem; }
+  p.hero-sub { font-size: 15.5px; color: var(--hero-muted); max-width: 640px; margin-bottom: 1.6rem; }
+
+  .stat-row { display:flex; flex-wrap:wrap; gap: 1rem; margin-top: 1.6rem; }
+  .stat-pill {
+    background: var(--surface); border:1px solid var(--rule); border-radius: 10px;
+    padding: 0.9rem 1.2rem; min-width: 130px;
+  }
+  .stat-num { font-family:'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight:700; color: var(--accent2); }
+  .stat-label { font-family:'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+  section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+  .section-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent2); margin-bottom:0.6rem; }
+  h2.section-title { font-size: 1.5rem; margin-bottom: 1rem; }
+  section p { font-size: 14.5px; color: var(--body); max-width: 700px; }
+
+  .viz-panel {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 1.6rem; margin-top: 1.6rem; overflow-x: auto;
+  }
+  .viz-caption { font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 1rem; text-align:center; }
+
+  .btn {
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600; letter-spacing:.04em;
+    background: var(--accent); color: #050810; border:none; border-radius: 6px;
+    padding: 10px 18px; cursor:pointer; transition: opacity .15s, transform .1s;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn:active { transform: scale(0.97); }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top: 1rem; }
+  .tag {
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; font-weight:600;
+    background: var(--accent-dim); color: var(--accent2); border:1px solid var(--accent-bdr);
+    padding: 4px 10px; border-radius: 999px;
+  }
+
+  footer.foot { padding: 2.5rem 2rem 3rem; text-align:center; }
+  .foot a { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--muted); text-decoration:none; }
+  .foot a:hover { color: var(--accent2); }
+
+  
+  .node rect { cursor: pointer; transition: opacity 0.2s; }
+  .node rect:hover { opacity: 0.85; }
+  .node text { font-family:'IBM Plex Mono', monospace; font-size: 11.5px; fill: var(--heading); }
+  .link { fill: none; transition: opacity 0.2s; }
+  .link:hover { opacity: 0.75 !important; }
+  .viz-panel.sankey-panel {
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(59,95,224,0.10), transparent 55%),
+      radial-gradient(ellipse at 80% 80%, rgba(107,127,224,0.08), transparent 55%),
+      var(--surface);
+  }
+  .flow-dash {
+    stroke-dasharray: 3 13;
+    animation: flowmove 1.8s linear infinite;
+  }
+  @keyframes flowmove {
+    to { stroke-dashoffset: -160; }
+  }
+  .link-badge rect { fill: #080C17; stroke: #232F4D; }
+  .link-badge text { font-family:'IBM Plex Mono', monospace; font-size: 10px; fill: #AEBBF5; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-back">&larr; Back to Portfolio</a>
+  <span class="nav-brand">MIDNIGHT CURTAIN &middot; accordanalyst.com</span>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio Project · D3.js · Flow Visualization</p>
+    <h1 class="hero-title">Revenue Leak Flow</h1>
+    <p class="hero-sub">Tracing $2.4M in simulated invoice volume through every state it can pass through — issued, paid, short-paid, disputed, recovered, written off — sized by dollar value at each step.</p>
+    <div class="stat-row">
+      <div class="stat-pill"><div class="stat-num">$2.4M</div><div class="stat-label">Annual Volume</div></div>
+      <div class="stat-pill"><div class="stat-num">6</div><div class="stat-label">Flow States</div></div>
+      <div class="stat-pill"><div class="stat-num">$410K</div><div class="stat-label">Recovered</div></div>
+      <div class="stat-pill"><div class="stat-num">$245K</div><div class="stat-label">Written Off</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <p class="section-eyebrow">The Problem</p>
+    <h2 class="section-title">Where does revenue actually leak?</h2>
+    <p>Every invoice issued follows one of several paths before it either becomes recovered cash or a permanent write-off. Finance teams usually see the start (invoiced) and the end (recovered vs. lost) &mdash; but not the routes in between, which is where the actual leakage happens. A Sankey diagram makes every one of those paths visible at once, sized by dollar volume.</p>
+
+    <div class="viz-panel sankey-panel">
+      <div id="sankey-chart"></div>
+      <p class="viz-caption">Simulated portfolio &middot; $2.4M annual invoice volume &middot; hover any flow for detail</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title">Built with D3 + d3-sankey</h2>
+    <p>Nodes represent invoice states (Issued, Paid On Time, Short Paid, Disputed, Recovered, Written Off). Links are drawn proportional to dollar flow between states, computed from a simulated ledger of ~2,400 invoices. The layout algorithm (d3-sankey) automatically minimizes link crossings and positions nodes to keep the flow readable left-to-right.</p>
+    <div class="tags">
+      <span class="tag">D3.js</span>
+      <span class="tag">d3-sankey</span>
+      <span class="tag">Flow Visualization</span>
+      <span class="tag">Revenue Ops</span>
+    </div>
+  </section>
+
+<script>
+const data = {
+  nodes: [
+    { name: "Invoices Issued" },
+    { name: "Paid On Time" },
+    { name: "Short Paid" },
+    { name: "Disputed" },
+    { name: "Recovered" },
+    { name: "Written Off" }
+  ],
+  links: [
+    { source: 0, target: 1, value: 1650000 },
+    { source: 0, target: 2, value: 480000 },
+    { source: 0, target: 3, value: 270000 },
+    { source: 2, target: 4, value: 340000 },
+    { source: 2, target: 5, value: 140000 },
+    { source: 3, target: 4, value: 165000 },
+    { source: 3, target: 5, value: 105000 }
+  ]
+};
+
+const width = 880, height = 420;
+const svg = d3.select("#sankey-chart").append("svg")
+  .attr("viewBox", `0 0 ${width} ${height}`)
+  .attr("width", "100%");
+
+const defs = svg.append("defs");
+
+// soft glow filter, used behind links for a "light trail" feel on the dark background
+const glow = defs.append("filter").attr("id", "sankey-glow").attr("x", "-50%").attr("y", "-50%").attr("width", "200%").attr("height", "200%");
+glow.append("feGaussianBlur").attr("stdDeviation", "4").attr("result", "blur");
+const merge = glow.append("feMerge");
+merge.append("feMergeNode").attr("in", "blur");
+merge.append("feMergeNode").attr("in", "SourceGraphic");
+
+const colorMap = {
+  "Invoices Issued": "#3B5FE0", "Paid On Time": "#5B9BD9", "Short Paid": "#6B7FE0",
+  "Disputed": "#8A93B8", "Recovered": "#3E7A5C", "Written Off": "#B33A4C"
+};
+
+const sankeyGen = d3.sankey()
+  .nodeWidth(16).nodePadding(24)
+  .extent([[1, 10], [width - 1, height - 10]]);
+
+const graph = sankeyGen({
+  nodes: data.nodes.map(d => Object.assign({}, d)),
+  links: data.links.map(d => Object.assign({}, d))
+});
+
+// per-link gradient: source color -> target color
+graph.links.forEach((d, i) => {
+  const grad = defs.append("linearGradient")
+    .attr("id", `link-grad-${i}`)
+    .attr("gradientUnits", "userSpaceOnUse")
+    .attr("x1", d.source.x1).attr("x2", d.target.x0);
+  grad.append("stop").attr("offset", "0%").attr("stop-color", colorMap[d.source.name] || "#3B5FE0");
+  grad.append("stop").attr("offset", "100%").attr("stop-color", colorMap[d.target.name] || "#3B5FE0");
+});
+
+const tooltip = d3.select("#sankey-chart").append("div")
+  .style("position", "absolute").style("pointer-events", "none")
+  .style("background", "#080C17").style("border", "1px solid #232F4D")
+  .style("border-radius", "6px").style("padding", "6px 10px")
+  .style("font-family", "'IBM Plex Mono', monospace").style("font-size", "11.5px")
+  .style("color", "#E8ECF7").style("opacity", 0).style("transition", "opacity 0.15s");
+
+const linkSel = svg.append("g").attr("fill", "none").selectAll("path")
+  .data(graph.links).join("path")
+  .attr("class", "link")
+  .attr("d", d3.sankeyLinkHorizontal())
+  .attr("stroke", (d, i) => `url(#link-grad-${i})`)
+  .attr("stroke-width", d => Math.max(1, d.width))
+  .attr("filter", "url(#sankey-glow)")
+  .attr("opacity", 0)
+  .style("cursor", "pointer")
+  .on("mouseover", function(event, d) {
+    linkSel.attr("opacity", l => l === d ? 0.95 : 0.12);
+    tooltip.style("opacity", 1)
+      .html(`${d.source.name} &rarr; ${d.target.name}<br><strong>$${d.value.toLocaleString()}</strong>`);
+  })
+  .on("mousemove", function(event) {
+    const [x, y] = d3.pointer(event, document.body);
+    tooltip.style("left", (x + 14) + "px").style("top", (y - 10) + "px");
+  })
+  .on("mouseout", function() {
+    linkSel.attr("opacity", 0.55);
+    tooltip.style("opacity", 0);
+  });
+
+// entrance: draw each link in from source to target, staggered
+linkSel.each(function() {
+  const len = this.getTotalLength();
+  d3.select(this)
+    .attr("stroke-dasharray", `${len} ${len}`)
+    .attr("stroke-dashoffset", len);
+});
+linkSel.transition()
+  .delay((d, i) => 300 + i * 160)
+  .duration(900)
+  .ease(d3.easeCubicOut)
+  .attr("stroke-dashoffset", 0)
+  .attr("opacity", 0.55)
+  .on("end", function() {
+    // once drawn in, clear the dash so it returns to a solid line
+    d3.select(this).attr("stroke-dasharray", null).attr("stroke-dashoffset", null);
+  });
+
+// ambient overlay: a second, lighter dashed path per link that continuously
+// animates along the same path to suggest motion, added after the draw-in completes
+window.setTimeout(() => {
+  svg.append("g").attr("fill", "none").selectAll("path")
+    .data(graph.links).join("path")
+    .attr("class", "flow-dash")
+    .attr("d", d3.sankeyLinkHorizontal())
+    .attr("stroke", "#D6DCFA")
+    .attr("stroke-width", d => Math.max(1, Math.min(3, d.width * 0.18)))
+    .attr("opacity", 0.35)
+    .attr("pointer-events", "none")
+    .style("animation-delay", (d, i) => `${i * -0.3}s`);
+}, 300 + graph.links.length * 160 + 900);
+
+const node = svg.append("g").selectAll("g")
+  .data(graph.nodes).join("g").attr("class", "node")
+  .attr("opacity", 0)
+  .style("cursor", "pointer")
+  .on("mouseover", function(event, d) {
+    linkSel.attr("opacity", l => (l.source === d || l.target === d) ? 0.95 : 0.12);
+  })
+  .on("mouseout", function() {
+    linkSel.attr("opacity", 0.55);
+  });
+
+node.transition().delay((d, i) => i * 90).duration(500).attr("opacity", 1);
+
+node.append("rect")
+  .attr("x", d => d.x0).attr("y", d => d.y0)
+  .attr("width", d => d.x1 - d.x0).attr("height", d => d.y1 - d.y0)
+  .attr("fill", d => colorMap[d.name] || "#3B5FE0")
+  .attr("rx", 5)
+  .attr("filter", "url(#sankey-glow)");
+
+node.append("text")
+  .attr("x", d => d.x0 < width / 2 ? d.x1 + 8 : d.x0 - 8)
+  .attr("y", d => (d.y0 + d.y1) / 2)
+  .attr("dy", "0.35em")
+  .attr("text-anchor", d => d.x0 < width / 2 ? "start" : "end")
+  .text(d => `${d.name} · $${(d.value/1000).toFixed(0)}K`);
+
+// always-visible value badges at each link's midpoint, faded in after the draw-in
+const badge = svg.append("g").selectAll("g")
+  .data(graph.links).join("g")
+  .attr("class", "link-badge")
+  .attr("opacity", 0)
+  .attr("transform", d => {
+    const midX = (d.source.x1 + d.target.x0) / 2;
+    const midY = (d.y0 + d.y1) / 2;
+    return `translate(${midX},${midY})`;
+  });
+
+badge.transition().delay((d, i) => 1200 + i * 100).duration(400).attr("opacity", 1);
+
+badge.each(function(d) {
+  const g = d3.select(this);
+  const label = `$${(d.value/1000).toFixed(0)}K`;
+  const w = label.length * 6.4 + 12;
+  g.append("rect").attr("x", -w/2).attr("y", -10).attr("width", w).attr("height", 20).attr("rx", 10);
+  g.append("text").attr("text-anchor", "middle").attr("dy", "0.32em").text(label);
+});
+</script>
+
+</div>
+
+<footer class="foot">
+  <a href="../index.html">&larr; Back to Portfolio</a> &middot; <a href="../projects.html">View all projects</a>
+</footer>
+
+</body>
+</html>

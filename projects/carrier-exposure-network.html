@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrier Exposure — Heatmap + Network Graph — Case Study | accordanalyst.com</title>
+<meta name="description" content="A dual-view D3 visualization of carrier-by-error-type exposure: a heatmap matrix and a force-directed network graph reading from the same underlying dataset.">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+<style>
+  :root {
+    --bg:#0A0F1E; --surface:#121A2E; --surface2:#182238; --nav-bg:#080C17; --hero-bg:#080C17;
+    --heading:#E8ECF7; --body:#C9D2E8; --muted:#7E8CB0; --rule:#232F4D;
+    --accent:#3B5FE0; --accent2:#6B7FE0; --accent-dim:rgba(59,95,224,0.18); --accent-bdr:rgba(59,95,224,0.4);
+    --hero-text:#E8ECF7; --hero-muted:rgba(232,236,247,0.6);
+    --code-bg:#080C17; --code-text:#E8ECF7; --code-comment:#5A6584;
+    --code-keyword:#6B7FE0; --code-fn:#5B9BD9; --code-string:#7FD8A0; --code-num:#E0687A;
+    --shadow: rgba(0,0,0,0.45);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--body); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; }
+  h1,h2,h3 { font-family:'Space Grotesk', sans-serif; color:var(--heading); margin:0; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  a { color: var(--accent2); }
+
+  nav {
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding: 1rem 2rem; background: var(--nav-bg); border-bottom: 1px solid var(--rule);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .nav-back { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--hero-muted); text-decoration:none; letter-spacing:.03em; display:flex; align-items:center; gap:6px; transition: color .2s; }
+  .nav-back:hover { color: var(--accent2); }
+  .nav-brand { font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--muted); letter-spacing:.05em; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  header.hero {
+    background: radial-gradient(ellipse at top right, rgba(107,127,224,0.14), transparent 60%), var(--hero-bg);
+    padding: 4rem 2rem 3rem; border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color: var(--accent2); margin-bottom: 0.9rem; }
+  h1.hero-title { font-size: clamp(2rem, 4vw, 2.6rem); font-weight:700; margin-bottom: 0.8rem; }
+  p.hero-sub { font-size: 15.5px; color: var(--hero-muted); max-width: 640px; margin-bottom: 1.6rem; }
+
+  .stat-row { display:flex; flex-wrap:wrap; gap: 1rem; margin-top: 1.6rem; }
+  .stat-pill {
+    background: var(--surface); border:1px solid var(--rule); border-radius: 10px;
+    padding: 0.9rem 1.2rem; min-width: 130px;
+  }
+  .stat-num { font-family:'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight:700; color: var(--accent2); }
+  .stat-label { font-family:'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+  section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+  .section-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent2); margin-bottom:0.6rem; }
+  h2.section-title { font-size: 1.5rem; margin-bottom: 1rem; }
+  section p { font-size: 14.5px; color: var(--body); max-width: 700px; }
+
+  .viz-panel {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 1.6rem; margin-top: 1.6rem; overflow-x: auto;
+  }
+  .viz-caption { font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 1rem; text-align:center; }
+
+  .btn {
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600; letter-spacing:.04em;
+    background: var(--accent); color: #050810; border:none; border-radius: 6px;
+    padding: 10px 18px; cursor:pointer; transition: opacity .15s, transform .1s;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn:active { transform: scale(0.97); }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top: 1rem; }
+  .tag {
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; font-weight:600;
+    background: var(--accent-dim); color: var(--accent2); border:1px solid var(--accent-bdr);
+    padding: 4px 10px; border-radius: 999px;
+  }
+
+  footer.foot { padding: 2.5rem 2rem 3rem; text-align:center; }
+  .foot a { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--muted); text-decoration:none; }
+  .foot a:hover { color: var(--accent2); }
+
+  
+  .viz-toggle { display:flex; gap:8px; margin-bottom: 1rem; }
+  .viz-toggle button {
+    font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; letter-spacing:.03em;
+    background: var(--surface2); color: var(--muted); border:1px solid var(--rule);
+    padding: 8px 16px; border-radius: 999px; cursor:pointer; transition: all 0.2s;
+  }
+  .viz-toggle button.active { background: var(--accent); color:#050810; border-color: var(--accent); }
+  .viz-view { display:none; }
+  .viz-view.active { display:block; }
+  .hm-cell { cursor:pointer; transition: filter 0.2s; stroke: var(--bg); stroke-width: 2px; }
+  .hm-label { font-family:'IBM Plex Mono', monospace; font-size: 10.5px; fill: var(--muted); }
+  .hm-cell-label { font-family:'IBM Plex Mono', monospace; font-size: 10px; font-weight:700; pointer-events:none; }
+  .net-node circle { cursor: grab; stroke: var(--bg); stroke-width: 2px; }
+  .net-node text { font-family:'IBM Plex Mono', monospace; font-size: 10.5px; fill: var(--heading); pointer-events:none; }
+  .net-link { stroke-opacity: 0.35; transition: stroke-opacity 0.2s; }
+  .viz-panel.network-panel {
+    background:
+      radial-gradient(ellipse at 15% 15%, rgba(59,95,224,0.10), transparent 55%),
+      radial-gradient(ellipse at 85% 85%, rgba(107,127,224,0.08), transparent 55%),
+      var(--surface);
+  }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-back">&larr; Back to Portfolio</a>
+  <span class="nav-brand">MIDNIGHT CURTAIN &middot; accordanalyst.com</span>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio Project · D3.js · Dual Encoding</p>
+    <h1 class="hero-title">Carrier Exposure Matrix</h1>
+    <p class="hero-sub">The same $474,000 in simulated carrier exception exposure, shown two ways: a full heatmap grid, and a force-directed network graph where shared exposure pulls carriers and error types into visible clusters.</p>
+    <div class="stat-row">
+      <div class="stat-pill"><div class="stat-num">$474,000</div><div class="stat-label">Total Exposure</div></div>
+      <div class="stat-pill"><div class="stat-num">5 × 5</div><div class="stat-label">Carrier × Error Matrix</div></div>
+      <div class="stat-pill"><div class="stat-num">$45K</div><div class="stat-label">Largest Single Cell</div></div>
+      <div class="stat-pill"><div class="stat-num">2</div><div class="stat-label">Linked Views</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <p class="section-eyebrow">The Problem</p>
+    <h2 class="section-title">Two views of the same exposure data</h2>
+    <p>Which carrier is driving which error type isn't a single-number question &mdash; it's a matrix of relationships. A heatmap shows the full grid with nothing hidden or overlapping, which scales cleanly as more carriers and error types get added. A force-directed graph shows the same data spatially, letting carriers that share error patterns visually cluster together &mdash; something a grid can't do. Toggling between them demonstrates knowing <em>which</em> encoding fits a question, not just being able to build both.</p>
+
+    <div class="viz-panel network-panel">
+      <div class="viz-toggle">
+        <button id="btn-heatmap" class="active">Heatmap</button>
+        <button id="btn-network">Network Graph</button>
+      </div>
+      <div id="view-heatmap" class="viz-view active"></div>
+      <div id="view-network" class="viz-view"></div>
+      <p class="viz-caption">Simulated carrier exception exposure &middot; $474,000 total &middot; hover any cell or node for detail</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title">One dataset, two D3 layouts</h2>
+    <p>Both views read from the same 5&times;5 carrier &times; error-type matrix. The heatmap is plain SVG rects on a sequential color scale. The network graph runs the same matrix through <span class="mono">d3.forceSimulation</span> &mdash; carriers and error types become nodes sized by total exposure, links are weighted by dollar value, and a collision + charge force keeps related nodes pulled close without overlapping. Nodes are draggable in the network view.</p>
+    <div class="tags">
+      <span class="tag">D3.js</span>
+      <span class="tag">d3.forceSimulation</span>
+      <span class="tag">Heatmap</span>
+      <span class="tag">Network Graph</span>
+      <span class="tag">Carrier Risk Analysis</span>
+    </div>
+  </section>
+
+<script>
+const carriers = ["Maersk Line", "CMA CGM", "Evergreen Marine", "FedEx Intl", "Cathay Pacific"];
+const errorTypes = ["Accessorial Overcharge", "Fuel Surcharge Error", "Rate Mismatch", "Duplicate Invoice", "Detention/Demurrage"];
+
+// rows = carriers, cols = errorTypes
+const matrix = [
+  [18000, 9000, 22000, 6000, 41000],
+  [12000, 15000, 38000, 8000, 14000],
+  [9000, 7000, 12000, 26000, 8000],
+  [31000, 42000, 15000, 5000, 6000],
+  [45000, 33000, 25000, 19000, 8000]
+];
+
+let totalValue = 0;
+matrix.forEach(row => row.forEach(v => totalValue += v));
+
+const tooltip = d3.select("body").append("div").attr("class", "viz-tooltip")
+  .style("position", "absolute").style("pointer-events", "none")
+  .style("background", "#080C17").style("border", "1px solid #232F4D")
+  .style("border-radius", "6px").style("padding", "6px 10px")
+  .style("font-family", "'IBM Plex Mono', monospace").style("font-size", "11.5px")
+  .style("color", "#E8ECF7").style("opacity", 0).style("transition", "opacity 0.15s")
+  .style("z-index", 1000);
+
+function showTooltip(event, html) {
+  tooltip.style("opacity", 1).html(html);
+  const [x, y] = d3.pointer(event, document.body);
+  tooltip.style("left", (x + 14) + "px").style("top", (y - 10) + "px");
+}
+function hideTooltip() { tooltip.style("opacity", 0); }
+
+// ---------- HEATMAP ----------
+(function() {
+  const margin = { top: 135, right: 20, bottom: 20, left: 160 };
+  const cellSize = 68;
+  const width = margin.left + cellSize * errorTypes.length + margin.right;
+  const height = margin.top + cellSize * carriers.length + margin.bottom + 70;
+
+  const svg = d3.select("#view-heatmap").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`).attr("width", "100%");
+
+  const defs = svg.append("defs");
+  const glow = defs.append("filter").attr("id", "hm-glow").attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+  glow.append("feGaussianBlur").attr("stdDeviation", "6").attr("result", "blur");
+  const gm = glow.append("feMerge");
+  gm.append("feMergeNode").attr("in", "blur");
+  gm.append("feMergeNode").attr("in", "SourceGraphic");
+
+  // soft drop shadow so cells read as gently elevated cards rather than flat fills
+  const dropShadow = defs.append("filter").attr("id", "hm-shadow").attr("x", "-40%").attr("y", "-40%").attr("width", "180%").attr("height", "180%");
+  dropShadow.append("feDropShadow").attr("dx", 0).attr("dy", 3).attr("stdDeviation", 4).attr("flood-color", "#000").attr("flood-opacity", 0.35);
+
+  const maxVal = d3.max(matrix.flat());
+  // three-stop scale gives far more separation between low/mid/high than a two-stop blend did
+  const color = d3.scaleLinear().domain([0, maxVal * 0.5, maxVal]).range(["#161C2E", "#4E5FB8", "#9FB1F5"]).clamp(true);
+  // relative luminance decides whether a cell needs light or dark text to stay legible
+  const textColorFor = v => {
+    const c = d3.rgb(color(v));
+    const luminance = (0.299 * c.r + 0.587 * c.g + 0.114 * c.b) / 255;
+    return luminance > 0.55 ? "#0A0E1A" : "#EEF1FC";
+  };
+  const maxCell = cellsMax(matrix);
+
+  function cellsMax(m) {
+    let best = { ri: 0, ci: 0, value: -1 };
+    m.forEach((row, ri) => row.forEach((v, ci) => { if (v > best.value) best = { ri, ci, value: v }; }));
+    return best;
+  }
+
+  // compact inline scale reference — a few labeled ticks instead of a full titled legend bar
+  const legendW = 140, legendH = 8;
+  const legendGrad = defs.append("linearGradient").attr("id", "hm-legend-grad").attr("x1", "0%").attr("x2", "100%");
+  [0, 0.5, 1].forEach(t => legendGrad.append("stop").attr("offset", `${t*100}%`).attr("stop-color", color(t * maxVal)));
+  const legend = svg.append("g").attr("transform", `translate(${margin.left}, 20)`);
+  legend.append("rect").attr("width", legendW).attr("height", legendH).attr("rx", 4).attr("fill", "url(#hm-legend-grad)");
+  legend.append("text").attr("class", "hm-label").attr("x", 0).attr("y", legendH + 14).attr("font-size", 9.5).text("$0");
+  legend.append("text").attr("class", "hm-label").attr("x", legendW).attr("y", legendH + 14).attr("font-size", 9.5).attr("text-anchor", "end").text(`$${(maxVal/1000).toFixed(0)}K`);
+
+  const g = svg.append("g").attr("transform", `translate(${margin.left},${margin.top})`);
+
+  // column labels (error types), rotated, anchored so the diagonal text swings up into the reserved margin instead of off-canvas
+  g.selectAll(".col-label").data(errorTypes).join("text")
+    .attr("class", "hm-label")
+    .attr("x", (d, i) => i * cellSize + cellSize / 2)
+    .attr("y", -12)
+    .attr("text-anchor", "start")
+    .attr("transform", (d, i) => `rotate(-35, ${i * cellSize + cellSize / 2}, -12)`)
+    .attr("opacity", 0)
+    .text(d => d)
+    .transition().duration(400).attr("opacity", 1);
+
+  // row labels (carriers)
+  g.selectAll(".row-label").data(carriers).join("text")
+    .attr("class", "hm-label")
+    .attr("x", -10).attr("y", (d, i) => i * cellSize + cellSize / 2)
+    .attr("dy", "0.32em").attr("text-anchor", "end")
+    .attr("opacity", 0)
+    .text(d => d)
+    .transition().duration(400).attr("opacity", 1);
+
+  const cells = [];
+  carriers.forEach((c, ri) => errorTypes.forEach((e, ci) => cells.push({ carrier: c, error: e, value: matrix[ri][ci], ri, ci, isMax: ri === maxCell.ri && ci === maxCell.ci })));
+
+  const cellSel = g.selectAll(".hm-cell").data(cells).join("rect")
+    .attr("class", "hm-cell")
+    .attr("rx", 10)
+    .attr("x", d => d.ci * cellSize).attr("y", d => d.ri * cellSize)
+    .attr("width", 0).attr("height", 0)
+    .attr("fill", d => color(d.value))
+    .attr("filter", d => d.isMax ? "url(#hm-shadow)" : null)
+    .attr("stroke", d => d.isMax ? "#D6DCFA" : "var(--bg)")
+    .attr("stroke-width", d => d.isMax ? 2 : 2)
+    .on("mouseover", function(event, d) {
+      d3.select(this).attr("filter", "url(#hm-glow)").attr("stroke", "#D6DCFA");
+      const pct = ((d.value / totalValue) * 100).toFixed(1);
+      showTooltip(event, `${d.carrier} &rarr; ${d.error}<br><strong>$${d.value.toLocaleString()}</strong> &middot; ${pct}% of total`);
+    })
+    .on("mousemove", event => showTooltip(event, tooltip.html()))
+    .on("mouseout", function(event, d) {
+      d3.select(this).attr("filter", d.isMax ? "url(#hm-shadow)" : null).attr("stroke", d.isMax ? "#D6DCFA" : "var(--bg)");
+      hideTooltip();
+    });
+
+  cellSel.transition().delay((d, i) => i * 25).duration(450).ease(d3.easeCubicOut)
+    .attr("x", d => d.ci * cellSize + 3).attr("y", d => d.ri * cellSize + 3)
+    .attr("width", cellSize - 6).attr("height", cellSize - 6);
+
+  g.selectAll(".hm-cell-label").data(cells).join("text")
+    .attr("class", "hm-cell-label")
+    .attr("x", d => d.ci * cellSize + cellSize / 2)
+    .attr("y", d => d.ri * cellSize + cellSize / 2)
+    .attr("fill", d => textColorFor(d.value))
+    .attr("dy", "0.32em").attr("text-anchor", "middle")
+    .attr("opacity", 0)
+    .text(d => `$${(d.value/1000).toFixed(0)}K`)
+    .transition().delay((d, i) => i * 25 + 350).duration(300).attr("opacity", 1);
+})();
+
+// ---------- NETWORK GRAPH ----------
+(function() {
+  const width = 880, height = 520;
+  const svg = d3.select("#view-network").append("svg")
+    .attr("viewBox", `0 0 ${width} ${height}`).attr("width", "100%");
+
+  const defs = svg.append("defs");
+  const glow = defs.append("filter").attr("id", "net-glow").attr("x", "-60%").attr("y", "-60%").attr("width", "220%").attr("height", "220%");
+  glow.append("feGaussianBlur").attr("stdDeviation", "4").attr("result", "blur");
+  const merge = glow.append("feMerge");
+  merge.append("feMergeNode").attr("in", "blur");
+  merge.append("feMergeNode").attr("in", "SourceGraphic");
+
+  const nodes = [
+    ...carriers.map(c => ({ id: c, type: "carrier" })),
+    ...errorTypes.map(e => ({ id: e, type: "error" }))
+  ];
+  const links = [];
+  carriers.forEach((c, ri) => errorTypes.forEach((e, ci) => {
+    const value = matrix[ri][ci];
+    if (value > 0) links.push({ source: c, target: e, value });
+  }));
+
+  nodes.forEach(n => {
+    n.total = links.filter(l => l.source === n.id || l.target === n.id).reduce((s, l) => s + l.value, 0);
+  });
+
+  const rScale = d3.scaleSqrt().domain([0, d3.max(nodes, d => d.total)]).range([10, 34]);
+  const strokeScale = d3.scaleLinear().domain([0, d3.max(links, d => d.value)]).range([1, 9]);
+  const nodeColor = d => d.type === "carrier" ? "#3B5FE0" : "#E0687A";
+
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(d => 180 - strokeScale(d.value) * 6).strength(0.6))
+    .force("charge", d3.forceManyBody().strength(-260))
+    .force("center", d3.forceCenter(width / 2, height / 2))
+    .force("collide", d3.forceCollide().radius(d => rScale(d.total) + 14));
+
+  const linkSel = svg.append("g").selectAll("line").data(links).join("line")
+    .attr("class", "net-link")
+    .attr("stroke", "#6B7FE0")
+    .attr("stroke-width", d => strokeScale(d.value))
+    .on("mouseover", (event, d) => {
+      d3.select(event.currentTarget).attr("stroke-opacity", 0.9);
+      const pct = ((d.value / totalValue) * 100).toFixed(1);
+      showTooltip(event, `${d.source.id || d.source} &rarr; ${d.target.id || d.target}<br><strong>$${d.value.toLocaleString()}</strong> &middot; ${pct}% of total`);
+    })
+    .on("mousemove", event => showTooltip(event, tooltip.html()))
+    .on("mouseout", (event) => { d3.select(event.currentTarget).attr("stroke-opacity", 0.35); hideTooltip(); });
+
+  const nodeSel = svg.append("g").selectAll("g").data(nodes).join("g")
+    .attr("class", "net-node")
+    .call(d3.drag()
+      .on("start", (event, d) => { if (!event.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+      .on("drag", (event, d) => { d.fx = event.x; d.fy = event.y; })
+      .on("end", (event, d) => { if (!event.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+  nodeSel.append("circle")
+    .attr("r", d => rScale(d.total))
+    .attr("fill", nodeColor)
+    .attr("opacity", 0.88)
+    .on("mouseover", function(event, d) {
+      d3.select(this).attr("filter", "url(#net-glow)");
+      showTooltip(event, `${d.id}<br><strong>$${d.total.toLocaleString()}</strong> total exposure`);
+    })
+    .on("mousemove", event => showTooltip(event, tooltip.html()))
+    .on("mouseout", function() { d3.select(this).attr("filter", null); hideTooltip(); });
+
+  nodeSel.append("text")
+    .attr("text-anchor", "middle").attr("dy", d => rScale(d.total) + 14)
+    .text(d => d.id);
+
+  sim.on("tick", () => {
+    linkSel.attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    nodeSel.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+})();
+
+// ---------- TOGGLE ----------
+d3.select("#btn-heatmap").on("click", function() {
+  d3.select("#btn-heatmap").classed("active", true);
+  d3.select("#btn-network").classed("active", false);
+  d3.select("#view-heatmap").classed("active", true);
+  d3.select("#view-network").classed("active", false);
+});
+d3.select("#btn-network").on("click", function() {
+  d3.select("#btn-network").classed("active", true);
+  d3.select("#btn-heatmap").classed("active", false);
+  d3.select("#view-network").classed("active", true);
+  d3.select("#view-heatmap").classed("active", false);
+});
+</script>
+
+</div>
+
+<footer class="foot">
+  <a href="../index.html">&larr; Back to Portfolio</a> &middot; <a href="../projects.html">View all projects</a>
+</footer>
+
+</body>
+</html>

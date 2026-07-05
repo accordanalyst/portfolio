@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Invoice Triage — Animated Data Join — Case Study | accordanalyst.com</title>
+<meta name="description" content="An interactive D3 demo showing the enter/update/exit data-join pattern live, as simulated invoice records classify themselves into buckets in real time.">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+
+<style>
+  :root {
+    --bg:#0A0F1E; --surface:#121A2E; --surface2:#182238; --nav-bg:#080C17; --hero-bg:#080C17;
+    --heading:#E8ECF7; --body:#C9D2E8; --muted:#7E8CB0; --rule:#232F4D;
+    --accent:#3B5FE0; --accent2:#6B7FE0; --accent-dim:rgba(59,95,224,0.18); --accent-bdr:rgba(59,95,224,0.4);
+    --hero-text:#E8ECF7; --hero-muted:rgba(232,236,247,0.6);
+    --code-bg:#080C17; --code-text:#E8ECF7; --code-comment:#5A6584;
+    --code-keyword:#6B7FE0; --code-fn:#5B9BD9; --code-string:#7FD8A0; --code-num:#E0687A;
+    --shadow: rgba(0,0,0,0.45);
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--body); font-family:'IBM Plex Sans', sans-serif; line-height:1.6; }
+  h1,h2,h3 { font-family:'Space Grotesk', sans-serif; color:var(--heading); margin:0; }
+  .mono { font-family:'IBM Plex Mono', monospace; }
+  a { color: var(--accent2); }
+
+  nav {
+    display:flex; align-items:center; justify-content:space-between; gap:1rem;
+    padding: 1rem 2rem; background: var(--nav-bg); border-bottom: 1px solid var(--rule);
+    position: sticky; top: 0; z-index: 10;
+  }
+  .nav-back { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--hero-muted); text-decoration:none; letter-spacing:.03em; display:flex; align-items:center; gap:6px; transition: color .2s; }
+  .nav-back:hover { color: var(--accent2); }
+  .nav-brand { font-family:'IBM Plex Mono', monospace; font-size:12px; color: var(--muted); letter-spacing:.05em; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+
+  header.hero {
+    background: radial-gradient(ellipse at top right, rgba(107,127,224,0.14), transparent 60%), var(--hero-bg);
+    padding: 4rem 2rem 3rem; border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color: var(--accent2); margin-bottom: 0.9rem; }
+  h1.hero-title { font-size: clamp(2rem, 4vw, 2.6rem); font-weight:700; margin-bottom: 0.8rem; }
+  p.hero-sub { font-size: 15.5px; color: var(--hero-muted); max-width: 640px; margin-bottom: 1.6rem; }
+
+  .stat-row { display:flex; flex-wrap:wrap; gap: 1rem; margin-top: 1.6rem; }
+  .stat-pill {
+    background: var(--surface); border:1px solid var(--rule); border-radius: 10px;
+    padding: 0.9rem 1.2rem; min-width: 130px;
+  }
+  .stat-num { font-family:'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight:700; color: var(--accent2); }
+  .stat-label { font-family:'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+
+  section { padding: 3rem 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+  .section-eyebrow { font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent2); margin-bottom:0.6rem; }
+  h2.section-title { font-size: 1.5rem; margin-bottom: 1rem; }
+  section p { font-size: 14.5px; color: var(--body); max-width: 700px; }
+
+  .viz-panel {
+    background: var(--surface); border: 1px solid var(--rule); border-radius: 14px;
+    padding: 1.6rem; margin-top: 1.6rem; overflow-x: auto;
+  }
+  .viz-caption { font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 1rem; text-align:center; }
+
+  .btn {
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; font-weight:600; letter-spacing:.04em;
+    background: var(--accent); color: #050810; border:none; border-radius: 6px;
+    padding: 10px 18px; cursor:pointer; transition: opacity .15s, transform .1s;
+  }
+  .btn:hover { opacity: 0.88; }
+  .btn:active { transform: scale(0.97); }
+
+  .tags { display:flex; flex-wrap:wrap; gap:6px; margin-top: 1rem; }
+  .tag {
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; font-weight:600;
+    background: var(--accent-dim); color: var(--accent2); border:1px solid var(--accent-bdr);
+    padding: 4px 10px; border-radius: 999px;
+  }
+
+  footer.foot { padding: 2.5rem 2rem 3rem; text-align:center; }
+  .foot a { font-family:'IBM Plex Mono', monospace; font-size:12.5px; color: var(--muted); text-decoration:none; }
+  .foot a:hover { color: var(--accent2); }
+
+  
+  .dj-bucket-label { font-family:'IBM Plex Mono', monospace; font-size: 12px; fill: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .dj-bucket-count { font-family:'Space Grotesk', sans-serif; font-size: 22px; font-weight: 700; }
+  .dj-record { cursor: default; }
+  .dj-controls { display:flex; gap: 10px; align-items:center; margin-bottom: 1rem; flex-wrap: wrap; }
+  .dj-status { font-family:'IBM Plex Mono', monospace; font-size: 11.5px; color: var(--muted); }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-back">&larr; Back to Portfolio</a>
+  <span class="nav-brand">MIDNIGHT CURTAIN &middot; accordanalyst.com</span>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Portfolio Project · D3.js · Data Binding</p>
+    <h1 class="hero-title">Live Invoice Triage</h1>
+    <p class="hero-sub">A live demonstration of D3's core data-join pattern &mdash; 40 simulated invoice records stream in and classify themselves into buckets in real time, no manual DOM manipulation.</p>
+    <div class="stat-row">
+      <div class="stat-pill"><div class="stat-num">40</div><div class="stat-label">Records Streamed</div></div>
+      <div class="stat-pill"><div class="stat-num">3</div><div class="stat-label">Live Buckets</div></div>
+      <div class="stat-pill"><div class="stat-num">160ms</div><div class="stat-label">Tick Interval</div></div>
+      <div class="stat-pill"><div class="stat-num">0</div><div class="stat-label">Manual DOM Ops</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <p class="section-eyebrow">The Problem</p>
+    <h2 class="section-title">Showing the pattern D3 is actually built for</h2>
+    <p>Most chart libraries hide their internals behind a config object. D3's real value is the data-join itself &mdash; the enter / update / exit pattern that lets a visualization react to changing data instead of being redrawn from scratch. This demo makes that pattern visible: invoice records arrive one at a time and animate into place based on their classification, live.</p>
+
+    <div class="viz-panel">
+      <div class="dj-controls">
+        <button class="btn" id="dj-run">Run Simulation</button>
+        <button class="btn" id="dj-reset" style="background:var(--surface2); color:var(--heading); border:1px solid var(--rule);">Reset</button>
+        <span class="dj-status" id="dj-status">Idle &middot; 0 / 40 processed</span>
+      </div>
+      <div id="datajoin-chart"></div>
+      <p class="viz-caption">Simulated invoice stream &middot; classified live via D3 enter/update/exit</p>
+    </div>
+  </section>
+
+  <section>
+    <p class="section-eyebrow">How It Works</p>
+    <h2 class="section-title">Enter / Update / Exit, made visible</h2>
+    <p>Each incoming record is bound to the DOM via <span class="mono">.data().join()</span>. New records animate in from the top (enter), settle into their bucket's column with a transition (update), and the bucket counters recompute on every tick &mdash; no manual DOM manipulation, no re-render from scratch.</p>
+    <div class="tags">
+      <span class="tag">D3.js</span>
+      <span class="tag">Data Binding</span>
+      <span class="tag">Enter/Update/Exit</span>
+      <span class="tag">Animation</span>
+    </div>
+  </section>
+
+<script>
+const width = 880, height = 420;
+const buckets = [
+  { key: "tolerance", label: "Within Tolerance", x: 140, color: "#3E7A5C" },
+  { key: "overcharge", label: "Overcharge", x: 440, color: "#B33A4C" },
+  { key: "shortpay", label: "Short Pay", x: 740, color: "#6B7FE0" }
+];
+const bucketOf = i => { const r = (i * 37) % 10; if (r < 5) return "tolerance"; if (r < 8) return "overcharge"; return "shortpay"; };
+
+const svg = d3.select("#datajoin-chart").append("svg")
+  .attr("viewBox", `0 0 ${width} ${height}`).attr("width", "100%");
+
+svg.selectAll(".bucket-col").data(buckets).join("g")
+  .each(function(d) {
+    d3.select(this).append("rect")
+      .attr("x", d.x - 70).attr("y", 40).attr("width", 140).attr("height", height - 70)
+      .attr("fill", "none").attr("stroke", "var(--rule)").attr("stroke-dasharray", "4 4").attr("rx", 8);
+    d3.select(this).append("text").attr("class", "dj-bucket-label")
+      .attr("x", d.x).attr("y", 24).attr("text-anchor", "middle").text(d.label);
+  });
+
+const counters = {};
+buckets.forEach(b => {
+  counters[b.key] = svg.append("text").attr("class", "dj-bucket-count")
+    .attr("x", b.x).attr("y", height - 12).attr("text-anchor", "middle")
+    .attr("fill", b.color).text("0");
+});
+
+let counts = { tolerance: 0, overcharge: 0, shortpay: 0 };
+let records = [];
+let timer = null;
+const total = 40;
+
+function updateCounters() {
+  buckets.forEach(b => counters[b.key].text(counts[b.key]));
+  d3.select("#dj-status").text(`Running · ${records.length} / ${total} processed`);
+}
+
+function reset() {
+  clearInterval(timer);
+  records = [];
+  counts = { tolerance: 0, overcharge: 0, shortpay: 0 };
+  svg.selectAll(".dj-record").remove();
+  buckets.forEach(b => counters[b.key].text("0"));
+  d3.select("#dj-status").text(`Idle · 0 / ${total} processed`);
+}
+
+function step() {
+  if (records.length >= total) { clearInterval(timer); d3.select("#dj-status").text(`Complete · ${total} / ${total} processed`); return; }
+  const i = records.length;
+  const bucketKey = bucketOf(i);
+  const bucket = buckets.find(b => b.key === bucketKey);
+  const stackIndex = counts[bucketKey];
+  counts[bucketKey] += 1;
+  records.push({ id: i, bucketKey });
+
+  const col = stackIndex % 5, row = Math.floor(stackIndex / 5);
+  const targetX = bucket.x - 48 + col * 20;
+  const targetY = height - 40 - row * 20;
+
+  svg.append("circle")
+    .attr("class", "dj-record")
+    .attr("cx", width / 2).attr("cy", 0).attr("r", 6)
+    .attr("fill", bucket.color).attr("opacity", 0.9)
+    .transition().duration(650).ease(d3.easeCubicOut)
+    .attr("cx", targetX).attr("cy", targetY);
+
+  updateCounters();
+}
+
+d3.select("#dj-run").on("click", () => {
+  if (timer) clearInterval(timer);
+  if (records.length >= total) reset();
+  timer = setInterval(step, 160);
+});
+d3.select("#dj-reset").on("click", reset);
+</script>
+
+</div>
+
+<footer class="foot">
+  <a href="../index.html">&larr; Back to Portfolio</a> &middot; <a href="../projects.html">View all projects</a>
+</footer>
+
+</body>
+</html>
