@@ -1,0 +1,25 @@
+<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1a10"/>
+      <stop offset="100%" stop-color="#05100a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="85%" cy="15%" r="65%">
+      <stop offset="0%" stop-color="#3DA35D" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#3DA35D" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="900" height="340" fill="url(#bg)"/>
+  <rect width="900" height="340" fill="url(#glow)"/>
+  <text x="42" y="58" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5" fill="#3DA35D">ANOMALY DETECTION · PYTHON</text>
+  <text x="42" y="118" font-family="Georgia, serif" font-size="46" font-weight="700" fill="#F5F3EF">Caught Early</text>
+  <text x="42" y="150" font-family="Arial, sans-serif" font-size="15" fill="#B7B2AA">Z-score outliers · rolling baseline · severity scoring</text>
+  
+  <path d="M 460,230 L 500,222 L 540,228 L 580,218 L 620,224 L 660,290 L 700,300 L 740,270 L 780,235 L 820,230 L 820,310 L 460,310 Z" fill="#3DA35D" opacity="0.15"/>
+  <path d="M 460,230 L 500,222 L 540,228 L 580,218 L 620,224 L 660,290 L 700,300 L 740,270 L 780,235 L 820,230" fill="none" stroke="#3DA35D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="660" cy="290" r="7" fill="#E84C4C"/>
+  <circle cx="660" cy="290" r="13" fill="#E84C4C" opacity="0.25"/>
+  <text x="642" y="318" font-family="Arial, sans-serif" font-size="10.5" font-weight="700" fill="#E88A8A">DROP</text>
+  <text x="460" y="325" font-family="Arial, sans-serif" font-size="11" fill="#7c9483">REVENUE VS. ROLLING BASELINE</text>
+
+</svg>

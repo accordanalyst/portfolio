@@ -17,111 +17,24 @@
 <meta name="twitter:title" content="Pre-Audit vs Post-Audit Recovery Dashboard — Case Study | accordanalyst.com">
 <meta name="twitter:description" content="Case study: an interactive recovery dashboard tracking pre-audit vs. post-audit freight invoice recovery across 200,000+ simulated invoices, with seasonal disruption modeling.">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg:         #F7F3EE;
-    --surface:    #FFFFFF;
-    --nav-bg:     #14100E;
-    --hero-bg:    #14100E;
-    --hero-glow:  rgba(122,31,46,0.12);
-    --heading:    #14100E;
-    --body:       #2A211D;
-    --muted:      #7A6A62;
-    --rule:       #E4DCD3;
-    --accent:     #7A1F2E;
-    --accent-dim: rgba(122,31,46,0.15);
-    --accent-bdr: rgba(122,31,46,0.35);
-    --accent2:    #3D1015;
-    --hero-text:  #F7F3EE;
-    --hero-muted: rgba(247,243,238,0.6);
-    --hero-dim:   rgba(247,243,238,0.45);
-    --pill-bg:    rgba(122,31,46,0.15);
-    --pill-bdr:   rgba(122,31,46,0.35);
-    --pill-text:  rgba(247,243,238,0.85);
-    --bar-bg:     rgba(247,243,238,0.05);
-    --bar-bdr:    rgba(122,31,46,0.25);
-    --bar-div:    rgba(122,31,46,0.2);
-    --bar-hover:  rgba(122,31,46,0.1);
-    --num-color:  #7A1F2E;
-    --eyebrow:    #7A1F2E;
-    --section-rule-from: #7A1F2E;
-    --card-left:  #7A1F2E;
-    --card-bdr:   rgba(122,31,46,0.25);
-    --skill-tag:  rgba(122,31,46,0.1);
-    --skill-text: #14100E;
-    --edu-left:   #3D1015;
-    --contact-bg: #14100E;
-    --contact-txt:#F7F3EE;
-    --contact-sub:rgba(247,243,238,0.6);
-    --clink-bg:   rgba(122,31,46,0.2);
-    --clink-bdr:  rgba(122,31,46,0.4);
-    --clink-txt:  #F7F3EE;
-    --toggle-bg:  rgba(255,255,255,0.12);
-    --toggle-icon:'☀️';
-    --shadow:     rgba(0,0,0,0.08);
-    --surface2:   #F1EAE3;
-    --hero-dim:   rgba(247,243,238,0.45);
-    --code-bg:    #14100E;
-    --code-text:  #F2E9E2;
-    --code-comment:#8A776E;
-    --code-keyword:#D9707F;
-    --code-fn:    #D9A94F;
-    --code-string:#8FBF8A;
-    --code-num:   #7FB0D9;
+    --bg:#FDF3E7;--surface:#FAF0E0;--nav-bg:#3B2207;--hero-bg:#3B2207;
+    --hero-glow:rgba(196,98,29,0.12);--heading:#3B2207;--body:#1C1008;
+    --muted:#6B5240;--rule:#D4B896;--accent:#C4621D;
+    --accent-dim:rgba(196,98,29,0.15);--accent-bdr:rgba(196,98,29,0.35);
+    --hero-text:#FDF3E7;--hero-muted:rgba(253,243,231,0.6);
+    --skill-tag:rgba(196,98,29,0.1);--skill-text:#3B2207;
+    --toggle-bg:rgba(255,255,255,0.12);--shadow:rgba(0,0,0,0.08);
   }
   [data-theme="dark"] {
-    --bg:         #0D0908;
-    --surface:    #17110F;
-    --nav-bg:     #0A0706;
-    --hero-bg:    #0A0706;
-    --hero-glow:  rgba(122,31,46,0.18);
-    --heading:    #F2E9E2;
-    --body:       #DCCFC6;
-    --muted:      #9C877D;
-    --rule:       #2B211C;
-    --accent:     #B33A4C;
-    --accent-dim: rgba(122,31,46,0.2);
-    --accent-bdr: rgba(179,58,76,0.4);
-    --accent2:    #7A1F2E;
-    --hero-text:  #F7F3EE;
-    --hero-muted: rgba(247,243,238,0.6);
-    --hero-dim:   rgba(247,243,238,0.4);
-    --pill-bg:    rgba(122,31,46,0.2);
-    --pill-bdr:   rgba(179,58,76,0.35);
-    --pill-text:  rgba(247,243,238,0.85);
-    --bar-bg:     rgba(247,243,238,0.04);
-    --bar-bdr:    rgba(179,58,76,0.2);
-    --bar-div:    rgba(179,58,76,0.18);
-    --bar-hover:  rgba(122,31,46,0.15);
-    --num-color:  #D65066;
-    --eyebrow:    #B33A4C;
-    --section-rule-from: #7A1F2E;
-    --card-left:  #7A1F2E;
-    --card-bdr:   rgba(122,31,46,0.3);
-    --skill-tag:  rgba(122,31,46,0.2);
-    --skill-text: #F2E9E2;
-    --edu-left:   #7A1F2E;
-    --contact-bg: #0A0706;
-    --contact-txt:#F7F3EE;
-    --contact-sub:rgba(247,243,238,0.55);
-    --clink-bg:   rgba(122,31,46,0.25);
-    --clink-bdr:  rgba(179,58,76,0.4);
-    --clink-txt:  #F7F3EE;
-    --toggle-bg:  rgba(179,58,76,0.15);
-    --toggle-icon:'🌙';
-    --shadow:     rgba(0,0,0,0.35);
-    --surface2:   #1D1613;
-    --hero-dim:   rgba(247,243,238,0.4);
-    --code-bg:    #0A0706;
-    --code-text:  #F2E9E2;
-    --code-comment:#8A776E;
-    --code-keyword:#E0687A;
-    --code-fn:    #E0BC6E;
-    --code-string:#9ED498;
-    --code-num:   #8FC3E8;
+    --bg:#0D1B2E;--surface:#112240;--nav-bg:#091628;--hero-bg:#091628;
+    --hero-glow:rgba(46,95,163,0.18);--heading:#B8D4F8;--body:#CDD9EC;
+    --muted:#7B9BB8;--rule:#1F3864;--accent:#4A90D9;
+    --accent-dim:rgba(46,95,163,0.2);--accent-bdr:rgba(74,144,217,0.4);
+    --hero-text:#EBF2FA;--hero-muted:rgba(235,242,250,0.6);
+    --skill-tag:rgba(46,95,163,0.2);--skill-text:#B8D4F8;
+    --toggle-bg:rgba(74,144,217,0.15);--shadow:rgba(0,0,0,0.35);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -276,22 +189,6 @@
     .dash-kpis{grid-template-columns:repeat(2,1fr)}
   }
   @media(prefers-reduced-motion:reduce){*{transition-duration:.01ms !important}}
-
-  /* -- LEDGER NOIR: nav -- */
-  nav { border-bottom: 3px double var(--accent); box-shadow: none; }
-  .nav-brand::before { content: '\00A7 '; color: var(--accent); margin-right: 2px; }
-  .nav-back {
-    padding: 5px 10px; border: 1px solid transparent; border-radius: 2px;
-    transition: border-color 0.2s, background 0.2s, color 0.2s;
-  }
-  .nav-back:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); color: var(--accent) !important; }
-  .dl-btn, .theme-toggle { border-radius: 2px !important; }
-
-  /* -- LEDGER NOIR: typography -- */
-  body { font-family: 'Inter', sans-serif; }
-  h1, h2, h3, .proj-title, .step-label, .chart-panel-title, .dash-chart-label,
-  .query-title, .acct-tab { font-family: 'Zilla Slab', serif; }
-  .proj-eyebrow, .step-sublabel, .kpi-label, .query-meta, .query-num { font-family: 'IBM Plex Mono', monospace; }
 </style>
 </head>
 <body>
