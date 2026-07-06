@@ -1,11 +1,11 @@
 <div align="center">
 
 <img src="accordanalyst-banner.svg" alt="AccordAnalyst" width="100%">
+<br>
 
-# 📊 accordanalyst.com
 ### Portfolio · Resume · Case Studies · Data Visualization · Licensed Products
 
-*The personal site of Alexis "Zaira" Kelly — Business Intelligence Analyst*
+*The portfolio website of Alexis "Zaira" Kelly — Business Intelligence Analyst*
 
 ![Status](https://img.shields.io/badge/status-live-6E1F2C?style=for-the-badge&labelColor=0B0B0F)
 ![Live Site](https://img.shields.io/badge/site-accordanalyst.com-3B5FE0?style=for-the-badge&labelColor=0B0B0F)
@@ -96,17 +96,13 @@ The site's entire color direction traces back to a still from **David Lynch's *B
 
 ---
 
-## 🧭 Three ways to browse the project catalog
+## 🧭 Live Search + URL State
 
-`projects.html` grew to 10 entries across three categories and turned into a genuine long-scroll page — so there are now three alternate, compact layouts, each demonstrating a different front-end organization pattern rather than just a different look:
+`projects.html` grew to 10 entries across three categories and turned into an annoying long-scroll page — so there is only one new and improved version to utilize.
 
 | File | Pattern | What it demonstrates |
 |---|---|---|
-| `projects-v1-tabs.html` | Click-to-filter tabs | Simple event-driven DOM filtering — click a category, non-matching cards hide instantly |
-| `projects-v2-accordion.html` | Collapsible sections | Native `<details>`/`<summary>` — semantic HTML, accessible by default, enhanced with a few lines of JS for single-open behavior |
 | `projects-v3-search.html` | Live search + URL state | The most involved of the three — a small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
-
-All three read from the same underlying project list — only the interaction model changes.
 
 ---
 
@@ -127,7 +123,7 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 - 🎨 Added **Midnight Curtain**, a blue-forward visual identity used exclusively for three new pure-D3.js visualization pieces: a **Sankey diagram** (revenue leak flow), a **heatmap + force-directed network graph** (carrier exposure, replacing an earlier treemap), and a **live animated data-join demo** (D3 enter/update/exit made visible).
 - 🍷 Promoted **Ledger Noir to canonical** — `index.html` and `resume.html` are now the real, permanent files (no more `-v1` suffix or parallel theme variants in production).
 - 🎬 Added three **Licensed Product** showcases (Drag Race, Fuel Intelligence, and a Finance reskin demo of the Drag Race template) — screenshot/SVG carousels only, protecting the actual sellable products.
-- 🧭 Rebuilt `projects.html` into **three alternate compact layouts** (tab filter, accordion, live search + URL state) to solve unbounded scroll growth as the catalog passed 10 entries.
+- 🧭 Rebuilt `projects.html` into **the live search + URL state** to solve growth of the catalog as it passed 10 entries.
 - 🎞️ Added an animated SVG banner (boot-sequence style: fade-in → type-in → progress bar → "system ready") for the top of this README.
 - 🐛 Fixed a recurring **dark-mode contrast bug** (card headers pulling background from a text-color token that flips light in dark mode) across the homepage, project catalog, and all case studies.
 - 🐛 Fixed a **thumbnail aspect-ratio bug** causing side-cropping on Featured Project cards.
@@ -143,7 +139,6 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 - **DNS is on Porkbun**, not Cloudflare. A wildcard (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
 - **D3 loads from a CDN** (`cdnjs.cloudflare.com`) on every D3-based page. Fine for real visitors; if you ever test these files in a sandboxed/offline environment, D3 won't load and every chart will silently render empty.
 - Three showcase pages (`dragrace-`, `fuel-`, `finance-showcase.html`) mix **SVG and PNG** images depending on whether a real chart existed to extract vector markup from — HTML tables/lists (like "Hall of Fame" or "Regional Snapshot") only ever have PNG versions.
-- This repo does **not** include the store (`store.accordanalyst.com`) — `privacy-policy.html` and `terms-of-service.html` live here for reference only.
 
 ---
 
