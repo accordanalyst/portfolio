@@ -30,7 +30,7 @@ portfolio/
 ├── robots.txt
 ├── ai-blocker.js                   ← Site defense script (see Foxglove 🦊)
 ├── update-blocklist.py
-│
+├── services.html
 └── projects/
     ├── intl-freight-audit.html            ← Case study: Excel audit automation
     ├── revenue-reconciliation.html        ← Case study: SQL query set
