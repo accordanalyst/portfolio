@@ -24,18 +24,13 @@ This repository powers **[accordanalyst.com](https://www.accordanalyst.com/)** �
 portfolio/
 ├── index.html                     ← Home / Portfolio (Ledger Noir — canonical)
 ├── resume.html                    ← Full résumé (Skills, Experience, Education, Volunteer)
-├── projects.html                  ← Full project catalog — long-scroll version
-├── projects-v1-tabs.html          ← Catalog redesign: tab-filtered, compact grid
-├── projects-v2-accordion.html     ← Catalog redesign: collapsible sections
-├── projects-v3-search.html        ← Catalog redesign: live search + URL state
+├── projects.html        ← Catalog redesign: live search + URL state
 ├── accordanalyst-banner.svg       ← Animated boot-sequence README banner
-├── privacy-policy.html            ← Legal (store.accordanalyst.com)
-├── terms-of-service.html          ← Legal (store.accordanalyst.com)
 ├── CNAME
 ├── robots.txt
 ├── ai-blocker.js                   ← Site defense script (see Foxglove 🦊)
 ├── update-blocklist.py
-│
+├── services.html
 └── projects/
     ├── intl-freight-audit.html            ← Case study: Excel audit automation
     ├── revenue-reconciliation.html        ← Case study: SQL query set
