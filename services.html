@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Freelance Revenue Reconciliation Services | Alexis Kelly</title>
@@ -19,31 +19,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ── SITE-SHELL VARS (shared nav, matches index.html / projects.html) ── */
+  /* ── SHARED NAV — locked to the terminal identity, no light/dark split ── */
   :root{
-    --nav-bg:#3B2207; --accent:#C4621D; --accent-bdr:rgba(196,98,29,0.35);
-    --accent-dim:rgba(196,98,29,0.15); --hero-text:#FDF3E7; --hero-muted:rgba(253,243,231,0.6);
-    --toggle-bg:rgba(255,255,255,0.12); --shadow:rgba(0,0,0,0.08);
+    --nav-bg:#0A0F18; --accent:#3FE8E0; --accent-bdr:rgba(63,232,224,0.35);
+    --accent-dim:rgba(63,232,224,0.15); --hero-text:#D6E2EE; --hero-muted:rgba(214,226,238,0.55);
+    --shadow:rgba(0,0,0,0.45);
   }
-  [data-theme="dark"]{
-    --nav-bg:#091628; --accent:#4A90D9; --accent-bdr:rgba(74,144,217,0.4);
-    --accent-dim:rgba(46,95,163,0.2); --hero-text:#EBF2FA; --hero-muted:rgba(235,242,250,0.6);
-    --toggle-bg:rgba(74,144,217,0.15); --shadow:rgba(0,0,0,0.35);
-  }
-  /* ── SHARED NAV (identical structure/behavior to rest of site) ── */
   nav.sitenav{
     position:fixed; top:0; left:0; right:0; z-index:200;
     background:var(--nav-bg); display:flex; align-items:center; justify-content:space-between;
-    padding:0 2rem; height:52px; box-shadow:0 2px 16px var(--shadow);
-    transition:background .35s ease; font-family:'Segoe UI', system-ui, sans-serif;
+    padding:0 2rem; height:52px; box-shadow:0 2px 16px var(--shadow); border-bottom:1px solid rgba(63,232,224,0.15);
+    font-family:'Share Tech Mono', monospace;
   }
-  nav.sitenav .nav-back{font-size:13px; color:var(--hero-muted); text-decoration:none; letter-spacing:.05em; transition:color .2s; display:flex; align-items:center; gap:6px;}
+  nav.sitenav .nav-back{font-size:12.5px; color:var(--hero-muted); text-decoration:none; letter-spacing:.04em; transition:color .2s; display:flex; align-items:center; gap:6px;}
   nav.sitenav .nav-back:hover{color:var(--accent);}
   nav.sitenav .nav-right{display:flex; align-items:center; gap:1rem;}
-  nav.sitenav .nav-brand{font-size:12px; font-weight:600; letter-spacing:.12em; color:var(--accent); text-transform:uppercase;}
+  nav.sitenav .nav-brand{font-size:11.5px; font-weight:600; letter-spacing:.12em; color:var(--accent); text-transform:uppercase;}
   nav.sitenav .inquire-btn{
-    background:var(--accent); color:var(--hero-text); padding:6px 14px; border-radius:4px;
-    font-size:12px; font-weight:700; letter-spacing:.04em; text-decoration:none; transition:opacity .2s;
+    background:var(--magenta); color:#070A12; padding:6px 14px; border-radius:3px;
+    font-size:11.5px; font-weight:700; letter-spacing:.04em; text-decoration:none; transition:opacity .2s;
+    border:1px solid rgba(255,61,154,0.5);
   }
   nav.sitenav .inquire-btn:hover{opacity:.85;}
   @media (max-width:700px){
@@ -85,6 +80,28 @@
   }
   .hero p{font-size:14px; color:var(--dim); max-width:640px; margin:0;}
 
+  /* ── THREE CLEAR OFFERS — top-line advertising, ahead of the full price grid ── */
+  .offers{padding:6px 0 0;}
+  .offers-eyebrow{font-family:'Share Tech Mono', monospace; font-size:11px; color:var(--dim); letter-spacing:.08em; text-transform:uppercase; margin-bottom:10px;}
+  .offers-eyebrow::before{content:"$ ";color:var(--violet);}
+  .offer-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  @media (max-width:900px){ .offer-grid{grid-template-columns:1fr;} }
+  .offer-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:18px 18px 16px;
+    display:flex; flex-direction:column; border-top:2px solid var(--offer-accent, var(--cyan));
+  }
+  .offer-tag{font-family:'Share Tech Mono', monospace; font-size:10px; color:var(--offer-accent, var(--cyan)); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;}
+  .offer-title{font-family:'Orbitron', sans-serif; font-weight:700; font-size:15.5px; color:var(--text); margin:0 0 8px; line-height:1.3;}
+  .offer-desc{font-size:13px; line-height:1.55; color:var(--text); margin:0 0 12px;}
+  .offer-for{font-size:11.5px; color:var(--dim); margin:0 0 14px; padding-left:9px; border-left:2px solid var(--line);}
+  .offer-link{
+    margin-top:auto; font-family:'Share Tech Mono', monospace; font-size:11.5px; font-weight:700;
+    color:var(--offer-accent, var(--cyan)); text-decoration:none; letter-spacing:.03em;
+  }
+  .offer-link:hover{text-decoration:underline;}
+
+  .term{scroll-margin-top:78px;}
+
   .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; padding:24px 0 0;}
   @media (max-width:780px){ .grid{grid-template-columns:1fr;} }
 
@@ -105,6 +122,7 @@
   .badge-row{display:flex; gap:8px; margin:8px 0 4px; flex-wrap:wrap;}
   .badge{font-family:'Share Tech Mono', monospace; font-size:9.5px; letter-spacing:.07em; padding:3px 8px; border-radius:2px; text-transform:uppercase;}
   .badge.tier{background:rgba(255,209,102,0.15); border:1px solid var(--gold); color:var(--gold);}
+  .badge.scope{background:rgba(63,232,224,0.12); border:1px solid var(--cyan); color:var(--cyan);}
   .badge.slots{background:rgba(255,61,154,0.12); border:1px solid var(--magenta); color:var(--magenta); animation:pulse-slot 2.2s ease-in-out infinite;}
   @keyframes pulse-slot{0%,100%{opacity:1;} 50%{opacity:.55;}}
   .term-bar{
@@ -177,13 +195,41 @@
   <header class="hero">
     <div class="prompt">ls --services</div>
     <h1>Six Modules. One Operator.</h1>
-    <p>Billing forensics, packaged as fixed-scope engagements that fit around a full-time role. Starting prices shown in USD — add-ons scale with what the project actually needs.</p>
+    <div class="badge-row"><span class="badge scope">Not freight-only — any industry</span></div>
+    <p>Billing forensics and financial data analysis, packaged as fixed-scope engagements that fit around a full-time role. The methods started in freight and logistics, but the same anomaly-detection and reconciliation work applies anywhere numbers are supposed to add up and don't — SaaS, e-commerce, marketing, ops, any industry with a billing or spend export. Starting prices shown in USD — add-ons scale with what the project actually needs.</p>
   </header>
+
+  <section class="offers">
+    <div class="offers-eyebrow">what I actually do, in three sentences</div>
+    <div class="offer-grid">
+      <div class="offer-card" style="--offer-accent:var(--cyan);">
+        <div class="offer-tag">[A] Find It</div>
+        <div class="offer-title">Find the money you're already losing</div>
+        <p class="offer-desc">Hand over a billing or spend export and get back a ranked, dollar-figured list of overcharges, duplicates, and missed credits — or the same anomaly-detection method applied to any monthly metric that's supposed to behave and didn't.</p>
+        <p class="offer-for">For teams who suspect they're leaking revenue somewhere but don't have proof yet.</p>
+        <a href="#svc-revenue-leak-audit" class="offer-link">See Revenue Leak Audit →</a>
+      </div>
+      <div class="offer-card" style="--offer-accent:var(--magenta);">
+        <div class="offer-tag">[B] Keep It From Happening Again</div>
+        <div class="offer-title">Ongoing eyes on the numbers, not just a one-time fix</div>
+        <p class="offer-desc">A monthly monitoring retainer that flags new exceptions before they compound — or, for teams that want more, a part-time analyst on call up to 5 hrs/week, capped at 2 clients so response time never slips.</p>
+        <p class="offer-for">For teams who already found the leak once and don't want to find it again next quarter.</p>
+        <a href="#svc-anomaly-monitor" class="offer-link">See Monitoring & Retainers →</a>
+      </div>
+      <div class="offer-card" style="--offer-accent:var(--gold);">
+        <div class="offer-tag">[C] See It, Don't Dig For It</div>
+        <div class="offer-title">Automation and dashboards that replace the manual version</div>
+        <p class="offer-desc">A query set, Excel build, or live interactive dashboard that replaces the report someone currently rebuilds by hand every cycle — in code or in a spreadsheet your team can edit without touching a codebase.</p>
+        <p class="offer-for">For teams whose "reporting process" is still a person and a Tuesday afternoon.</p>
+        <a href="#svc-automation-build" class="offer-link">See Automation & Dashboards →</a>
+      </div>
+    </div>
+  </section>
 
   <div class="grid">
 
     <!-- PREMIUM SERVICE -->
-    <div class="term premium">
+    <div class="term premium" id="svc-analyst-on-demand">
       <div class="term-bar"><span><span class="id" style="color:var(--gold);">[00]</span> accord_analyst_on_demand</span><span>.priority</span></div>
       <div class="term-body">
         <div>
@@ -199,7 +245,7 @@
             <span class="flag cond">tableau/power-bi</span><span class="flag cond">zapier</span><span class="flag cond">live meetings</span>
           </div>
           <div class="label">Buyers</div>
-          <div class="industries"><span>Startups needing embedded analytics</span><span>Small logistics companies</span><span>E-commerce scaling ops</span></div>
+          <div class="industries"><span>Startups needing embedded analytics</span><span>E-commerce scaling ops</span><span>Small logistics companies</span></div>
         </div>
         <div>
           <div class="label">Add-ons</div>
@@ -219,7 +265,7 @@ send_digest(pulse, channel=<span class="str">"#pulse"</span>)</pre>
     </div>
 
     <!-- SERVICE 1 -->
-    <div class="term">
+    <div class="term" id="svc-revenue-leak-audit">
       <div class="term-bar"><span><span class="id">[01]</span> revenue_leak_audit</span><span>.exe</span></div>
       <div class="term-body">
         <div class="svc-title">Revenue Leak Audit</div>
@@ -233,7 +279,7 @@ send_digest(pulse, channel=<span class="str">"#pulse"</span>)</pre>
           <span class="flag cond">sql (if warehouse)</span><span class="flag cond">power-bi (if dashboard)</span>
         </div>
         <div class="label">Buyers</div>
-        <div class="industries"><span>Freight &amp; 3PL</span><span>SaaS billing</span><span>E-commerce finance</span></div>
+        <div class="industries"><span>SaaS billing</span><span>E-commerce finance</span><span>Freight &amp; 3PL</span></div>
         <div class="label">Add-ons</div>
         <div class="addons">
           <div class="addon-row"><div>SQL/warehouse connection<span class="addon-trigger">read-only DB access vs. flat file</span></div><div class="addon-price">+$300</div></div>
@@ -250,7 +296,7 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
     </div>
 
     <!-- SERVICE 2 -->
-    <div class="term">
+    <div class="term" id="svc-anomaly-monitor">
       <div class="term-bar"><span><span class="id">[02]</span> anomaly_monitor</span><span>.cron</span></div>
       <div class="term-body">
         <div class="svc-title">Billing Anomaly Monitoring</div>
@@ -264,7 +310,7 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
           <span class="flag cond">sql (if live pull)</span><span class="flag cond">slack/email automation</span>
         </div>
         <div class="label">Buyers</div>
-        <div class="industries"><span>Logistics &amp; 3PL</span><span>Subscription/SaaS finance</span><span>Marketplaces</span></div>
+        <div class="industries"><span>Subscription/SaaS finance</span><span>Marketplaces</span><span>Logistics &amp; 3PL</span></div>
         <div class="label">Add-ons</div>
         <div class="addons">
           <div class="addon-row"><div>Slack delivery<span class="addon-trigger">client provides a webhook URL</span></div><div class="addon-price">+$150/mo</div></div>
@@ -282,7 +328,7 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
     </div>
 
     <!-- SERVICE 3 -->
-    <div class="term">
+    <div class="term" id="svc-data-audit">
       <div class="term-bar"><span><span class="id">[03]</span> data_audit_general</span><span>.exe</span></div>
       <div class="term-body">
         <div class="svc-title">Data Audit-as-a-Service</div>
@@ -314,7 +360,7 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
     </div>
 
     <!-- SERVICE 4 -->
-    <div class="term">
+    <div class="term" id="svc-automation-build">
       <div class="term-bar"><span><span class="id">[04]</span> automation_build</span><span>.sh</span></div>
       <div class="term-body">
         <div class="svc-title">SQL / Excel Automation Build</div>
@@ -345,12 +391,12 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
     </div>
 
     <!-- SERVICE 5 -->
-    <div class="term">
+    <div class="term" id="svc-dashboard-bespoke">
       <div class="term-bar"><span><span class="id">[05]</span> dashboard_build_bespoke</span><span>.render</span></div>
       <div class="term-body">
         <div class="svc-title">Bespoke Dashboard Build</div>
         <div class="svc-price-label">Starting price (USD)</div>
-        <div class="svc-price">$1,500 / project</div>
+        <div class="svc-price">$1,800 / project</div>
         <div class="svc-sched">2–4 week build · one client at a time</div>
         <p class="svc-blurb">A live, interactive dashboard your team actually opens — not a static export. Fully custom-coded, themed to your brand, and handed over ready to click through.</p>
         <div class="label">Stack</div>
@@ -364,8 +410,9 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
         <div class="addons">
           <div class="addon-row"><div>Live data connection<span class="addon-trigger">SQL/API feed vs. static upload</span></div><div class="addon-price">+$400</div></div>
           <div class="addon-row"><div>Extra dashboard view/tab<span class="addon-trigger">2nd business unit or metric set</span></div><div class="addon-price">+$350</div></div>
+          <div class="addon-row"><div>Large/multi-source dataset<span class="addon-trigger">&gt;10K rows or 2+ source files</span></div><div class="addon-price">+$250</div></div>
         </div>
-        <div class="inquire-line">+2 more — <a href="mailto:contact@accordanalyst.com">inquire for full pricing</a></div>
+        <div class="inquire-line">+1 more — <a href="mailto:contact@accordanalyst.com">inquire for full pricing</a></div>
         <div class="codebox">
           <div class="codebox-head"><span>render_panel.js</span><span class="lang">JS</span></div>
           <pre><span class="kw">const</span> scale = d3.scaleLinear()
@@ -377,12 +424,12 @@ panel.selectAll(<span class="str">"rect"</span>).data(data).join(<span class="st
     </div>
 
     <!-- SERVICE 6 -->
-    <div class="term">
+    <div class="term" id="svc-dashboard-template">
       <div class="term-bar"><span><span class="id">[06]</span> dashboard_build_template</span><span>.xlsx</span></div>
       <div class="term-body">
         <div class="svc-title">Template Dashboard Build</div>
         <div class="svc-price-label">Starting price (USD)</div>
-        <div class="svc-price">$450 / project</div>
+        <div class="svc-price">$850 / project</div>
         <div class="svc-sched">3–5 day build · single delivery</div>
         <p class="svc-blurb">Same reporting logic, built inside Google Sheets or Excel instead of custom code. Charts, pivot views, and conditional flags your team can edit without touching a codebase.</p>
         <div class="label">Stack</div>
@@ -396,8 +443,9 @@ panel.selectAll(<span class="str">"rect"</span>).data(data).join(<span class="st
         <div class="addons">
           <div class="addon-row"><div>Auto-refresh via Apps Script<span class="addon-trigger">scheduled data pull vs. manual paste</span></div><div class="addon-price">+$150</div></div>
           <div class="addon-row"><div>Extra tab / metric view<span class="addon-trigger">2nd department or data set</span></div><div class="addon-price">+$100</div></div>
+          <div class="addon-row"><div>Large/multi-source dataset<span class="addon-trigger">&gt;5K rows or 2+ source files</span></div><div class="addon-price">+$150</div></div>
         </div>
-        <div class="inquire-line">+2 more — <a href="mailto:contact@accordanalyst.com">inquire for full pricing</a></div>
+        <div class="inquire-line">Full pricing above — <a href="mailto:contact@accordanalyst.com">questions? just ask</a></div>
         <div class="codebox">
           <div class="codebox-head"><span>flag_rules.txt</span><span class="lang">FX</span></div>
           <pre>=IF(ABS(C2-AVERAGE($C$2:C2))&gt;2*STDEV($C$2:C2),
@@ -406,6 +454,34 @@ panel.selectAll(<span class="str">"rect"</span>).data(data).join(<span class="st
       </div>
     </div>
 
+  </div>
+
+  <div class="contact-bar" style="flex-direction:column; align-items:flex-start; gap:14px;">
+    <div style="font-family:'Orbitron', sans-serif; font-weight:700; font-size:14px; color:var(--gold); letter-spacing:.03em;">// rush_fee_policy — project-based services only</div>
+    <p style="font-size:12.5px; color:var(--dim); margin:0; max-width:680px;">Surcharge scales with how much a service's standard schedule (listed above) gets compressed — applies only when that compression pushes work outside hours already reserved for client projects.</p>
+    <table style="width:100%; border-collapse:collapse; font-size:12px;">
+      <tr>
+        <th style="text-align:left; font-family:'Share Tech Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--dim); padding:6px 8px; border-bottom:1px solid var(--line);">Tier</th>
+        <th style="text-align:left; font-family:'Share Tech Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--dim); padding:6px 8px; border-bottom:1px solid var(--line);">Definition</th>
+        <th style="text-align:left; font-family:'Share Tech Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:.05em; color:var(--dim); padding:6px 8px; border-bottom:1px solid var(--line);">Surcharge</th>
+      </tr>
+      <tr>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); color:var(--text);">Expedited</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); color:var(--dim);">Sooner than standard, but still days or weeks out — not an emergency</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); color:var(--cyan); font-family:'Share Tech Mono', monospace;">+25% of total</td>
+      </tr>
+      <tr>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); color:var(--text);">Priority</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); color:var(--dim);">Roughly half the standard timeline or less</td>
+        <td style="padding:6px 8px; border-bottom:1px solid var(--line); color:var(--cyan); font-family:'Share Tech Mono', monospace;">+50% of total</td>
+      </tr>
+      <tr>
+        <td style="padding:6px 8px; color:var(--text);">Emergency (Under 72 Hours)</td>
+        <td style="padding:6px 8px; color:var(--dim);">Needed within 3 calendar days, regardless of project size</td>
+        <td style="padding:6px 8px; color:var(--cyan); font-family:'Share Tech Mono', monospace;">+125% of total + flat $300 Emergency Booking Fee</td>
+      </tr>
+    </table>
+    <p style="font-size:11px; color:var(--dim); margin:0;">No fee if the compressed deadline still fits inside already-reserved hours. Excludes retainer services — see their Priority SLA / Weekly Cadence add-ons instead. "Total" = base price + any selected add-ons. The $300 fee is flat, not scaled — it covers guaranteed loss of off-hours time regardless of project size.</p>
   </div>
 
   <div class="contact-bar">
@@ -423,7 +499,7 @@ panel.selectAll(<span class="str">"rect"</span>).data(data).join(<span class="st
   "name": "Accord Analyst — Alexis Kelly",
   "url": "https://accordanalyst.com/services.html",
   "description": "Freelance billing audit, revenue reconciliation, and embedded analytics services.",
-  "priceRange": "$450-$4000",
+  "priceRange": "$500-$4000",
   "makesOffer": [
     {
       "@type": "Offer",
@@ -463,14 +539,14 @@ panel.selectAll(<span class="str">"rect"</span>).data(data).join(<span class="st
     {
       "@type": "Offer",
       "name": "Bespoke Dashboard Build",
-      "price": "1500",
+      "price": "1800",
       "priceCurrency": "USD",
       "description": "Live, custom-coded interactive dashboard build with brand theming, delivered ready for client use."
     },
     {
       "@type": "Offer",
       "name": "Template Dashboard Build",
-      "price": "450",
+      "price": "850",
       "priceCurrency": "USD",
       "description": "Reporting dashboard built in Google Sheets or Excel using templates instead of custom code."
     }
