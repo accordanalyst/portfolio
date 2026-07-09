@@ -1,0 +1,31 @@
+<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="lmBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14100E"/>
+      <stop offset="100%" stop-color="#2A1116"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="220" fill="url(#lmBg)"/>
+
+  <line x1="30" y1="40" x2="370" y2="40" stroke="#7A1F2E" stroke-opacity="0.2" stroke-width="1"/>
+  <line x1="30" y1="90" x2="370" y2="90" stroke="#7A1F2E" stroke-opacity="0.2" stroke-width="1"/>
+  <line x1="30" y1="140" x2="370" y2="140" stroke="#7A1F2E" stroke-opacity="0.2" stroke-width="1"/>
+  <line x1="30" y1="190" x2="370" y2="190" stroke="#F7F3EE" stroke-opacity="0.4" stroke-width="1.2"/>
+
+  <!-- quits rate line, cooling from left to right -->
+  <polyline points="30,55 75,60 120,72 165,90 210,108 255,118 300,128 345,132"
+    fill="none" stroke="#7A1F2E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- hires rate line -->
+  <polyline points="30,42 75,48 120,60 165,78 210,98 255,108 300,118 345,124"
+    fill="none" stroke="#3B5FE0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+  <!-- layoffs rate line, gently rising -->
+  <polyline points="30,178 75,176 120,172 165,168 210,162 255,158 300,152 345,148"
+    fill="none" stroke="#C4901F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+
+  <!-- data point markers -->
+  <circle cx="345" cy="132" r="3.5" fill="#7A1F2E"/>
+  <circle cx="345" cy="124" r="3.5" fill="#3B5FE0"/>
+  <circle cx="345" cy="148" r="3.5" fill="#C4901F"/>
+
+  <text x="20" y="20" fill="#B33A4C" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5" font-weight="700">JOLTS · HIRES / QUITS / LAYOFFS</text>
+</svg>
