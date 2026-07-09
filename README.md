@@ -34,6 +34,7 @@ portfolio/
 ├── assets/
 │   └── powerbi-dashboard.png       ← Power BI export embedded in the SEC EDGAR case study
 └── projects/
+    ├── osrs-economy-detector.html         ← Case study: OSRS Grand Exchange anomaly detection — real data (live API)
     ├── sec-streaming-comps.html           ← Case study: SEC EDGAR cross-company comps — real data
     ├── labor-market-analytics.html        ← Case study: BLS JOLTS labor market analytics — real data
     ├── federal-recapture-gap.html         ← Case study: federal improper-payments recovery — real data
@@ -50,7 +51,7 @@ portfolio/
     ├── thumb/                              ⚠️ note: singular "thumb", not "thumbs"
     │   └── (SVG thumbnails for the four featured case studies)
     ├── old version/                        ← retired projects/versions of files
-    │   └── (revenue-reconciliation, revenue-anomaly-detector, freight-audit-dashboard)
+    │   └── (osrs-economy-detector, revenue-reconciliation, revenue-anomaly-detector, freight-audit-dashboard)
     └── showcase/                           ← images/SVGs for the three licensed-product carousels
         ├── dragrace_queens_age.svg
         ├── dragrace_outcome.svg
@@ -100,10 +101,11 @@ The site's entire color direction traces back to a still from **David Lynch's *B
 
 ## 📡 Real-Data Case Studies
 
-Three catalog entries are built entirely on real, sourced, public data instead of simulated datasets — each one replaced an earlier simulated case study on the homepage's featured grid:
+Four catalog entries are built entirely on real, sourced, public data instead of simulated datasets — each one replaced an earlier simulated case study on the homepage's featured grid:
 
 | Case Study | Real Data Source | Stack |
 |---|---|---|
+| **OSRS Grand Exchange Economy Anomaly Detector** (`osrs-economy-detector.html`) | OSRS Wiki Real-Time Prices API (live in-game market data) | Python · Pandas · Z-Score Detection · REST API · D3.js |
 | **Streaming Wars, Audited** (`sec-streaming-comps.html`) | SEC EDGAR 10-K filings (Netflix, Disney, WBD, Paramount) | Python · Pandas · NumPy · Power BI · D3.js |
 | **The Great Resignation Hangover, Audited** (`labor-market-analytics.html`) | BLS JOLTS via EPI's published compilation | R · STL decomposition · regression · Advanced Excel · D3.js |
 | **The Recapture Gap, Audited** (`federal-recapture-gap.html`) | PaymentAccuracy.gov, via a CRS congressional report | Advanced Excel · D3.js |
@@ -136,8 +138,8 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 ## 🧵 Recent changes
 
-- 📡 Replaced three simulated case studies with real-data rebuilds on the homepage's featured grid: **SEC EDGAR cross-company financials** (Python/Pandas/NumPy + Power BI), **BLS JOLTS labor market analytics** (R + Advanced Excel), and a **federal improper-payments recovery funnel** sourced from PaymentAccuracy.gov (Advanced Excel) — all three ship with a live D3.js chart embed.
-- 🗄️ Archived the three replaced case studies' thumbnails to `projects/old version/`. The simulated pages themselves are still live and linked from the full `projects.html` catalog — just dropped from the homepage's featured grid.
+- 📡 Replaced all four simulated case studies with real-data rebuilds on the homepage's featured grid: the **OSRS Grand Exchange Economy Anomaly Detector** (now pulling live prices from the OSRS Wiki API), **SEC EDGAR cross-company financials** (Python/Pandas/NumPy + Power BI), **BLS JOLTS labor market analytics** (R + Advanced Excel), and a **federal improper-payments recovery funnel** sourced from PaymentAccuracy.gov (Advanced Excel) — all four ship with a live D3.js chart embed.
+- 🗄️ Archived all four replaced case studies' old thumbnails to `projects/old version/` — including OSRS's, now that it's running on live data instead of its old engineered price history. The three simulated pages with new URLs (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`) are still live and linked from the full `projects.html` catalog, just dropped from the homepage's featured grid.
 - 🖼️ Added `/assets/` at the repo root for the first real dashboard screenshot embed (a Power BI export in the SEC EDGAR case study).
 - 🎨 Added **Midnight Curtain**, a blue-forward visual identity used exclusively for three new pure-D3.js visualization pieces: a **Sankey diagram** (revenue leak flow), a **heatmap + force-directed network graph** (carrier exposure, replacing an earlier treemap), and a **live animated data-join demo** (D3 enter/update/exit made visible).
 - 🍷 Promoted **Ledger Noir to canonical** — `index.html` and `resume.html` are now the real, permanent files (no more `-v1` suffix or parallel theme variants in production).
@@ -165,7 +167,7 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 ## 🧰 Tech stack
 
-`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (Streaming Wars Comps, Labor Market Analytics, Federal Recapture Gap, Revenue Anomaly Detector, Recovery Dashboard, Sankey, Carrier Exposure, Live Invoice Triage) · `d3-sankey` · `d3.forceSimulation` · Google Fonts
+`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (OSRS Economy Detector, Streaming Wars Comps, Labor Market Analytics, Federal Recapture Gap, Revenue Anomaly Detector, Recovery Dashboard, Sankey, Carrier Exposure, Live Invoice Triage) · `d3-sankey` · `d3.forceSimulation` · Google Fonts
 
 ---
 
