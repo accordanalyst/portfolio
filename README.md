@@ -50,7 +50,6 @@ portfolio/
     ├── thumb/                              ⚠️ note: singular "thumb", not "thumbs"
     │   └── (SVG thumbnails for the four featured case studies)
     ├── old version/                        ← retired projects/versions of files
-    │   └── (revenue-reconciliation, revenue-anomaly-detector, freight-audit-dashboard)
     └── showcase/                           ← images/SVGs for the three licensed-product carousels
         ├── dragrace_queens_age.svg
         ├── dragrace_outcome.svg
