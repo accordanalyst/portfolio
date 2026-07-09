@@ -153,10 +153,8 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 ## ⚠️ Known gotchas (read before you redeploy)
 
-- **Folder name is `thumb`, singular**, and the licensed-product screenshots live in `projects/showcase/` — mismatch either and images will 404 silently.
 - **`projects/old version/`** It's an archive.
 - Unfeatured case studies (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`, `pre-audit/post-audit dashboard`) are **not deleted** — they're still linked from `projects.html`'s full catalog, just dropped from the homepage's featured section.
-- **GitHub Pages → Settings → Actions → General → Workflow permissions** must be **"Read and write permissions."** Read-only here makes `build` succeed while `deploy` fails silently — the live site looks unchanged even after a clean-looking push.
 - **DNS is on Porkbun** (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
 - **D3 loads from a CDN** (`cdnjs.cloudflare.com`) on every D3-based page. Fine for real visitors; if you ever test these files in a sandboxed/offline environment, D3 won't load and every chart will silently render empty.
 - Three showcase pages (`dragrace-`, `fuel-`, `finance-showcase.html`) mix **SVG and PNG** images depending on whether a real chart existed to extract vector markup from — HTML tables/lists (like "Hall of Fame" or "Regional Snapshot") only ever have PNG versions.
