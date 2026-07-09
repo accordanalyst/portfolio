@@ -1,0 +1,19 @@
+agency,program,error_rate_pct,improper_payments_millions
+Department of Agriculture,Emergency Conservation Program,55.5,74
+Department of Agriculture,Child and Adult Care Food Program,10.5,446
+Department of Agriculture,Noninsured Crop Disaster Assistance Program,10.6,20
+Department of Agriculture,Supplemental Nutrition Assistance Program,10.9,10221
+Department of Defense,Travel Pay - Army (DTS),11.2,285
+Department of Defense,Travel Pay - Other Defense Organizations (DTS),11.0,46
+Department of Defense,Travel Pay - Other Defense Organizations (IATS),13.1,2
+Department of Health and Human Services,Head Start,10.3,1207
+Department of Housing and Urban Development,Project-Based Section 8,26.4,4347
+Department of Labor,Federal-State Unemployment Insurance Program,14.9,5599
+Department of the Treasury,Additional Child Tax Credit,13.6,4550
+Department of the Treasury,American Opportunity Tax Credit,30.7,1536
+Department of the Treasury,Earned Income Tax Credit,32.7,21146
+Department of the Treasury,Refundable Premium Assistance Tax Credit,31.6,829
+Small Business Administration,Paycheck Protection Program Loan Forgiveness,19.2,58
+Small Business Administration,Paycheck Protection Program Loan Guaranty Purchases,13.3,186
+Small Business Administration,Shuttered Venue Operators Grant Program,68.9,10069
+Social Security Administration,Supplemental Security Income,11.6,7329
