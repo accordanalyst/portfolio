@@ -242,7 +242,7 @@
           <div class="label">Stack</div>
           <div class="flags">
             <span class="flag">python</span><span class="flag">sql</span><span class="flag">excel/sheets</span><span class="flag">slack (async)</span>
-            <span class="flag cond">tableau/power-bi</span><span class="flag cond">zapier</span><span class="flag cond">live meetings</span>
+            <span class="flag cond">power-bi</span><span class="flag cond">zapier</span><span class="flag cond">live meetings</span>
           </div>
           <div class="label">Buyers</div>
           <div class="industries"><span>Startups needing embedded analytics</span><span>E-commerce scaling ops</span><span>Small logistics companies</span></div>
@@ -282,7 +282,7 @@ send_digest(pulse, channel=<span class="str">"#pulse"</span>)</pre>
         <div class="industries"><span>SaaS billing</span><span>E-commerce finance</span><span>Freight &amp; 3PL</span></div>
         <div class="label">Add-ons</div>
         <div class="addons">
-          <div class="addon-row"><div>SQL/warehouse connection<span class="addon-trigger">read-only DB access vs. flat file</span></div><div class="addon-price">+$300</div></div>
+          <div class="addon-row"><div>Read-Only DB Access<span class="addon-trigger">read-only DB access vs. flat file</span></div><div class="addon-price">+$300</div></div>
           <div class="addon-row"><div>Multi-entity consolidation<span class="addon-trigger">2+ entities reconciled together</span></div><div class="addon-price">+$400</div></div>
         </div>
         <div class="inquire-line">+3 more — <a href="mailto:contact@accordanalyst.com">inquire for full pricing</a></div>
@@ -314,7 +314,7 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
         <div class="label">Add-ons</div>
         <div class="addons">
           <div class="addon-row"><div>Slack delivery<span class="addon-trigger">client provides a webhook URL</span></div><div class="addon-price">+$150/mo</div></div>
-          <div class="addon-row"><div>Live SQL connection<span class="addon-trigger">persistent DB access vs. manual drop</span></div><div class="addon-price">+$200/mo</div></div>
+          <div class="addon-row"><div>Persistent Read-Only DB Access<span class="addon-trigger">persistent DB access vs. manual drop</span></div><div class="addon-price">+$200/mo</div></div>
         </div>
         <div class="inquire-line">+2 more — <a href="mailto:contact@accordanalyst.com">inquire for full pricing</a></div>
         <div class="codebox">
@@ -339,7 +339,7 @@ flagged = invoices[z.abs() &gt;= <span class="str">2.5</span>]</pre>
         <div class="label">Stack</div>
         <div class="flags">
           <span class="flag">python</span><span class="flag">pandas</span><span class="flag">statistics</span>
-          <span class="flag cond">sql</span><span class="flag cond">tableau/power-bi</span><span class="flag cond">api pulls (stripe, ads)</span>
+          <span class="flag cond">sql</span><span class="flag cond">power-bi (if dashboard)</span><span class="flag cond">api pulls (stripe, ads)</span>
         </div>
         <div class="label">Buyers</div>
         <div class="industries"><span>Marketing agencies</span><span>SaaS RevOps</span><span>DTC/subscription brands</span></div>
@@ -482,6 +482,13 @@ panel.selectAll(<span class="str">"rect"</span>).data(data).join(<span class="st
       </tr>
     </table>
     <p style="font-size:11px; color:var(--dim); margin:0;">No fee if the compressed deadline still fits inside already-reserved hours. Excludes retainer services — see their Priority SLA / Weekly Cadence add-ons instead. "Total" = base price + any selected add-ons. The $300 fee is flat, not scaled — it covers guaranteed loss of off-hours time regardless of project size.</p>
+  </div>
+
+  <div class="contact-bar" style="flex-direction:column; align-items:flex-start; gap:10px;">
+    <div style="font-family:'Orbitron', sans-serif; font-weight:700; font-size:14px; color:var(--cyan); letter-spacing:.03em;">// tooling_policy — interactive dashboard add-ons</div>
+    <p style="font-size:12.5px; color:var(--dim); margin:0; max-width:680px;">Power BI is the standard tool for every "interactive dashboard" add-on (Revenue Leak Audit, Data Audit-as-a-Service) — no software cost on my end, so the add-on price stands as listed.</p>
+    <p style="font-size:12.5px; color:var(--dim); margin:0; max-width:680px;">Tableau is available only if the client supplies an active Tableau Creator license/subscription covering the full engagement, at no cost to me — I don't maintain my own Tableau subscription.</p>
+    <p style="font-size:12.5px; color:var(--dim); margin:0; max-width:680px;">For retainer engagements ([Accord] Analyst-On-Demand): if Tableau is required, the client provides continuous access for as long as it's needed — a one-time grant doesn't cover an ongoing engagement.</p>
   </div>
 
   <div class="contact-bar">
