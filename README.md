@@ -31,11 +31,16 @@ portfolio/
 ├── ai-blocker.js                   ← Site defense script (see Foxglove 🦊)
 ├── update-blocklist.py
 ├── services.html
+├── assets/
+│   └── powerbi-dashboard.png       ← Power BI export embedded in the SEC EDGAR case study
 └── projects/
+    ├── sec-streaming-comps.html           ← Case study: SEC EDGAR cross-company comps — real data
+    ├── labor-market-analytics.html        ← Case study: BLS JOLTS labor market analytics — real data
+    ├── federal-recapture-gap.html         ← Case study: federal improper-payments recovery — real data
     ├── intl-freight-audit.html            ← Case study: Excel audit automation
-    ├── revenue-reconciliation.html        ← Case study: SQL query set
-    ├── revenue-anomaly-detector.html      ← Case study: Python anomaly detection
-    ├── freight-audit-dashboard.html       ← Case study: Excel + D3 dashboard
+    ├── revenue-reconciliation.html        ← Case study: SQL query set (unfeatured — see below)
+    ├── revenue-anomaly-detector.html      ← Case study: Python anomaly detection (unfeatured — see below)
+    ├── freight-audit-dashboard.html       ← Case study: Excel + D3 dashboard (unfeatured — see below)
     ├── revenue-leak-sankey.html           ← Midnight Curtain: Sankey diagram
     ├── carrier-exposure-network.html      ← Midnight Curtain: heatmap + force graph
     ├── live-invoice-triage.html           ← Midnight Curtain: animated data join
@@ -43,7 +48,9 @@ portfolio/
     ├── finance-showcase.html              ← Reskin demo of the drag race template
     ├── fuel-showcase.html                 ← Licensed product preview (professional identity)
     ├── thumb/                              ⚠️ note: singular "thumb", not "thumbs"
-    │   └── (SVG thumbnails for the four free case studies)
+    │   └── (SVG thumbnails for the four featured case studies)
+    ├── old version/                        ← retired projects/versions of files
+    │   └── (revenue-reconciliation, revenue-anomaly-detector, freight-audit-dashboard)
     └── showcase/                           ← images/SVGs for the three licensed-product carousels
         ├── dragrace_queens_age.svg
         ├── dragrace_outcome.svg
@@ -91,13 +98,17 @@ The site's entire color direction traces back to a still from **David Lynch's *B
 
 ---
 
-## 🧭 Live Search + URL State
+## 📡 Real-Data Case Studies
 
-`projects.html` grew to 10 entries across three categories and turned into an annoying long-scroll page — so there is only one new and improved version to utilize.
+Three catalog entries are built entirely on real, sourced, public data instead of simulated datasets — each one replaced an earlier simulated case study on the homepage's featured grid:
 
-| File | Pattern | What it demonstrates |
+| Case Study | Real Data Source | Stack |
 |---|---|---|
-| `projects-v3-search.html` | Live search + URL state | The most involved of the three — a small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
+| **Streaming Wars, Audited** (`sec-streaming-comps.html`) | SEC EDGAR 10-K filings (Netflix, Disney, WBD, Paramount) | Python · Pandas · NumPy · Power BI · D3.js |
+| **The Great Resignation Hangover, Audited** (`labor-market-analytics.html`) | BLS JOLTS via EPI's published compilation | R · STL decomposition · regression · Advanced Excel · D3.js |
+| **The Recapture Gap, Audited** (`federal-recapture-gap.html`) | PaymentAccuracy.gov, via a CRS congressional report | Advanced Excel · D3.js |
+
+Each ships with a live, embedded D3.js chart and cites its source data directly on the page. The Power BI and Excel dashboard layers are being built out incrementally — the SEC EDGAR case study currently has a real exported Power BI screenshot embedded (`/assets/powerbi-dashboard.png`); the other two still show a placeholder pending their Excel builds.
 
 ---
 
@@ -113,8 +124,21 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 ---
 
+## 🧭 Live Search + URL State
+
+`projects.html` grew to 10 entries across three categories and turned into an annoying long-scroll page — so there is only one new and improved version to utilize.
+
+| File | Pattern | What it demonstrates |
+|---|---|---|
+| `projects-v3-search.html` | Live search + URL state | The most involved of the three — a small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
+
+---
+
 ## 🧵 Recent changes
 
+- 📡 Replaced three simulated case studies with real-data rebuilds on the homepage's featured grid: **SEC EDGAR cross-company financials** (Python/Pandas/NumPy + Power BI), **BLS JOLTS labor market analytics** (R + Advanced Excel), and a **federal improper-payments recovery funnel** sourced from PaymentAccuracy.gov (Advanced Excel) — all three ship with a live D3.js chart embed.
+- 🗄️ Archived the three replaced case studies' thumbnails to `projects/old version/`. The simulated pages themselves are still live and linked from the full `projects.html` catalog — just dropped from the homepage's featured grid.
+- 🖼️ Added `/assets/` at the repo root for the first real dashboard screenshot embed (a Power BI export in the SEC EDGAR case study).
 - 🎨 Added **Midnight Curtain**, a blue-forward visual identity used exclusively for three new pure-D3.js visualization pieces: a **Sankey diagram** (revenue leak flow), a **heatmap + force-directed network graph** (carrier exposure, replacing an earlier treemap), and a **live animated data-join demo** (D3 enter/update/exit made visible).
 - 🍷 Promoted **Ledger Noir to canonical** — `index.html` and `resume.html` are now the real, permanent files (no more `-v1` suffix or parallel theme variants in production).
 - 🎬 Added three **Licensed Product** showcases (Drag Race, Fuel Intelligence, and a Finance reskin demo of the Drag Race template) — screenshot/SVG carousels only, protecting the actual sellable products.
@@ -130,6 +154,8 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 ## ⚠️ Known gotchas (read before you redeploy)
 
 - **Folder name is `thumb`, singular**, and the licensed-product screenshots live in `projects/showcase/` — mismatch either and images will 404 silently.
+- **`projects/old version/` has a literal space in the folder name.** It's an archive, not something any live page links into — but if you ever do reference it, that space needs `%20` or the link breaks.
+- Unfeatured case studies (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`) are **not deleted** — they're still linked from `projects.html`'s full catalog, just dropped from the homepage's featured grid. Don't be surprised to find them if you're auditing all live URLs.
 - **GitHub Pages → Settings → Actions → General → Workflow permissions** must be **"Read and write permissions."** Read-only here makes `build` succeed while `deploy` fails silently — the live site looks unchanged even after a clean-looking push.
 - **DNS is on Porkbun**, not Cloudflare. A wildcard (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
 - **D3 loads from a CDN** (`cdnjs.cloudflare.com`) on every D3-based page. Fine for real visitors; if you ever test these files in a sandboxed/offline environment, D3 won't load and every chart will silently render empty.
@@ -139,7 +165,7 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 ## 🧰 Tech stack
 
-`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (Revenue Anomaly Detector, Recovery Dashboard, Sankey, Carrier Exposure, Live Invoice Triage) · `d3-sankey` · `d3.forceSimulation` · Google Fonts
+`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (Streaming Wars Comps, Labor Market Analytics, Federal Recapture Gap, Revenue Anomaly Detector, Recovery Dashboard, Sankey, Carrier Exposure, Live Invoice Triage) · `d3-sankey` · `d3.forceSimulation` · Google Fonts
 
 ---
 
