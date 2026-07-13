@@ -24,15 +24,15 @@ This repository powers **[accordanalyst.com](https://www.accordanalyst.com/)** �
 portfolio/
 ├── index.html                     ← Home / Portfolio (Ledger Noir — canonical)
 ├── resume.html                    ← Full résumé (Skills, Experience, Education, Volunteer)
-├── projects.html        ← Catalog redesign: live search + URL state
+├── projects.html                  ← Catalog redesign: live search + URL state
 ├── accordanalyst-banner.svg       ← Animated boot-sequence README banner
 ├── CNAME
 ├── robots.txt
-├── ai-blocker.js                   ← Site defense script (see Foxglove 🦊)
+├── ai-blocker.js                  ← Site defense script (see Foxglove 🦊)
 ├── update-blocklist.py
 ├── services.html
 ├── assets/
-│   └── powerbi-dashboard.png       ← Power BI export embedded in the SEC EDGAR case study
+│   └── powerbi-dashboard.png      ← Power BI export embedded in the SEC EDGAR case study
 └── projects/
     ├── osrs-economy-detector.html         ← Case study: OSRS Grand Exchange anomaly detection — real data (live API)
     ├── sec-streaming-comps.html           ← Case study: SEC EDGAR cross-company comps — real data
@@ -48,10 +48,9 @@ portfolio/
     ├── dragrace-showcase.html             ← Licensed product preview (glam identity)
     ├── finance-showcase.html              ← Reskin demo of the drag race template
     ├── fuel-showcase.html                 ← Licensed product preview (professional identity)
-    ├── thumb/                              ⚠️ note: singular "thumb", not "thumbs"
+    ├── thumb/                              
     │   └── (SVG thumbnails for the four featured case studies)
     ├── old version/                        ← retired projects/versions of files
-    │   └── (osrs-economy-detector, revenue-reconciliation, revenue-anomaly-detector, freight-audit-dashboard)
     └── showcase/                           ← images/SVGs for the three licensed-product carousels
         ├── dragrace_queens_age.svg
         ├── dragrace_outcome.svg
@@ -132,7 +131,7 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 | File | Pattern | What it demonstrates |
 |---|---|---|
-| `projects-v3-search.html` | Live search + URL state | The most involved of the three — a small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
+| `projects.html` | Live search + URL state | A small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
 
 ---
 
@@ -142,7 +141,6 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 - 🗄️ Archived all four replaced case studies' old thumbnails to `projects/old version/` — including OSRS's, now that it's running on live data instead of its old engineered price history. The three simulated pages with new URLs (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`) are still live and linked from the full `projects.html` catalog, just dropped from the homepage's featured grid.
 - 🖼️ Added `/assets/` at the repo root for the first real dashboard screenshot embed (a Power BI export in the SEC EDGAR case study).
 - 🎨 Added **Midnight Curtain**, a blue-forward visual identity used exclusively for three new pure-D3.js visualization pieces: a **Sankey diagram** (revenue leak flow), a **heatmap + force-directed network graph** (carrier exposure, replacing an earlier treemap), and a **live animated data-join demo** (D3 enter/update/exit made visible).
-- 🍷 Promoted **Ledger Noir to canonical** — `index.html` and `resume.html` are now the real, permanent files (no more `-v1` suffix or parallel theme variants in production).
 - 🎬 Added three **Licensed Product** showcases (Drag Race, Fuel Intelligence, and a Finance reskin demo of the Drag Race template) — screenshot/SVG carousels only, protecting the actual sellable products.
 - 🧭 Rebuilt `projects.html` into **the live search + URL state** to solve growth of the catalog as it passed 10 entries.
 - 🎞️ Added an animated SVG banner (boot-sequence style: fade-in → type-in → progress bar → "system ready") for the top of this README.
@@ -155,11 +153,9 @@ Each shows an auto-advancing screenshot carousel (some frames are extracted live
 
 ## ⚠️ Known gotchas (read before you redeploy)
 
-- **Folder name is `thumb`, singular**, and the licensed-product screenshots live in `projects/showcase/` — mismatch either and images will 404 silently.
-- **`projects/old version/` has a literal space in the folder name.** It's an archive, not something any live page links into — but if you ever do reference it, that space needs `%20` or the link breaks.
-- Unfeatured case studies (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`) are **not deleted** — they're still linked from `projects.html`'s full catalog, just dropped from the homepage's featured grid. Don't be surprised to find them if you're auditing all live URLs.
-- **GitHub Pages → Settings → Actions → General → Workflow permissions** must be **"Read and write permissions."** Read-only here makes `build` succeed while `deploy` fails silently — the live site looks unchanged even after a clean-looking push.
-- **DNS is on Porkbun**, not Cloudflare. A wildcard (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
+- **`projects/old version/`** It's an archive.
+- Unfeatured case studies (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`, `pre-audit/post-audit dashboard`) are **not deleted** — they're still linked from `projects.html`'s full catalog, just dropped from the homepage's featured section.
+- **DNS is on Porkbun** (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
 - **D3 loads from a CDN** (`cdnjs.cloudflare.com`) on every D3-based page. Fine for real visitors; if you ever test these files in a sandboxed/offline environment, D3 won't load and every chart will silently render empty.
 - Three showcase pages (`dragrace-`, `fuel-`, `finance-showcase.html`) mix **SVG and PNG** images depending on whether a real chart existed to extract vector markup from — HTML tables/lists (like "Hall of Fame" or "Regional Snapshot") only ever have PNG versions.
 
