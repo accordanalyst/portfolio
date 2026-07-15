@@ -16,154 +16,69 @@
 
 ---
 
+## 🧭 Quick Links
+
+- **[Resume](https://www.accordanalyst.com/resume.html)** — full résumé page: skills, experience, education, volunteer work
+- **[All Projects](https://www.accordanalyst.com/projects.html)** — searchable, filterable catalog of every case study and demo
+- **[Services](https://www.accordanalyst.com/services.html)** — freelance offerings and pricing
+- **[Site Map](./SITEMAP.md)** — full file-by-file repo breakdown
+
+---
+
 ## 🗂️ What's in this repo
 
-This repository powers **[accordanalyst.com](https://www.accordanalyst.com/)** — a portfolio site, a standalone resume page, a project catalog spanning three visual identities, and several standalone D3.js products. No frameworks, no build step — hand-built HTML/CSS/JS, deployed straight through GitHub Pages.
+This repository powers **[accordanalyst.com](https://www.accordanalyst.com/)** — a portfolio site, a standalone resume page, a project catalog, and several standalone D3.js products. No frameworks, no build step — hand-built HTML/CSS/JS, deployed straight through GitHub Pages.
 
-```
-portfolio/
-├── index.html                     ← Home / Portfolio (Ledger Noir — canonical)
-├── resume.html                    ← Full résumé (Skills, Experience, Education, Volunteer)
-├── projects.html                  ← Catalog redesign: live search + URL state
-├── accordanalyst-banner.svg       ← Animated boot-sequence README banner
-├── CNAME
-├── robots.txt
-├── ai-blocker.js                  ← Site defense script (see Foxglove 🦊)
-├── update-blocklist.py
-├── services.html
-├── assets/
-│   └── powerbi-dashboard.png      ← Power BI export embedded in the SEC EDGAR case study
-└── projects/
-    ├── osrs-economy-detector.html         ← Case study: OSRS Grand Exchange anomaly detection — real data (live API)
-    ├── sec-streaming-comps.html           ← Case study: SEC EDGAR cross-company comps — real data
-    ├── labor-market-analytics.html        ← Case study: BLS JOLTS labor market analytics — real data
-    ├── federal-recapture-gap.html         ← Case study: federal improper-payments recovery — real data
-    ├── intl-freight-audit.html            ← Case study: Excel audit automation
-    ├── revenue-reconciliation.html        ← Case study: SQL query set (unfeatured — see below)
-    ├── revenue-anomaly-detector.html      ← Case study: Python anomaly detection (unfeatured — see below)
-    ├── freight-audit-dashboard.html       ← Case study: Excel + D3 dashboard (unfeatured — see below)
-    ├── revenue-leak-sankey.html           ← Midnight Curtain: Sankey diagram
-    ├── carrier-exposure-network.html      ← Midnight Curtain: heatmap + force graph
-    ├── live-invoice-triage.html           ← Midnight Curtain: animated data join
-    ├── dragrace-showcase.html             ← Licensed product preview (glam identity)
-    ├── finance-showcase.html              ← Reskin demo of the drag race template
-    ├── fuel-showcase.html                 ← Licensed product preview (professional identity)
-    ├── thumb/                              
-    │   └── (SVG thumbnails for the four featured case studies)
-    ├── old version/                        ← retired projects/versions of files
-    └── showcase/                           ← images/SVGs for the three licensed-product carousels
-        ├── dragrace_queens_age.svg
-        ├── dragrace_outcome.svg
-        ├── dragrace_lipsync.svg
-        ├── dragrace_hall_of_fame.png        (no chart to extract — HTML table)
-        ├── fuel_trend.svg
-        ├── fuel_volatility.svg
-        ├── fuel_regional.png                (no chart to extract — HTML list)
-        ├── finance_deal_volume.png
-        ├── finance_revenue_mix.png
-        └── finance_top_products.png
-```
-
----
-
-## 🍷 Design system — Ledger Noir
-
-The core site runs on a single visual identity: **Ledger Noir** — near-black and ivory, with a single garnet/wine accent standing in for every highlight, link, and rule on the page. Slab-serif headings (Zilla Slab), clean body text (Inter), monospace for dates and labels (IBM Plex Mono).
-
-| Token | Role | Light mode | Dark mode |
-|---|---|---|---|
-| `--bg` / `--surface` | Page & card background | `#F7F3EE` ivory | `#0D0908` near-black |
-| `--heading` / `--nav-bg` | Headings, nav bar | `#14100E` | `#0A0706` |
-| `--accent` | Links, highlights, rules | `#7A1F2E` garnet | `#B33A4C` |
-| `--accent2` | Secondary depth accent | `#3D1015` deep wine | `#7A1F2E` |
-
-`index.html` and `resume.html` are the canonical, promoted versions of this theme — no `-v1` suffix, no other theme variants live in production.
-
-### Two additional identities live only inside `/projects/`
-
-- **Midnight Curtain** (navy/royal blue/periwinkle) — used exclusively for the three pure-D3 visualization pieces. A deliberately different, cooler palette from Ledger Noir, chosen to visually separate "portfolio content" from "technique demonstration."
-- **Velvet Exchange** (blue + periwinkle + purple + crimson) — used only on the finance reskin demo, to prove the drag race template can carry an entirely different color identity without any code changes.
-
----
-
-## 🎨 Palette credit
-
-<div align="center">
-
-<img src="https://img.shields.io/badge/-000000?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-12234F?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-1E3A8A?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-3B5FE0?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-6B7FE0?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-5B9BD9?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-4A2F6B?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-9E2A3D?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-6E1F2C?style=flat-square" width="40"/> <img src="https://img.shields.io/badge/-3D1015?style=flat-square" width="40"/>
-
-</div>
-
-The site's entire color direction traces back to a still from **David Lynch's *Blue Velvet* (1986)** — sourced from the Instagram account **[@colorpalette.cinema](https://www.instagram.com/colorpalette.cinema/)**. Ledger Noir distills that palette to its shadow-and-wine notes; Midnight Curtain and Velvet Exchange pull from the blue/purple/crimson side of the same still instead. Full credit to Color Palette Cinema for the original extraction.
+Full file-by-file breakdown lives in **[SITEMAP.md](./SITEMAP.md)**.
 
 ---
 
 ## 📡 Real-Data Case Studies
 
-Four catalog entries are built entirely on real, sourced, public data instead of simulated datasets — each one replaced an earlier simulated case study on the homepage's featured grid:
+Five catalog entries run on real, sourced, public data instead of simulated datasets — each ships with a live, embedded D3.js chart and cites its source directly on the page.
 
 | Case Study | Real Data Source | Stack |
 |---|---|---|
-| **OSRS Grand Exchange Economy Anomaly Detector** (`osrs-economy-detector.html`) | OSRS Wiki Real-Time Prices API (live in-game market data) | Python · Pandas · Z-Score Detection · REST API · D3.js |
-| **Streaming Wars, Audited** (`sec-streaming-comps.html`) | SEC EDGAR 10-K filings (Netflix, Disney, WBD, Paramount) | Python · Pandas · NumPy · Power BI · D3.js |
-| **The Great Resignation Hangover, Audited** (`labor-market-analytics.html`) | BLS JOLTS via EPI's published compilation | R · STL decomposition · regression · Advanced Excel · D3.js |
-| **The Recapture Gap, Audited** (`federal-recapture-gap.html`) | PaymentAccuracy.gov, via a CRS congressional report | Advanced Excel · D3.js |
-
-Each ships with a live, embedded D3.js chart and cites its source data directly on the page. The Power BI and Excel dashboard layers are being built out incrementally — the SEC EDGAR case study currently has a real exported Power BI screenshot embedded (`/assets/powerbi-dashboard.png`); the other two still show a placeholder pending their Excel builds.
-
----
-
-## 🎬 Licensed Products
-
-Three of the catalog entries are **preview walkthroughs, not live tools** — active products still available for licensing:
-
-- **The Main Stage** — a glam-styled Drag Race stats dashboard (14 seasons, entertainment data)
-- **U.S. Diesel Price Intelligence Dashboard** — a professional fuel-surcharge tool for freight/transportation teams
-- **Quarterly Revenue Intelligence** — a finance-sector reskin of The Main Stage's own template, proving the underlying dashboard code is genuinely reusable, not a one-off
-
-Each shows an auto-advancing screenshot carousel (some frames are extracted live SVG chart markup, not raster images, for genuine infinite-resolution crispness) instead of the working dashboard, since giving away a fully functional copy would undercut the actual product.
+| [**Portfolio Capacity Radar**](projects/portfolio-capacity-radar.html) | GitHub REST/Search API (live repo data) | Python · GitHub API · AI-Integrated Workflow (Claude) · D3.js |
+| [**OSRS Grand Exchange Economy Anomaly Detector**](projects/osrs-economy-detector.html) | OSRS Wiki Real-Time Prices API (live in-game market data) | Python · Pandas · Z-Score Detection · REST API · D3.js |
+| [**Streaming Wars, Audited**](projects/sec-streaming-comps.html) | SEC EDGAR 10-K filings (Netflix, Disney, WBD, Paramount) | Python · Pandas · NumPy · Power BI · D3.js |
+| [**The Great Resignation Hangover, Audited**](projects/labor-market-analytics.html) | BLS JOLTS via EPI's published compilation | R · STL decomposition · regression · Advanced Excel · D3.js |
+| [**The Recapture Gap, Audited**](projects/federal-recapture-gap.html) | PaymentAccuracy.gov, via a CRS congressional report | Advanced Excel · D3.js |
 
 ---
 
-## 🧭 Live Search + URL State
+## 🍷 Design System
 
-`projects.html` grew to 10 entries across three categories and turned into an annoying long-scroll page — so there is only one new and improved version to utilize.
+**Ledger Noir** is the core identity — near-black and ivory with a single garnet/wine accent, slab-serif headings (Zilla Slab), Inter body text, IBM Plex Mono for labels. `index.html` and `resume.html` are the only canonical, production versions.
 
-| File | Pattern | What it demonstrates |
-|---|---|---|
-| `projects.html` | Live search + URL state | A small state-object + render-function architecture, real-time text search, category pills that combine with search, and the URL hash updates as you filter, so any filtered view is a shareable link |
+**Palette credit:** the color direction traces back to a still from David Lynch's *Blue Velvet* (1986), via [@colorpalette.cinema](https://www.instagram.com/colorpalette.cinema/). Ledger Noir keeps the shadow-and-wine notes; the two identities below pull the blue/purple/crimson side of the same still.
 
----
+<div align="center">
+<img src="https://img.shields.io/badge/-000000?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-12234F?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-1E3A8A?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-3B5FE0?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-6B7FE0?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-5B9BD9?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-4A2F6B?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-9E2A3D?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-6E1F2C?style=flat-square" width="30"/> <img src="https://img.shields.io/badge/-3D1015?style=flat-square" width="30"/>
+</div>
 
-## 🧵 Recent changes
-
-- 📡 Replaced all four simulated case studies with real-data rebuilds on the homepage's featured grid: the **OSRS Grand Exchange Economy Anomaly Detector** (now pulling live prices from the OSRS Wiki API), **SEC EDGAR cross-company financials** (Python/Pandas/NumPy + Power BI), **BLS JOLTS labor market analytics** (R + Advanced Excel), and a **federal improper-payments recovery funnel** sourced from PaymentAccuracy.gov (Advanced Excel) — all four ship with a live D3.js chart embed.
-- 🗄️ Archived all four replaced case studies' old thumbnails to `projects/old version/` — including OSRS's, now that it's running on live data instead of its old engineered price history. The three simulated pages with new URLs (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`) are still live and linked from the full `projects.html` catalog, just dropped from the homepage's featured grid.
-- 🖼️ Added `/assets/` at the repo root for the first real dashboard screenshot embed (a Power BI export in the SEC EDGAR case study).
-- 🎨 Added **Midnight Curtain**, a blue-forward visual identity used exclusively for three new pure-D3.js visualization pieces: a **Sankey diagram** (revenue leak flow), a **heatmap + force-directed network graph** (carrier exposure, replacing an earlier treemap), and a **live animated data-join demo** (D3 enter/update/exit made visible).
-- 🎬 Added three **Licensed Product** showcases (Drag Race, Fuel Intelligence, and a Finance reskin demo of the Drag Race template) — screenshot/SVG carousels only, protecting the actual sellable products.
-- 🧭 Rebuilt `projects.html` into **the live search + URL state** to solve growth of the catalog as it passed 10 entries.
-- 🎞️ Added an animated SVG banner (boot-sequence style: fade-in → type-in → progress bar → "system ready") for the top of this README.
-- 🐛 Fixed a recurring **dark-mode contrast bug** (card headers pulling background from a text-color token that flips light in dark mode) across the homepage, project catalog, and all case studies.
-- 🐛 Fixed a **thumbnail aspect-ratio bug** causing side-cropping on Featured Project cards.
-- 🐛 Fixed a **heatmap clipping bug** (rotated axis labels swinging outside the SVG viewBox) and substantially reworked its visual design — three-stop color scale, adaptive text contrast per cell, a spotlight on the highest-value cell.
-- ✍️ Updated hero copy, marquee text, and title to **"Business Intelligence Analyst"**.
+**Also in `/projects/`:** **Midnight Curtain** (navy/periwinkle) — the three pure-D3 visualization pieces, kept visually distinct from portfolio content. **Velvet Exchange** (blue/purple/crimson) — the finance reskin demo only, proving the template carries a new identity with zero code changes.
 
 ---
 
-## ⚠️ Known gotchas (read before you redeploy)
+## 🧵 Portfolio Patch Notes 0.8
 
-- **`projects/old version/`** It's an archive.
-- Unfeatured case studies (`revenue-reconciliation`, `revenue-anomaly-detector`, `freight-audit-dashboard`, `pre-audit/post-audit dashboard`) are **not deleted** — they're still linked from `projects.html`'s full catalog, just dropped from the homepage's featured section.
-- **DNS is on Porkbun** (`*.accordanalyst.com`) forwarding rule already handles `www` — any new subdomain needs its own explicit DNS record to take priority over it.
-- **D3 loads from a CDN** (`cdnjs.cloudflare.com`) on every D3-based page. Fine for real visitors; if you ever test these files in a sandboxed/offline environment, D3 won't load and every chart will silently render empty.
-- Three showcase pages (`dragrace-`, `fuel-`, `finance-showcase.html`) mix **SVG and PNG** images depending on whether a real chart existed to extract vector markup from — HTML tables/lists (like "Hall of Fame" or "Regional Snapshot") only ever have PNG versions.
+| Date | Update |
+|---|---|
+| Jun 21 | [Initial launch (via Netlify)](https://github.com/accordanalyst/portfolio/commit/f154c1c29c99eb5ceb160103a311fe0a613540ea) |
+| Jun 23 | [First README added](https://github.com/accordanalyst/portfolio/commit/0c52baa21ebd28b83befd06c3b50f70e3cbb4197) |
+| Jun 27 | [First wave of case studies](https://github.com/accordanalyst/portfolio/commit/73239cf809c577771fed655c28affbff775ffadf) — freight audit dashboard, Intl freight audit, revenue anomaly detector, revenue reconciliation |
+| Jul 1–4 | [Domain/CNAME reconfiguration](https://github.com/accordanalyst/portfolio/commit/b3ce4c8262924c0fb8b70129357c7cfb084ab58c) |
+| Jul 5 | [Major redesign](https://github.com/accordanalyst/portfolio/commit/85e5123230eef238da91f53c61cffe0c96daac5c) — new Projects page, Resume page, JS-driven catalog, SVG thumbnail swap, Thumbs folder, animated README banner |
+| Jul 6 | [Foxglove demo page added](https://github.com/accordanalyst/portfolio/commit/4f061cc6041616897a2ec3ac077c0778121773c3) |
+| Jul 8 | [Services page launched](https://github.com/accordanalyst/portfolio/commit/8677168e7e8407cee804813cc577301e1376fdc4) |
+| Jul 9 | [New project added; site facelift and refresh](https://github.com/accordanalyst/portfolio/commit/d76caf1ac99dc12dae99a1ff5789b140f3987462) |
 
 ---
 
-## 🧰 Tech stack
+## 🧰 Tech Stack
 
-`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` (OSRS Economy Detector, Streaming Wars Comps, Labor Market Analytics, Federal Recapture Gap, Revenue Anomaly Detector, Recovery Dashboard, Sankey, Carrier Exposure, Live Invoice Triage) · `d3-sankey` · `d3.forceSimulation` · Google Fonts
+`HTML5` · `CSS3 (custom properties, no framework)` · `Vanilla JavaScript` · `D3.js` · `d3-sankey` · `d3.forceSimulation` · Google Fonts
 
 ---
 
